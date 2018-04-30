@@ -120,7 +120,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias ema="emacs -nw"
 alias emacs="XLIB_SKIP_ARGB_VISUALS=1 emacs25"
-alias busqueda="/home/txema/bitbucket_projects/bash-scripts-for-everything/busqueda.sh"
 alias python="python3"
 alias mntscratch="sshfs fmgtc009:/scratch/chema/ ~/scratch"
 alias ls="colorls"

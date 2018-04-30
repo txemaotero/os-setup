@@ -282,9 +282,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 bindsym XF86MonBrightnessUp exec sudo change_bright 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec sudo change_bright -20 # decrease screen brightness
 
-# Touchpad controls
-bindsym XF86TouchpadToggle exec /home/txema/toggletouchpad.sh # toggle touchpad
-#
 # # Media player controls
 # bindsym XF86AudioPlay exec playerctl play
 # bindsym XF86AudioPause exec playerctl pause

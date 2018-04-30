@@ -1,15 +1,11 @@
 [![Built with Spacemacs](https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg)](http://spacemacs.org)
 # Ubuntu Setup
 
--------------------------------------------------------------------------------
-
 This repo contains a guide with the steps to follow for the installation of a
 battery of features, concretely in Ubuntu 18.04 LTS. Moreover, some of the
 employed configuration files for some programs are also included.
 
 ## General Packages
-
--------------------------------------------------------------------------------
 
 Here I list some useful packages that I usually use. If no more information is
 supplied, the packages can be simply installed with: `sudo apt update`.
@@ -31,8 +27,6 @@ Visual molecular dynamics. Download the last version, uncompress, run
 `./configure` change to src dir and run `sudo make install`.
 
 ## Zsh
-
--------------------------------------------------------------------------------
 
 Give some live to your shell. Install zsh and the [oh-my-zsh](http://ohmyz.sh/)
 layout.
@@ -57,8 +51,6 @@ run `./install.sh` script.
 
 ## Python
 
--------------------------------------------------------------------------------
-
 Ensure you have pip installed in both python versions.
 
 ``` bash
@@ -73,8 +65,6 @@ sudo pip3 install numpy scipy matplotlib MDAnalysis bs4 jupyter
 
 ## Text Editors
 
--------------------------------------------------------------------------------
-
 I really love to edit in [vim](https://vim.org) but I also like the
 extensibility that [emacs](https://www.gnu.org/software/emacs/) offers. So, in
 these lines, I usually use [spacemacs](http://spacemacs.org/). I have to mention
@@ -82,8 +72,6 @@ that for fast editing in the shell I use vim without any doubt so I maintain a
 light weight vim configuration and a full one for spacemacs.
 
 ### Vim
-
--------------------------------------------------------------------------------
 
 Make sure that you have the last version vim and also the gtk packages for
 allowing the copy paste from clipboard register.
@@ -100,8 +88,6 @@ used packages:
 
 ### Emacs
 
--------------------------------------------------------------------------------
-
 Make sure you have the last version of emacs.
 
 ``` bash
@@ -112,8 +98,6 @@ Clone the [spacemacs](http://spacemacs.org) layout and configure the
 [.spacemacs](.spacemacs) file.
 
 ## i3
-
--------------------------------------------------------------------------------
 
 Give a try to the [i3](https://i3wm.org/) window manager, visualize the system
 information with [i3blocks](https://github.com/vivien/i3blocks), give some
@@ -129,4 +113,4 @@ Add some spaces between windows with
 installation see the
 [wiki](https://github.com/Airblader/i3/wiki/Compiling-&-Installing) page. The
 configuration for i3 is in the [.i3](.i3) directory, the i3blocks one is in
-[.i3blocks](.i3blocks.conf) and the compton in [.compton](.compton.conf).
+[.i3blocks](.i3blocks.conf) and the compton in [.compton](.compton.conf)

@@ -1,2 +1,2 @@
 #!/bin/sh
-i3lock -i ~/.wallpapers/python.png
+i3lock -i ~/.wallpapers/python_lock.png -t

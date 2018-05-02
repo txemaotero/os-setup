@@ -51,7 +51,7 @@ bindsym $mod+d exec rofi -show drun
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym Mod1+l exec ~/.i3/i3scripts/lock_screen
+bindsym Ctrl+Mod1+l exec ~/.i3/i3scripts/lock_screen
 
 set $Locker i3lock && sleep 1
 
@@ -124,7 +124,7 @@ bindsym $mod+a focus parent
 # Name the workspaces
 set $workspace1 "1:  terminal"
 set $workspace2 "2:  code"
-set $workspace3 "3:  www"
+set $workspace3 "3:  www"
 set $workspace4 "4:  files"
 set $workspace5 "5:  music"
 set $workspace6 "6:  random"
@@ -263,6 +263,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
+# move workspace
+bindsym $mod+m move workspace to output left
 # Sreen brightness controls
 #
 bindsym XF86MonBrightnessUp exec sudo change_bright 20 # increase screen brightness
@@ -286,3 +288,7 @@ exec --no-startup-id i3-msg 'workspace 1:  terminal; exec gnome-terminal'
 exec --no-startup-id i3-msg 'workspace 2:  code; exec emacs'
 exec --no-startup-id i3-msg 'workspace 3:  www; exec firefox'
 exec --no-startup-id i3-msg 'workspace 4:  files; exec nautilus'
+
+# Map lock to scape
+exec_always --no-startup-id xmodmap -e "clear lock"
+exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"

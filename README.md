@@ -63,7 +63,7 @@ run `./install.sh` script.
 Ensure you have pip installed in both python versions.
 
 ``` bash
-sudo apt install python-pip python3-pip
+sudo apt install python-pip python3-pip python3-matplotlib python-matplotlib python3-pyqt5
 ```
 
 Install useful packages.

@@ -15,16 +15,25 @@ supplied, the packages can be simply installed with: `sudo apt update`.
 - [gimp](https://gimp.org): Edit images.
 - [Google-Chrome](https://www.google.com.mx/chrome/): Web browser. This should
   downloaded from the official page. Take a look to the vimium extension.
+- [firefox](https://www.mozilla.org/es-ES/firefox/): Web browser.
 - curl: Transfer data from or to a server.
 - gem, ruby-dev: To install ruby packages.
 - gcc: Compiler.
 - make
 - htop: Monitoring system from terminal.
 - aspell-es: Spanish dictionary.
-- gromacs: Molecular dynamics simulation.
+- [gromacs](http://www.gromacs.org/): Molecular dynamics simulation.
 - [vmd](http://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD):
 Visual molecular dynamics. Download the last version, uncompress, run
 `./configure` change to src dir and run `sudo make install`.
+- [Avogadro](https://avogadro.cc/): Molecular editor.
+- [vlc](https://www.videolan.org/vlc/index.es.html): Media player.
+- [texmaker](http://www.xm1math.net/texmaker/): Latex IDE.
+- texlive*: Latex packages
+- [ffmpeg](https://www.ffmpeg.org/): media editor.
+- [okular](https://okular.kde.org/): pdf reader.
+- [Insync](https://www.insynchq.com/): Syncronizer manager for google drive.
+  Download from the official page and install.
 
 ## Zsh
 
@@ -60,7 +69,7 @@ sudo apt install python-pip python3-pip
 Install useful packages.
 
 ``` bash
-sudo pip3 install numpy scipy matplotlib MDAnalysis bs4 jupyter
+sudo pip3 install numpy scipy matplotlib MDAnalysis bs4 jupyter sqlalchemy cython IPython django powerline-status pylint
 ```
 
 ## Text Editors

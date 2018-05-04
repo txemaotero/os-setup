@@ -34,6 +34,7 @@ Visual molecular dynamics. Download the last version, uncompress, run
 - [okular](https://okular.kde.org/): pdf reader.
 - [Insync](https://www.insynchq.com/): Syncronizer manager for google drive.
   Download from the official page and install.
+- [nmp](https://www.npmjs.com/): Package manager for js.
 
 ## Zsh
 
@@ -104,17 +105,22 @@ sudo apt install emacs
 ```
 
 Clone the [spacemacs](http://spacemacs.org) layout and configure the
-[.spacemacs](.spacemacs) file.
+[.spacemacs](.spacemacs) file. Install tern to correctly load spacemacs.
+
+``` bash
+sudo npm install -g tern
+```
 
 ## i3
 
 Give a try to the [i3](https://i3wm.org/) window manager, visualize the system
 information with [i3blocks](https://github.com/vivien/i3blocks), give some
-transparency with [compton](https://github.com/chjj/compton) and set up the rofi
+transparency with [compton](https://github.com/chjj/compton), set the wallpapers
+with `feh` and set up the rofi
 app launcher.
 
 ``` bash
-sudo apt install i3 i3blocks rofi compton
+sudo apt install i3 i3blocks rofi compton feh
 ```
 
 Add some spaces between windows with

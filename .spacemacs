@@ -428,28 +428,31 @@ you should place you code here."
 ;; =dotspacemacs-configuration-layer-path= of your =~/.spacemacs=.
 ;; (dotspacemacs-configuration-layer-path)
 ;; (set dotspacemacs-configuration-layer-path ~/.emacs.d/own_pack/)
-  ;; Problems with acutes
-  (require 'iso-transl)
-  ;; Configuración google translate
-  (require 'google-translate)
-  (require 'google-translate-smooth-ui)
-  (setq google-translate-default-source-language "en")
-  (setq google-translate-default-target-language "es")
-  (setq google-translate-translation-directions-alist '(("en" . "es")))
-  (setq google-translate-pop-up-buffer-set-focus t)
-  ;; Default dict
-  (setq-default ispell-dictionary "english")
+;; Problems with acutes
+(require 'iso-transl)
+;; Configuración google translate
+(require 'google-translate)
+(require 'google-translate-smooth-ui)
+(setq google-translate-default-source-language "en")
+(setq google-translate-default-target-language "es")
+(setq google-translate-translation-directions-alist '(("en" . "es")))
+(setq google-translate-pop-up-buffer-set-focus t)
+;; Default dict
+(setq-default ispell-dictionary "english")
 
-  (setq split-height-threshold nil)
-  (setq split-width-threshold 0)
-  (require 'helm-bookmark)
-  ;; Para ir al medio de la linea
-  (defun middle-of-line ()
-    "Put cursor at the middle point of the line."
-    (interactive)
-    (goto-char (/ (+ (point-at-bol) (point-at-eol)) 2)))
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
+(require 'helm-bookmark)
+;; Para ir al medio de la linea
+(defun middle-of-line ()
+  "Put cursor at the middle point of the line."
+  (interactive)
+  (goto-char (/ (+ (point-at-bol) (point-at-eol)) 2)))
 
-  (define-key evil-motion-state-map "gm" 'middle-of-line)
+;; Transparency at startup
+(spacemacs/enable-transparency)
+
+(define-key evil-motion-state-map "gm" 'middle-of-line)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

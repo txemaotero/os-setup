@@ -25,6 +25,7 @@
 MIXER="default"
 [ -n "$(lsmod | grep pulse)" ] && MIXER="pulse"
 [ -n "$(lsmod | grep jack)" ] && MIXER="jackplug"
+MIXER="pulse"
 MIXER="${2:-$MIXER}"
 
 # The instance option sets the control to report and configure

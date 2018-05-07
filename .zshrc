@@ -4,6 +4,11 @@
 # Command to check colors
 # for code ({000..255}) print -P -- "$code: %F{$code}This is how your text would look like%f"
 
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
+
 # Syntax highlighting and tab completion
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 autoload -Uz compinit
@@ -125,6 +130,7 @@ alias mntscratch="sshfs fmgtc009:/scratch/chema/ ~/scratch"
 alias ls="colorls"
 alias l="ls -l"
 alias ll="ls -l"
+alias la="ls -la"
 
 # ctrl-p
 bindkey "^P" up-line-or-search

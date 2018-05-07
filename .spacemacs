@@ -61,6 +61,7 @@ values."
                                       gscholar-bibtex
                                       py-yapf
                                       yasnippet-snippets
+                                      evil-replace-with-register
                                       lsp-mode
                                       lsp-ui
                                       )
@@ -312,7 +313,8 @@ you should place you code here."
   (defvar linum-border-width 1 "Border width for linum.")
   (defvar linum-current-line 1 "Current line number.")
   ;; (defvar linum-border-width 1 "Border width for linum.")
-
+  (setq evil-replace-with-register-key (kbd "gr"))
+  (evil-replace-with-register-install)
   ;; Defining macros
   (fset 'adapt_bib
         (lambda (&optional arg) "Keyboard macro."
@@ -426,11 +428,6 @@ you should place you code here."
 ;; =dotspacemacs-configuration-layer-path= of your =~/.spacemacs=.
 ;; (dotspacemacs-configuration-layer-path)
 ;; (set dotspacemacs-configuration-layer-path ~/.emacs.d/own_pack/)
-  (load-file "~/.emacs.d/private/local/evil-ReplaceWithRegister.el")
-  (require 'evil-ReplaceWithRegister)
-  ;; change default key bindings (if you want) HERE
-  (setq evil-ReplaceWithRegister-key (kbd "gr"))
-  (evil-ReplaceWithRegister-install)
   ;; Problems with acutes
   (require 'iso-transl)
   ;; Configuración google translate
@@ -461,31 +458,9 @@ you should place you code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-
- '(dotspacemacs-distinguish-gui-tab t t)
- '(evil-surround-pairs-alist
-   (quote
-    ((41 "( " . " )")
-     (93 "[ " . " ]")
-     (125 "{ " . " }")
-     (40 "(" . ")")
-     (91 "[" . "]")
-     (123 "{" . "}")
-     (35 "#{" . "}")
-     (98 "(" . ")")
-     (66 "{" . "}")
-     (62 "<" . ">")
-     (116 . evil-surround-read-tag)
-     (60 . evil-surround-read-tag)
-     (102 . evil-surround-function))))
- '(markdown-command "/usr/bin/pandoc")
  '(package-selected-packages
    (quote
-    (rainbow-mode rainbow-identifiers pdf-tools tablist color-identifiers-mode lsp-ui lsp-mode vimrc-mode dactyl-mode ein request-deferred websocket deferred yasnippet-snippets yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package typit mmt toc-org tagedit sudoku sql-indent spaceline powerline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters py-yapf pug-mode popwin persp-mode pcre2el paradox spinner pacmacs orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-plus-contrib org-mime org-download org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc markdown-mode magit-gitflow macrostep lorem-ipsum livid-mode skewer-mode simple-httpd linum-relative link-hint less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc indent-guide hydra hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode gscholar-bibtex google-translate golden-ratio gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck pkg-info epl flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-matchit evil-magit magit magit-popup git-commit ghub let-alist with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight eshell-z eshell-prompt-extras esh-help emoji-cheat-sheet-plus emmet-mode elisp-slime-nav dumb-jump f diminish define-word csv-mode company-web web-completion-data company-tern s dash-functional tern dash company-statistics company-emoji company-auctex company column-enforce-mode coffee-mode clean-aindent-mode bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-dictionary auto-compile packed auctex-latexmk auctex aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup 2048-game monokai-theme)))
- '(paradox-github-token t t)
- '(python-backend (quote lsp))
- '(python-shell-interpreter "ipython3")
- '(safe-local-variable-values (quote ((encoding . utf-8)))))
+    (evil-replace-with-register evil-nerd-commenter yasnippet-snippets yapfify xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package typit toc-org tagedit sudoku sql-indent spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-yapf py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox pacmacs orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree multi-term move-text monokai-theme mmm-mode markdown-toc magit-gitflow macrostep lsp-ui lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag gscholar-bibtex google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emoji-cheat-sheet-plus emmet-mode elisp-slime-nav ein dumb-jump diminish define-word dactyl-mode cython-mode csv-mode company-web company-tern company-statistics company-emoji company-auctex company-anaconda column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell 2048-game))))
 
 
 (custom-set-faces
@@ -493,9 +468,5 @@ you should place you code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-
- '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C"))))
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- '(font-lock-doc-face ((t (:foreground "dark olive green")))))
+ '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C")))))
 

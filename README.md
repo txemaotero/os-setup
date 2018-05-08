@@ -35,6 +35,7 @@ Visual molecular dynamics. Download the last version, uncompress, run
 - [Insync](https://www.insynchq.com/): Syncronizer manager for google drive.
   Download from the official page and install.
 - [nmp](https://www.npmjs.com/): Package manager for js.
+- [shutter](http://shutter-project.org/): screenshot tool.
 
 ## Zsh
 

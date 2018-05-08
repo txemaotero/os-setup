@@ -261,6 +261,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
+bindcode 107 exec --no-startup-id shutter # screen shot
+
 # move workspace
 bindsym $mod+m move workspace to output left
 # Sreen brightness controls

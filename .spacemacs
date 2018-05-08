@@ -361,6 +361,33 @@ you should place you code here."
   (define-key evil-replace-state-map (kbd "<C-dead-grave>") 'evil-escape)
   (define-key evil-surround-mode-map (kbd "<C-dead-grave>") 'evil-escape)
 
+  (defcustom evil-want-C-u-in-insert-state-backward-delete-line nil
+    "Whether \"C-u\" in evil-insert-state  deletes the line backwards like in Vim."
+    :type 'boolean
+    :group 'evil
+    :set #'(lambda (sym value)
+             (set-default sym value)
+             (when (boundp 'evil-insert-state-map)
+               (cond
+                ((and (not value)
+                      (eq (lookup-key evil-insert-state-map (kbd "C-u"))
+                          'evil-backward-delete-line))
+                 (define-key evil-insert-state-map (kbd "C-u") nil))
+                ((and value
+                      (not (lookup-key evil-insert-state-map (kbd "C-u"))))
+                 (define-key evil-insert-state-map (kbd "C-u") 'evil-backward-delete-line))))))
+
+  (defun evil-backward-delete-line ()
+    "Kill line backward"
+    (interactive)
+    (if(looking-back "^" 0)
+        (backward-delete-char 1)
+      (delete-region (point) (line-beginning-position))))
+
+  ;; (when evil-want-C-u-in-insert-state-backward-delete-line
+  ;;   (define-key evil-insert-state-map (kbd "C-u") 'evil-backward-delete-line))
+  (define-key evil-insert-state-map (kbd "C-u") 'evil-backward-delete-line)
+
   ;; No yank in open files
   (add-hook 'spacemacs-buffer-mode-hook (lambda ()
                                           (set (make-local-variable 'mouse-1-click-follows-link) nil)))

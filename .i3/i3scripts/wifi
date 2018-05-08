@@ -16,14 +16,23 @@
 
 #------------------------------------------------------------------------
 
-INTERFACE="wlo1"
+# Use the provided interface, otherwise the device used for the default route.
 
+
+if [[ -n $BLOCK_INSTANCE ]]; then
+  INTERFACE=$BLOCK_INSTANCE
+else
+  INTERFACE=$(ip route | awk '/^default/ { print $5 ; exit }')
+fi
 #------------------------------------------------------------------------
 
 # As per #36 -- It is transparent: e.g. if the machine has no battery or wireless
 # connection (think desktop), the corresponding block should not be displayed.
-if [[ ! -d /sys/class/net/${INTERFACE}/wireless ]] ||
-    [[ "$(cat /sys/class/net/$INTERFACE/operstate)" = 'down' ]]; then
+if [[ ! -d /sys/class/net/${INTERFACE}/wireless ]]; then
+    exit
+fi
+
+if [[ "$(cat /sys/class/net/$INTERFACE/operstate)" = 'down' ]]; then
     echo "睊"
     echo "No wifi"
     echo "#f92672"

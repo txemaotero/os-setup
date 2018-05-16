@@ -93,6 +93,7 @@ POWERLEVEL9K_LINUX_ICON='%F{208}\uf31c Ubuntu'
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  tmux
   common-aliases
 )
 

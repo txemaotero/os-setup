@@ -130,3 +130,20 @@ installation see the
 [wiki](https://github.com/Airblader/i3/wiki/Compiling-&-Installing) page. The
 configuration for i3 is in the [.i3](.i3) directory, the i3blocks one is in
 [.i3blocks](.i3blocks.conf) and the compton in [.compton](.compton.conf)
+
+### Genral tips
+
+This are listed some general tips that help to manage different features in the
+i3wm.
+
+- __Conect WIFI__: To connect to a wifi network from the terminal run:
+
+``` bash
+nmcli dev wifi connect "WIFI SSID" password "WIFI PASS"
+```
+
+If you want to list the avaliable networks run:
+
+``` bash
+nmcli dev wifi
+```

@@ -14,7 +14,7 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 autoload -Uz compinit
 
 # Coloured man pages using less as pager
-man() {
+main() {
     env \
 	      LESS_TERMCAP_mb=$(printf "\e[1;31m") \
 	      LESS_TERMCAP_md=$(printf "\e[1;31m") \
@@ -132,6 +132,9 @@ alias ls="colorls"
 alias l="ls -l"
 alias ll="ls -l"
 alias la="ls -la"
+alias ipython="ipython3"
+alias ipython2="python2 -m IPython"
+alias yapf="yapf3"
 
 # ctrl-p
 bindkey "^P" up-line-or-search

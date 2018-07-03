@@ -128,16 +128,32 @@ set $workspace5 "5:  music"
 set $workspace6 "6:  random"
 
 # Switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+
+#switch to workspace floating windows
+bindsym $mod+1 exec "i3-msg workspace 1:  terminal; i3-msg scratchpad show"
+bindsym $mod+2 exec "i3-msg workspace 2:  code; i3-msg scratchpad show"
+bindsym $mod+3 exec "i3-msg workspace 3:  www; i3-msg scratchpad show"
+bindsym $mod+4 exec "i3-msg workspace 4:  files; i3-msg scratchpad show"
+bindsym $mod+5 exec "i3-msg workspace 5:  music; i3-msg scratchpad show"
+bindsym $mod+6 exec "i3-msg workspace 6:  random; i3-msg scratchpad show"
+bindsym $mod+7 exec "i3-msg workspace 7; i3-msg scratchpad show"
+bindsym $mod+8 exec "i3-msg workspace 8; i3-msg scratchpad show"
+bindsym $mod+9 exec "i3-msg workspace 9; i3-msg scratchpad show"
+bindsym $mod+0 exec "i3-msg workspace 10; i3-msg scratchpad show"
+bindsym $mod+minus scratchpad show
+
+bindsym $mod+Shift+minus move scratchpad
+
+# bindsym $mod+1 workspace $workspace1
+# bindsym $mod+2 workspace $workspace2
+# bindsym $mod+3 workspace $workspace3
+# bindsym $mod+4 workspace $workspace4
+# bindsym $mod+5 workspace $workspace5
+# bindsym $mod+6 workspace $workspace6
+# bindsym $mod+7 workspace 7
+# bindsym $mod+8 workspace 8
+# bindsym $mod+9 workspace 9
+# bindsym $mod+0 workspace 10
 
 
 # Move focused container to workspace
@@ -289,7 +305,3 @@ exec --no-startup-id i3-msg 'workspace 1:  terminal; exec tilix'
 exec --no-startup-id i3-msg 'workspace 2:  code; exec emacs'
 exec --no-startup-id i3-msg 'workspace 3:  www; exec firefox'
 exec --no-startup-id i3-msg 'workspace 4:  files; exec nautilus'
-
-# Map lock to scape
-exec_always --no-startup-id xmodmap -e "clear lock"
-exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"

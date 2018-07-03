@@ -93,8 +93,15 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 
 " Undo history
-set directory=~/.vim/swaps
+set directory=~/.vim/tmps
 if exists("&undodir")
     set undodir=~/.vim/undo
 endif
 set undofile
+
+" Map fd as esc
+imap fd <Esc>
+
+autocmd FileType python setlocal commentstring=#\ %s
+autocmd FileType sh setlocal commentstring=#\ %s
+autocmd FileType plaintex setlocal commentstring=%\ %s

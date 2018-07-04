@@ -93,7 +93,7 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 
 " Undo history
-set directory=~/.vim/swaps
+set directory=~/.vim/tmp
 if exists("&undodir")
     set undodir=~/.vim/undo
 endif

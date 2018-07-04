@@ -1,5 +1,9 @@
 execute pathogen#infect()
 
+filetype on
+filetype plugin on
+filetype indent on
+
 " Sets how many lines of history VIM has to remember
 set history=700
 
@@ -83,14 +87,15 @@ set laststatus=2
 set t_Co=256
 
 " Python
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix
+" au BufNewFile,BufRead *.py
+"     \ set tabstop=4 |
+"     \ set softtabstop=4 |
+"     \ set shiftwidth=4 |
+"     \ set textwidth=79 |
+"     \ set expandtab |
+"     \ set smarttab |
+"     \ set autoindent |
+"     \ set fileformat=unix
 
 " Undo history
 set directory=~/.vim/tmp

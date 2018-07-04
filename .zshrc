@@ -30,7 +30,7 @@ TERM=xterm-256color
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-export EDITOR=vim
+export EDITOR="vim -X"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -135,6 +135,7 @@ alias la="ls -la"
 alias ipython="ipython3"
 alias ipython2="python2 -m IPython"
 alias yapf="yapf3"
+alias vi="vim -X"
 
 # ctrl-p
 bindkey "^P" up-line-or-search

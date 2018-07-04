@@ -98,3 +98,13 @@ if exists("&undodir")
     set undodir=~/.vim/undo
 endif
 set undofile
+
+" Map fd as esc
+imap fd <Esc>
+
+autocmd FileType python setlocal commentstring=#\ %s
+autocmd FileType sh setlocal commentstring=#\ %s
+autocmd FileType plaintex setlocal commentstring=%\ %s
+
+" Speedup start
+set clipboard=exclude:.*

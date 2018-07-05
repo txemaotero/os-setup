@@ -269,6 +269,8 @@ gaps inner 6
 
 # scroll
 exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
+# key maps
+exec --no-startup-id "xmodmap ~/.Xmodmap"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
@@ -306,4 +308,3 @@ exec --no-startup-id i3-msg 'workspace 2:  code; exec emacs'
 exec --no-startup-id i3-msg 'workspace 3:  www; exec firefox'
 exec --no-startup-id i3-msg 'workspace 4:  files; exec nautilus'
 
-exec_always --no-startup-id xmodmap ~/.Xmodmap

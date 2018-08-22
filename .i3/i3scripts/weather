@@ -1,49 +1,52 @@
-#!/bin/bash 
+#!/usr/bin/env python3
 
-METRIC=1 #Should be 0 or 1; 0 for F, 1 for C
- 
-if [ -z $1 ]; then
-echo
-echo "USAGE: weather.sh <locationcode>"
-echo
-exit 0;
-fi
- 
-curl -s http://rss.accuweather.com/rss/liveweather_rss.asp\?metric\=${METRIC}\&locCode\=$1 | perl -ne 'use utf8; if (/Currently/) {chomp;/\<title\>Currently: (.*)?\<\/title\>/; my @values=split(":",$1); if( $values[0] eq "Sunny" || $values[0] eq "Mostly Sunny" || $values[0] eq "Partly Sunny" || $values[0] eq "Intermittent Clouds" || $values[0] eq "Hazy Sunshine" || $values[0] eq "Hazy Sunshine" || $values[0] eq "Hot") 
-{
-my $sun = "";
-binmode(STDOUT, ":utf8");
-print "$sun";
-}
-if( $values[0] eq "Mostly Cloudy" || $values[0] eq "Cloudy" || $values[0] eq "Dreary (Overcast)" || $values[0] eq "Fog")
-{
-my $cloud = "";
-binmode(STDOUT, ":utf8");
-print "$cloud";
-}
-if( $values[0] eq "Showers" || $values[0] eq "Mostly Cloudy w/ Showers" || $values[0] eq "Partly Sunny w/ Showers" || $values[0] eq "T-Storms"|| $values[0] eq "Mostly Cloudy w/ T-Storms"|| $values[0] eq "Partly Sunny w/ T-Storms"|| $values[0] eq "Rain")
-{
-my $rain = "";
-binmode(STDOUT, ":utf8");
-print "$rain";
-}
-if( $values[0] eq "Windy")
-{
-my $wind = "";
-binmode(STDOUT, ":utf8");
-print "$wind";
-} 
-if($values[0] eq "Flurries" || $values[0] eq "Mostly Cloudy w/ Flurries" || $values[0] eq "Partly Sunny w/ Flurries"|| $values[0] eq "Snow"|| $values[0] eq "Mostly Cloudy w/ Snow"|| $values[0] eq "Ice"|| $values[0] eq "Sleet"|| $values[0] eq "Freezing Rain"|| $values[0] eq "Rain and Snow"|| $values[0] eq "Cold")
-{
-my $snow = "";
-binmode(STDOUT, ":utf8");
-print "$snow";
-}
-if($values[0] eq "Clear" || $values[0] eq "Mostly Clear" || $values[0] eq "Partly Cloudy"|| $values[0] eq "Intermittent Clouds"|| $values[0] eq "Hazy Moonlight"|| $values[0] eq "Mostly Cloudy"|| $values[0] eq "Partly Cloudy w/ Showers"|| $values[0] eq "Mostly Cloudy w/ Showers"|| $values[0] eq "Partly Cloudy w/ T-Storms"|| $values[0] eq "Mostly Cloudy w/ Flurries" || $values[0] eq "Mostly Cloudy w/ Snow")
-{
-my $night = "";
-binmode(STDOUT, ":utf8");
-print "$night";
-}
-print"$values[1]"; }'
+"""
+Script to check the weather in Spain from "https://www.eltiempo.es".
 
+The way to call this script is by:
+
+    "python weather2.py location"
+
+Where "location" will be used to call the page:
+    "https://www.eltiempo.es/location.html"
+
+If the page has no info for the input location it will do nothing, otherwise
+it will print the temperature and the cloud state with icons.
+"""
+
+import sys
+import requests
+import bs4
+
+
+CLOUD_CORRESPONDENCE = {
+    'mostly-clear' : '',
+    'cloudless' : '',
+}
+
+
+def extract_info(content):
+    """
+    Extracts the information from a typical weather page.
+    """
+    content = bs4.BeautifulSoup(content, 'lxml')
+    info = content.select_one('#topHeader').select('.m_tables_top_temp')[0]
+    temp = info.select_one('span').attrs['data-temp']
+    cloud = info.select_one('i').attrs['class']
+    cloud.remove('icon_weather_xl')
+    cloud = cloud[0]
+    cloud_icon = CLOUD_CORRESPONDENCE.get(cloud, cloud)
+    return f'{cloud_icon}  {temp}C\n'
+
+
+location = sys.argv[1]
+url = f'https://www.eltiempo.es/{location}.html'
+
+ses = requests.session()
+
+content = ses.get(url)
+
+if content.ok:
+    print(extract_info(content.content))
+else:
+    print('')

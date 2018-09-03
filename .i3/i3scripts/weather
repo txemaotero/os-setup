@@ -5,10 +5,16 @@ Script to check the weather in Spain from "https://www.eltiempo.es".
 
 The way to call this script is by:
 
-    "python weather2.py location"
+    "python weather2.py"
 
-Where "location" will be used to call the page:
-    "https://www.eltiempo.es/location.html"
+The location that will be used to call the page must be specified in a
+location.py file in this directory (not in the repo) as:
+
+    LOCATION = "location"
+
+Then the request will be send to the page:
+
+    "https://www.eltiempo.es/LOCATION.html"
 
 If the page has no info for the input location it will do nothing, otherwise
 it will print the temperature and the cloud state with icons.
@@ -17,6 +23,7 @@ it will print the temperature and the cloud state with icons.
 import sys
 import requests
 import bs4
+from location import LOCATION
 
 
 CLOUD_CORRESPONDENCE = {
@@ -41,8 +48,7 @@ def extract_info(content):
     return f'{cloud_icon}  {temp}C\n'
 
 
-location = sys.argv[1]
-url = f'https://www.eltiempo.es/{location}.html'
+url = f'https://www.eltiempo.es/{LOCATION}.html'
 
 ses = requests.session()
 

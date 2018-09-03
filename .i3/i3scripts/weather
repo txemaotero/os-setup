@@ -22,6 +22,8 @@ import bs4
 CLOUD_CORRESPONDENCE = {
     'mostly-clear' : '',
     'cloudless' : '',
+    'partly-cloudy' : '杖',
+    'overcast-light-rain' : '殺',
 }
 
 

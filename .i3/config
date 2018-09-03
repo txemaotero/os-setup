@@ -296,7 +296,7 @@ bindsym XF86MonBrightnessDown exec sudo change_bright -100 # decrease screen bri
 exec_always --no-startup-id synclient VertScrollDelta=-113
 
 # Programs
-exec_always --no-startup-id feh --bg-fill ~/.wallpapers/python.png --bg-fill ~/.wallpapers/python.png  # Wallpaper
+exec_always --no-startup-id feh --bg-fill ~/.wallpapers/python3.png --bg-fill ~/.wallpapers/python3.png  # Wallpaper
 exec --no-startup-id xinput set-prop 12 281 1  
 exec_always --no-startup-id insync start  #Insync
 exec --no-startup-id compton -f # Compositor for window transparency

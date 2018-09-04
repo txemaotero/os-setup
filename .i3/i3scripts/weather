@@ -32,6 +32,7 @@ CLOUD_CORRESPONDENCE = {
     'partly-cloudy' : '杖',
     'overcast-light-rain' : '殺',
     'overcast' : '',
+    'night-partly-cloudy' : '',
 }
 
 

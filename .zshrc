@@ -137,6 +137,8 @@ alias ipython2="python2 -m IPython"
 alias yapf="yapf3"
 alias vi="vim -X"
 
+eval $(thefuck --alias)
+
 # ctrl-p
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search

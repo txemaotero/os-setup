@@ -35,6 +35,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec tilix
 
+# Always numlock active
+bindcode 77 exec --no-startup-id numlockx on
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -299,6 +302,7 @@ exec_always --no-startup-id synclient VertScrollDelta=-113
 
 # Programs
 exec_always --no-startup-id feh --bg-fill ~/.wallpapers/python3.png --bg-fill ~/.wallpapers/python3.png  # Wallpaper
+exec_always --no-startup-id numlockx on
 exec --no-startup-id xinput set-prop 12 281 1  
 exec_always --no-startup-id insync start  #Insync
 exec --no-startup-id compton -f # Compositor for window transparency

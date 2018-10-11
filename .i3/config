@@ -305,5 +305,5 @@ exec --no-startup-id compton -f # Compositor for window transparency
 
 exec --no-startup-id i3-msg 'workspace 1:  terminal; exec tilix'
 exec --no-startup-id i3-msg 'workspace 2:  code; exec emacs'
-exec --no-startup-id i3-msg 'workspace 3:  www; exec firefox'
+exec --no-startup-id i3-msg 'workspace 3:  www; exec google-chrome'
 exec --no-startup-id i3-msg 'workspace 4:  files; exec nautilus'

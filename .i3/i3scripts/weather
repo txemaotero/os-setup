@@ -27,13 +27,14 @@ from location import LOCATION
 
 
 CLOUD_CORRESPONDENCE = {
-    'mostly-clear' : '',
-    'cloudless' : '',
-    'partly-cloudy' : '杖',
-    'overcast-light-rain' : '殺',
-    'overcast' : '',
-    'night-partly-cloudy' : '',
-    'cloudy' : '',
+    'mostly-clear': '',
+    'cloudless': '',
+    'partly-cloudy': '杖',
+    'overcast-light-rain': '殺',
+    'overcast': '',
+    'night-partly-cloudy': '',
+    'cloudy': '',
+    'overcast-showers': '',
 }
 
 

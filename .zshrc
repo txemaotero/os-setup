@@ -95,6 +95,8 @@ plugins=(
   git
   tmux
   common-aliases
+  python
+  virtualenv
 )
 
 # User configuration
@@ -245,7 +247,7 @@ ENABLE_CORRECTION="true"
 HIST_STAMPS="mm/dd/yyyy"
 
 # Prompt elements
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context custom_dir_icon dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context custom_dir_icon dir vcs virtualenv)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs time battery)
 
 # Emacs
@@ -269,3 +271,5 @@ fi
 unalias rm
 unalias cp
 unalias mv
+
+export VIRTUAL_ENV_DISABLE_PROMPT=

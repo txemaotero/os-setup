@@ -113,3 +113,6 @@ autocmd FileType plaintex setlocal commentstring=%\ %s
 
 " Speedup start
 set clipboard=exclude:.*
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %

@@ -22,7 +22,7 @@ set autoindent
 filetype indent plugin on
 
 " Copies using system clipboard
-set clipboard+=unnamedplus
+" set clipboard+=unnamedplus
 
 " Tab = 4 spaces
 set tabstop=4

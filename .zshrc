@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Library/PostgreSQL/11/bin:$PATH:/Library/TeX/texbin/
+
 #
 # Command to check colors
 # for code ({000..255}) print -P -- "$code: %F{$code}This is how your text would look like%f"
@@ -30,7 +31,7 @@ TERM=xterm-256color
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-export EDITOR="vim -X"
+export EDITOR="nvim"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -127,9 +128,14 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Example aliases
+alias vim="nvim"
+alias vi="nvim"
+
 alias ema="emacs -nw"
+alias nagaussview="python3 ~/bitbucket/nagausspy/src/nagausspy/viewer.py"
 alias mntscratch="sshfs hydra:/scratch/chema/ ~/scratch"
 alias mntgpu="sshfs hydra:/gpudrive/chema/ ~/gpudrive"
+alias mntcesga="sshfs cesga:lustre/ ~/cesga"
 alias ls="colorls"
 alias l="ls -l"
 alias ll="ls -l"
@@ -139,6 +145,8 @@ alias yapf="yapf3"
 alias vi="vim -X"
 alias vmd="/Applications/VMD\ 1.9.3.app/Contents/MacOS/startup.command"
 alias plotter2="/Applications/plotter2.app/Contents/MacOS/plotter2"
+alias packmol="~/.packmol/packmol"
+alias nwchem="/Users/txema/nwchem-6.8.1-release/bin/MACX64/nwchem"
 
 # ctrl-p
 bindkey "^P" up-line-or-search
@@ -271,3 +279,5 @@ unalias cp
 unalias mv
 
 export VIRTUAL_ENV_DISABLE_PROMPT=
+export LDFLAGS="-L/usr/local/opt/openblas/lib"
+export CPPFLAGS="-I/usr/local/opt/openblas/include"

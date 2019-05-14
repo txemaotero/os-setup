@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Library/PostgreSQL/11/bin:$PATH:/Library/TeX/texbin/
+
 #
 # Command to check colors
 # for code ({000..255}) print -P -- "$code: %F{$code}This is how your text would look like%f"
@@ -10,7 +11,7 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 fi
 
 # Syntax highlighting and tab completion
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 autoload -Uz compinit
 
 # Coloured man pages using less as pager
@@ -30,7 +31,7 @@ TERM=xterm-256color
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-export EDITOR="vim -X"
+export EDITOR="nvim"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -97,6 +98,7 @@ plugins=(
   common-aliases
   python
   virtualenv
+  osx
 )
 
 # User configuration
@@ -126,21 +128,25 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Example aliases
+alias vim="nvim"
+alias vi="nvim"
+
 alias ema="emacs -nw"
-alias emacs="XLIB_SKIP_ARGB_VISUALS=1 emacs25"
-alias python="python3"
-alias mntscratch="sshfs fmgtc009:/scratch/chema/ ~/scratch"
-alias mntgpu="sshfs fmgtc009:/gpudrive/chema/ ~/gpudrive"
+alias nagaussview="python3 ~/bitbucket/nagausspy/src/nagausspy/viewer.py"
+alias mntscratch="sshfs hydra:/scratch/chema/ ~/scratch"
+alias mntgpu="sshfs hydra:/gpudrive/chema/ ~/gpudrive"
+alias mntcesga="sshfs cesga:lustre/ ~/cesga"
 alias ls="colorls"
 alias l="ls -l"
 alias ll="ls -l"
 alias la="ls -la"
-alias ipython="ipython3"
-alias ipython2="python2 -m IPython"
+alias tree="ls --tree"
 alias yapf="yapf3"
 alias vi="vim -X"
-
-eval $(thefuck --alias)
+alias vmd="/Applications/VMD\ 1.9.3.app/Contents/MacOS/startup.command"
+alias plotter2="/Applications/plotter2.app/Contents/MacOS/plotter2"
+alias packmol="~/.packmol/packmol"
+alias nwchem="/Users/txema/nwchem-6.8.1-release/bin/MACX64/nwchem"
 
 # ctrl-p
 bindkey "^P" up-line-or-search
@@ -234,7 +240,7 @@ POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND='green'
 POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='214'
 
 # Time
-POWERLEVEL9K_TIME_FORMAT="%F{black}\uf017 %D{%I:%M}%f"
+POWERLEVEL9K_TIME_FORMAT="%F{black}%D{%I:%M}%f"
 POWERLEVEL9K_TIME_BACKGROUND='cyan'
 
 POWERLEVEL9K_CUSTOM_DIR_ICON='dir_icon'
@@ -273,3 +279,5 @@ unalias cp
 unalias mv
 
 export VIRTUAL_ENV_DISABLE_PROMPT=
+export LDFLAGS="-L/usr/local/opt/openblas/lib"
+export CPPFLAGS="-I/usr/local/opt/openblas/include"

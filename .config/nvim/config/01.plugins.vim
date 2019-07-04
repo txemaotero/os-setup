@@ -11,7 +11,6 @@ if dein#load_state('~/.cache/dein')
 
     " Add or remove your plugins here:
     
-    
     call dein#add('joshdick/onedark.vim')
     call dein#add('itchyny/lightline.vim')
     call dein#add('sheerun/vim-polyglot')
@@ -42,6 +41,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('tpope/vim-commentary')
     call dein#add('mhinz/vim-startify')
     call dein#add('vim-scripts/ReplaceWithRegister')
+    call dein#add('tpope/vim-repeat')
     call dein#add('tpope/vim-surround')
     
     " call dein#add('sheerun/vim-polyglot')

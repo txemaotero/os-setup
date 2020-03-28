@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Library/PostgreSQL/11/bin:$PATH:/Library/TeX/texbin/
-export PYTHONPATH=/usr/local/lib/python3.7/site-packages:/Users/txema/bitbucket/gromacs_analysis/src:/usr/local/bin:./src
+export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Library/PostgreSQL/11/bin:$PATH:/Library/TeX/texbin/:$HOME/.cargo/bin:/usr/local/Cellar/python/3.7.4_1/Frameworks/Python.framework/Versions/3.7/bin
+# export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.7/site-packages:/Users/txema/bitbucket/gromacs_analysis/src:/usr/local/bin:./src
+export ANDROID_HOME=/Users/txema/Library/Android/sdk
 
 #
 # Command to check colors
@@ -132,6 +133,8 @@ source $ZSH/oh-my-zsh.sh
 alias vim="nvim"
 alias vi="nvim"
 
+alias youtube-dl-best="youtube-dl -f bestvideo+bestaudio"
+
 alias ema="emacs -nw"
 alias nagaussview="python3 ~/bitbucket/nagausspy/src/nagausspy/viewer.py"
 alias mntscratch="sshfs hydra:/scratch/chema/ ~/scratch"
@@ -145,10 +148,11 @@ alias la="ls -la"
 alias tree="ls --tree"
 alias yapf="yapf3"
 alias vi="vim -X"
-alias vmd="/Applications/VMD\ 1.9.3.app/Contents/MacOS/startup.command"
+alias vmd="/Applications/VMD\ 1.9.4a38.app/Contents/MacOS/startup.command"
 alias plotter2="/Applications/plotter2.app/Contents/MacOS/plotter2"
 alias packmol="~/.packmol/packmol"
 alias nwchem="/Users/txema/nwchem-6.8.1-release/bin/MACX64/nwchem"
+alias vdos-filter="jupyter notebook --notebook-dir=${PWD} ~/vdos_filter/Interactive\ filter\ vDoS.ipynb"
 
 # ctrl-p
 bindkey "^P" up-line-or-search
@@ -185,11 +189,11 @@ POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{blue}\u256D\u2500%f"
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460%f "
 POWERLEVEL9K_STATUS_OK=false
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir_joined
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator custom_dir_icon dir_joined
                                    dir_writable_joined)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time vcs
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv status command_execution_time vcs
                                     background_jobs_joined time_joined
-                                    user_joined os_icon_joined host_joined)
+                                    user_joined os_icon_joined host_joined battery)
 POWERLEVEL9K_VCS_CLEAN_BACKGROUND="clear"
 POWERLEVEL9K_VCS_CLEAN_FOREGROUND="green"
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="clear"
@@ -213,6 +217,7 @@ POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
 POWERLEVEL9K_TIME_FORMAT="%D{\uf073 %b %d \uf017 %H:%M}" #  Jun 15  09:32
 POWERLEVEL9K_TIME_BACKGROUND="clear"
 POWERLEVEL9K_TIME_FOREGROUND="yellow"
+POWERLEVEL9K_TIME_ICON=""
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='clear'
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='magenta'
 POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND='clear'
@@ -260,9 +265,9 @@ POWERLEVEL9K_OS_ICON_FOREGROUND="grey"
 # POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='black'
 # POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 # POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-# POWERLEVEL9K_HOME_ICON=''
-# POWERLEVEL9K_HOME_SUB_ICON=''
-# POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
 
 # # OS segment
 # POWERLEVEL9K_OS_ICON_BACKGROUND='black'
@@ -292,18 +297,26 @@ POWERLEVEL9K_OS_ICON_FOREGROUND="grey"
 # POWERLEVEL9K_FAIL_ICON=$'\uf165'
 # POWERLEVEL9K_CARRIAGE_RETURN_ICON=$'\uf165'
 
-# # Battery
-# POWERLEVEL9K_BATTERY_LOW_FOREGROUND='red'
-# POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='yellow'
-# POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND='green'
-# POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='214'
+# Battery
+POWERLEVEL9K_BATTERY_LOW_FOREGROUND='red'
+POWERLEVEL9K_BATTERY_LOW_BACKGROUND='clean'
+POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='yellow'
+POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND='clean'
+POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND='green'
+POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND='clean'
+POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='214'
+POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND='clean'
 
 # # Time
 # POWERLEVEL9K_TIME_FORMAT="%F{black}%D{%I:%M}%f"
 # POWERLEVEL9K_TIME_BACKGROUND='cyan'
 
-# POWERLEVEL9K_CUSTOM_DIR_ICON='dir_icon'
-# POWERLEVEL9K_CUSTOM_DIR_ICON_BACKGROUND='251'
+POWERLEVEL9K_CUSTOM_DIR_ICON='dir_icon'
+POWERLEVEL9K_CUSTOM_DIR_ICON_BACKGROUND='clean'
+POWERLEVEL9K_CUSTOM_DIR_ICON_FOREGROUND='blue'
+
+POWERLEVEL9K_VIRTUALENV_BACKGROUND='clean'
+POWERLEVEL9K_VIRTUALENV_FOREGROUND='grey'
 
 # Command auto-correction.
 ENABLE_CORRECTION="true"
@@ -336,7 +349,34 @@ fi
 unalias rm
 unalias cp
 unalias mv
+unalias ipython
 
 export VIRTUAL_ENV_DISABLE_PROMPT=
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
 export CPPFLAGS="-I/usr/local/opt/openblas/include"
+
+
+function jptnode(){
+    # Forwards port $1 from node $2 into port $1 on the local machine and listens to it
+    ssh -t -t chema@fmgtc009.usc.es -L ${1}:localhost:${1} ssh ${2} -L ${1}:localhost:${1}
+    }
+
+function realpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
+function jupyter-molview(){
+    if [ -z "$2"]
+    then
+    sed "s?fgro_replace?$(realpath ${1})?; s?ftrr_replace??" ~/.molecular_representations/plantilla.ipynb > ~/.molecular_representations/temporary.ipynb
+    else
+    sed "s?fgro_replace?$(realpath ${1})?; s?ftrr_replace?$(realpath ${2})?" ~/.molecular_representations/plantilla.ipynb > ~/.molecular_representations/temporary.ipynb
+    fi
+    jupyter-notebook ~/.molecular_representations/temporary.ipynb
+    }
+
+###-tns-completion-start-###
+if [ -f /Users/txema/.tnsrc ]; then 
+    source /Users/txema/.tnsrc 
+fi
+###-tns-completion-end-###

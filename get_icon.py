@@ -12,7 +12,7 @@ def select_icon(path):
     """
     Choose the icon.
     """
-    if '/drive' in path:
+    if '/Google Drive' in path:
         return '\ue731'
     if '/Descargas' in path:
         return '\uf74c'

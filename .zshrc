@@ -1,7 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Library/PostgreSQL/11/bin:$PATH:/Library/TeX/texbin/:$HOME/.cargo/bin:/usr/local/Cellar/python/3.7.4_1/Frameworks/Python.framework/Versions/3.7/bin
-# export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.7/site-packages:/Users/txema/bitbucket/gromacs_analysis/src:/usr/local/bin:./src
-export ANDROID_HOME=/Users/txema/Library/Android/sdk
+export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Library/PostgreSQL/11/bin:$PATH:/Library/TeX/texbin/:$HOME/.cargo/bin:/usr/local/Cellar/python/3.7.7/Frameworks/Python.framework/Versions/3.7/bin
+export ANDROID_HOME=$HOME/Library/Android/sdk
 
 #
 # Command to check colors
@@ -135,6 +134,7 @@ alias vi="nvim"
 
 alias youtube-dl-best="youtube-dl -f bestvideo+bestaudio"
 
+alias python3="/usr/local/opt/python/bin/python3.7"
 alias ema="emacs -nw"
 alias nagaussview="python3 ~/bitbucket/nagausspy/src/nagausspy/viewer.py"
 alias mntscratch="sshfs hydra:/scratch/chema/ ~/scratch"
@@ -151,7 +151,7 @@ alias vi="vim -X"
 alias vmd="/Applications/VMD\ 1.9.4a38.app/Contents/MacOS/startup.command"
 alias plotter2="/Applications/plotter2.app/Contents/MacOS/plotter2"
 alias packmol="~/.packmol/packmol"
-alias nwchem="/Users/txema/nwchem-6.8.1-release/bin/MACX64/nwchem"
+alias nwchem="${HOME}/nwchem-6.8.1-release/bin/MACX64/nwchem"
 alias vdos-filter="jupyter notebook --notebook-dir=${PWD} ~/vdos_filter/Interactive\ filter\ vDoS.ipynb"
 
 # ctrl-p
@@ -179,6 +179,18 @@ dir_icon(){
     python3 $HOME/github/os-setup/get_icon.py $PWD
 }
 
+prompt_anaconda() {
+  # Depending on the conda version, either might be set. This
+  # variant works even if both are set.
+  _path=$CONDA_ENV_PATH$CONDA_PREFIX
+  if ! [ -z "$_path" ]; then
+    # config - can be overwritten in users' zshrc file.
+    set_default POWERLEVEL9K_ANACONDA_LEFT_DELIMITER ""
+    set_default POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER ""
+    "$1_prompt_segment" "$0" "$2" "$3" "$4" "Conda" 'PYTHON_ICON'
+  fi
+}
+
 POWERLEVEL9K_DIR_PATH_SEPARATOR="%F{cyan}/%F{blue}"
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
 POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
@@ -191,7 +203,7 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460%f "
 POWERLEVEL9K_STATUS_OK=false
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator custom_dir_icon dir_joined
                                    dir_writable_joined)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv status command_execution_time vcs
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv anaconda status command_execution_time vcs
                                     background_jobs_joined time_joined
                                     user_joined os_icon_joined host_joined battery)
 POWERLEVEL9K_VCS_CLEAN_BACKGROUND="clear"
@@ -318,6 +330,9 @@ POWERLEVEL9K_CUSTOM_DIR_ICON_FOREGROUND='blue'
 POWERLEVEL9K_VIRTUALENV_BACKGROUND='clean'
 POWERLEVEL9K_VIRTUALENV_FOREGROUND='grey'
 
+POWERLEVEL9K_ANACONDA='prompt_anaconda'
+POWERLEVEL9K_ANACONDA_FOREGROUND='gold3'
+
 # Command auto-correction.
 ENABLE_CORRECTION="true"
 
@@ -350,6 +365,8 @@ unalias rm
 unalias cp
 unalias mv
 unalias ipython
+unalias fd
+unalias ff
 
 export VIRTUAL_ENV_DISABLE_PROMPT=
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
@@ -376,7 +393,9 @@ function jupyter-molview(){
     }
 
 ###-tns-completion-start-###
-if [ -f /Users/txema/.tnsrc ]; then 
-    source /Users/txema/.tnsrc 
+if [ -f ${HOME}/.tnsrc ]; then 
+    source ${HOME}/.tnsrc 
 fi
 ###-tns-completion-end-###
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

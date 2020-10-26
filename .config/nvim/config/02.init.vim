@@ -8,37 +8,40 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Enable syntax highlighting
 syntax on
 
-" Fixes backspace
+" Fixes backspace over indentation end of line and line start
 set backspace=indent,eol,start
 
 " Enable line/column info at bottom
 set ruler
 set cursorline " highlights current line
 
+" Number of lines bellow cursor before scroll
 set scrolloff=10
 
 " Autoindentation
 set autoindent
-filetype indent plugin on
+" File type detection
+filetype on
+" Loads the corresponding indent file for the filetype
+filetype indent on
+" Loads the corresponding pluggins for the filetype
+filetype plugin on
 
 " Copies using system clipboard
-" set clipboard+=unnamedplus
+set clipboard+=unnamedplus
 
 " Tab = 4 spaces
 set tabstop=4
 set shiftwidth=4
-" set sta
+" convert tabs in spaces
 set expandtab
 set sts=4 " softtabstop, makes spaces feel like tabs when deleting
 
 " enable mouse support
 set mouse=a mousemodel=popup
 
+" Changes words with symbols
 set conceallevel=2
-
-" markdown file recognition
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-autocmd BufNewFile,BufReadPost *.md.html set filetype=markdown
 
 " relative line numbers
 " Sets relative line numbers in normal mode, absolute line numbers in insert
@@ -51,37 +54,36 @@ set incsearch       " search as characters are entered
 set ignorecase      " ignore case when searching
 set smartcase       " ignore case if search pattern is lower case
                     " case-sensitive otherwise
-                    
+
+" Auto close brackets
+if &ft =~ 'vim'
+    inoremap " ""<left>
+endif
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O                    
+autocmd FileType py inoremap "<CR> "<CR>"<ESC>O
+autocmd FileType tex,py inoremap $ $$<left>
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+
 " Live search and replace
 set inccommand=nosplit
 
 " use ripgreg instead of grep
 set grepprg=rg\ --vimgrep
 
-" Set colors in terminal
-" Solarized, dark, with true color support
-" set termguicolors
-" set background=dark
-colorscheme onedark
-
+" Hide files in the background instead of closing them
 set hidden
 
-" Disable completion where available from ALE
-" (not worth creating a separate file just for a one-liner)
-let g:ale_completion_enabled = 0
-
-" Only run linters named in ale_linters settings.
-let g:ale_linters_explicit = 1
-
-" terminal settings
-autocmd BufWinEnter,WinEnter term://* startinsert
-autocmd BufLeave term://* stopinsert
-
-" markdown settings
-" let g:vim_markdown_conceal = 0
-let g:vim_markdown_math = 0
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_no_default_key_mappings = 1
+" Color scheme
+colorscheme molokai
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support

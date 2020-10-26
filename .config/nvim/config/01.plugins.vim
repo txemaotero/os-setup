@@ -5,6 +5,12 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
+" List coc extensions
+let g:coc_global_extensions = [
+\ 'coc-json',
+\ 'coc-python'
+\ ]
+
 call plug#begin('~/.config/nvim/autoload/plugged')
 
     Plug 'bfredl/nvim-miniyank'

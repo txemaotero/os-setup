@@ -24,5 +24,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'flazz/vim-colorschemes'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'junegunn/gv.vim'
+    Plug 'jiangmiao/auto-pairs'
 
 call plug#end()

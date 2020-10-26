@@ -6,12 +6,13 @@ endif
 
 " Leader maps
 nmap <Leader>fs :w!<cr>
-nmap <Leader>ff :e
 nmap <Leader>bd :bd<cr>
 nmap <Leader>bn :bn<cr>
 nmap <Leader>bp :bp<cr>
 nmap <Leader><Tab> :b#<cr>
 nmap <Leader>fed :e ~/.vimrc<cr>
+" FZF command
+nmap <Leader>ff :Files<CR>
 
 " Map fd as esc
 imap fd <Esc>

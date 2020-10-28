@@ -27,9 +27,6 @@ filetype indent on
 " Loads the corresponding pluggins for the filetype
 filetype plugin on
 
-" Copies using system clipboard
-" set clipboard+=unnamedplus
-
 " Tab = 4 spaces
 set tabstop=4
 set shiftwidth=4

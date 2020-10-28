@@ -2,3 +2,5 @@
 __pycache__/
 .config/nvim/autoload/**
 .config/nvim/.netrwhist
+.config/nvim/config/06.special_machine_settings.vim
+

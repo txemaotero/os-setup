@@ -140,3 +140,7 @@ nnoremap <silent><nowait> <space>pj  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>pk  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>pp  :<C-u>CocListResume<CR>
+
+" Explorer
+nmap <space>e :CocCommand explorer<CR>
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif

@@ -26,5 +26,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'junegunn/gv.vim'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 
 call plug#end()

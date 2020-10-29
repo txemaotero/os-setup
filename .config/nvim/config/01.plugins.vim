@@ -27,5 +27,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'junegunn/gv.vim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+    Plug 'tpope/vim-repeat'
+    Plug 'liuchengxu/vim-which-key'
 
 call plug#end()

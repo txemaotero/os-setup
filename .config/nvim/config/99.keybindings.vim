@@ -27,3 +27,5 @@ nmap Y y$
 " Insert new line in comand mode
 nmap <CR> o<Esc>
 nmap <C-j> i<CR><Esc>
+
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>

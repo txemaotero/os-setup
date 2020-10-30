@@ -29,5 +29,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
     Plug 'tpope/vim-repeat'
     Plug 'liuchengxu/vim-which-key'
+    Plug 'ChristianChiarulli/codi.vim'
 
 call plug#end()

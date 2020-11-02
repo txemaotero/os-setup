@@ -1,4 +1,5 @@
-noremap <silent> <leader> :silent WhichKey '<Space>'<CR>
+" Map leader to which_key
+nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 
 " Create map to add keys to
@@ -18,11 +19,12 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 
 " Coc Search & refactor
-nnoremap <leader>? :CocSearch <C-R>=expand("<cword>")<CR><CR>
-let g:which_key_map['/'] = 'search word'
+nnoremap <leader>/ :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader><Tab> :b#
 
 " Single mappings
-let g:which_key_map['/'] = [ ':call Comment()'                    , 'comment' ]
+let g:which_key_map['/'] = 'search word'
+let g:which_key_map['<Tab>'] = 'alternate buffer'
 let g:which_key_map['.'] = [ ':e $MYVIMRC'                        , 'open init' ]
 let g:which_key_map[';'] = [ ':Commands'                          , 'commands' ]
 let g:which_key_map['='] = [ '<Plug>(coc-format-selected)'        , 'format selected']
@@ -33,7 +35,6 @@ let g:which_key_map['h'] = [ '<C-W>s'                             , 'split below
 let g:which_key_map['n'] = [ ':let @/ = ""'                       , 'no highlight' ]
 let g:which_key_map['q'] = [ 'q'                                  , 'quit' ]
 let g:which_key_map['r'] = [ ':RnvimrToggle'                      , 'ranger' ]
-let g:which_key_map['t'] = [ ':FloatermToggle'                    , 'terminal']
 let g:which_key_map['u'] = [ ':UndotreeToggle'                    , 'undo tree']
 let g:which_key_map['v'] = [ '<C-W>v'                             , 'split right']
 let g:which_key_map['W'] = [ 'w'                                  , 'write' ]
@@ -41,7 +42,6 @@ let g:which_key_map['W'] = [ 'w'                                  , 'write' ]
 " b is for buffer
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
-      \ '<Tab>' : [':b#'                , 'alternate'],
       \ '>' : [':BufferMoveNext'        , 'move next'],
       \ '<' : [':BufferMovePrevious'    , 'move prev'],
       \ '1' : [':BufferGoto 1'          , 'buffer 1'],
@@ -186,7 +186,6 @@ let g:which_key_map.t = {
       \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
       \ 's' : [':FloatermNew ncdu'                              , 'ncdu'],
       \ }
-
 
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")

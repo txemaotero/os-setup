@@ -20,7 +20,7 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 " Coc Search & refactor
 nnoremap <leader>/ :CocSearch <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader><Tab> :b#
+nnoremap <leader><Tab> :b#<CR>
 
 " Single mappings
 let g:which_key_map['/'] = 'search word'
@@ -153,7 +153,8 @@ let g:which_key_map.l = {
       \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
       \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
       \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
-      \ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
+      \ 'l' : [':CocList commands'                   , 'commands'],
+      \ 'L' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
       \ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
       \ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
       \ 'o' : [':Vista!!'                            , 'outline'],

@@ -52,6 +52,9 @@ set ignorecase      " ignore case when searching
 set smartcase       " ignore case if search pattern is lower case
                     " case-sensitive otherwise
 
+" Default shell
+set shell=/bin/zsh
+
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = "\<Space>"

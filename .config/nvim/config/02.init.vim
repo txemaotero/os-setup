@@ -52,19 +52,6 @@ set ignorecase      " ignore case when searching
 set smartcase       " ignore case if search pattern is lower case
                     " case-sensitive otherwise
 
-" Auto close brackets
-if &ft =~ 'vim'
-    inoremap " ""<left>
-endif
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O                    
-autocmd FileType py inoremap "<CR> "<CR>"<ESC>O
-autocmd FileType tex,py inoremap $ $$<left>
-
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = "\<Space>"

@@ -30,5 +30,13 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'tpope/vim-repeat'
     Plug 'liuchengxu/vim-which-key'
     Plug 'ChristianChiarulli/codi.vim'
+    Plug 'luochen1990/rainbow'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'mbbill/undotree'
+    Plug 'brooth/far.vim'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'rhysd/git-messenger.vim'
+    Plug 'liuchengxu/vista.vim'
+    Plug 'honza/vim-snippets'
 
 call plug#end()

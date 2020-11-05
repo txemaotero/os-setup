@@ -38,5 +38,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'rhysd/git-messenger.vim'
     Plug 'liuchengxu/vista.vim'
     Plug 'honza/vim-snippets'
+    Plug 'vim-scripts/ReplaceWithRegister'
 
 call plug#end()

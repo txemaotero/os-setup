@@ -55,7 +55,7 @@ let g:which_key_map.b = {
       \ '9' : [':BufferGoto 9'          , 'buffer 9'],
       \ '0' : [':BufferGoto 0'          , 'buffer 0'],
       \ 'b' : [':BufferPick'            , 'pick buffer'],
-      \ 'd' : [':Bdelete'               , 'delete-buffer'],
+      \ 'd' : [':bd'                    , 'delete-buffer'],
       \ 'f' : ['bfirst'                 , 'first-buffer'],
       \ 'l' : ['blast'                  , 'last buffer'],
       \ 'n' : ['bnext'                  , 'next-buffer'],

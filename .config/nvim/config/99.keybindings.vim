@@ -21,4 +21,6 @@ nmap Y y$
 " Insert new line in comand mode
 nmap <CR> o<Esc>
 
-" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+xnoremap = :call CocAction('formatSelected', visualmode())<CR>
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"

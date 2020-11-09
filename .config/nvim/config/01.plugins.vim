@@ -7,8 +7,20 @@ endif
 
 " List coc extensions
 let g:coc_global_extensions = [
+\ 'coc-actions',
+\ 'coc-emoji',
+\ 'coc-explorer',
+\ 'coc-floaterm',
 \ 'coc-json',
-\ 'coc-python'
+\ 'coc-lists',
+\ 'coc-marketplace',
+\ 'coc-pairs',
+\ 'coc-prettier',
+\ 'coc-python',
+\ 'coc-sh',
+\ 'coc-snippets',
+\ 'coc-vimlsp',
+\ 'coc-yank'
 \ ]
 
 call plug#begin('~/.config/nvim/autoload/plugged')
@@ -25,7 +37,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'flazz/vim-colorschemes'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'junegunn/gv.vim'
-    Plug 'jiangmiao/auto-pairs'
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
     Plug 'tpope/vim-repeat'
     Plug 'liuchengxu/vim-which-key'
@@ -39,5 +50,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'liuchengxu/vista.vim'
     Plug 'honza/vim-snippets'
     Plug 'vim-scripts/ReplaceWithRegister'
+    if g:nvim_version.minor == 5
+        Plug 'kyazdani42/nvim-web-devicons'
+        Plug 'romgrk/barbar.nvim'
+        Plug 'nvim-treesitter/nvim-treesitter'
+    endif
 
 call plug#end()

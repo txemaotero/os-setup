@@ -19,6 +19,7 @@ set cursorline " highlights current line
 set scrolloff=10
 
 " Autoindentation
+set smartindent
 set autoindent
 " File type detection
 filetype on
@@ -29,16 +30,17 @@ filetype plugin on
 
 " Tab = 4 spaces
 set tabstop=4
-set shiftwidth=4
+" set shiftwidth=4
 " convert tabs in spaces
 set expandtab
+set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
 set sts=4 " softtabstop, makes spaces feel like tabs when deleting
 
 " enable mouse support
 set mouse=a mousemodel=popup
 
 " Changes words with symbols
-set conceallevel=2
+set conceallevel=0
 
 " relative line numbers
 " Sets relative line numbers in normal mode, absolute line numbers in insert

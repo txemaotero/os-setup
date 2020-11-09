@@ -32,7 +32,7 @@ TERM=xterm-256color
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-export EDITOR="nvim"
+export EDITOR="nvim-nightly"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -129,8 +129,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Example aliases
-alias vim="nvim"
-alias vi="nvim"
+alias vim="nvim-nightly"
+alias vi="nvim-nightly"
 
 alias youtube-dl-best="youtube-dl -f bestvideo+bestaudio"
 

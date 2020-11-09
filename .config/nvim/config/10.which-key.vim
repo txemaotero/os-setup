@@ -31,12 +31,14 @@ let g:which_key_map['='] = [ '<Plug>(coc-format-selected)'        , 'format sele
 let g:which_key_map['d'] = [ ':Bdelete'                           , 'delete buffer']
 let g:which_key_map['e'] = [ ':CocCommand explorer'               , 'explorer' ]
 let g:which_key_map['g'] = [ ':Rg'                                , 'search text' ]
-let g:which_key_map['h'] = [ '<C-W>s'                             , 'split below']
+let g:which_key_map['H'] = [ '<C-W>s'                             , 'split below']
+let g:which_key_map['s'] = [ '<C-W>s'                             , 'split below']
 let g:which_key_map['n'] = [ ':let @/ = ""'                       , 'no highlight' ]
 let g:which_key_map['q'] = [ 'q'                                  , 'quit' ]
 let g:which_key_map['r'] = [ ':RnvimrToggle'                      , 'ranger' ]
 let g:which_key_map['u'] = [ ':UndotreeToggle'                    , 'undo tree']
-let g:which_key_map['v'] = [ '<C-W>v'                             , 'split right']
+let g:which_key_map['V'] = [ '<C-W>v'                             , 'split right']
+let g:which_key_map['v'] = 'init selection'
 let g:which_key_map['W'] = [ 'w'                                  , 'write' ]
 
 " b is for buffer
@@ -56,8 +58,10 @@ let g:which_key_map.b = {
       \ '0' : [':BufferGoto 0'          , 'buffer 0'],
       \ 'b' : [':BufferPick'            , 'pick buffer'],
       \ 'd' : [':bd'                    , 'delete-buffer'],
+      \ 'D' : [':BufferOrderByDirectory', 'order by directory'],
       \ 'f' : ['bfirst'                 , 'first-buffer'],
       \ 'l' : ['blast'                  , 'last buffer'],
+      \ 'L' : [':BufferOrderByLanguage' , 'order by language'],
       \ 'n' : ['bnext'                  , 'next-buffer'],
       \ 'p' : ['bprevious'              , 'previous-buffer'],
       \ 'r' : [':Farr --source=vimgrep' , 'find & replace'],

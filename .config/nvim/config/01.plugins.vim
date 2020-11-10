@@ -50,8 +50,15 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'liuchengxu/vista.vim'
     Plug 'honza/vim-snippets'
     Plug 'vim-scripts/ReplaceWithRegister'
+    Plug 'mhinz/vim-startify'
+    " Cool Icons
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'ryanoasis/vim-devicons'
+    " Smooth scroll
+    Plug 'psliwka/vim-smoothie'
+
+    Plug 'liuchengxu/vista.vim'
     if g:nvim_version.minor == 5
-        Plug 'kyazdani42/nvim-web-devicons'
         Plug 'romgrk/barbar.nvim'
         Plug 'nvim-treesitter/nvim-treesitter'
     endif

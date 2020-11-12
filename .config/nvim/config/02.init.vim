@@ -73,7 +73,10 @@ set hidden
 
 " Color scheme
 colorscheme molokai
-highlight LineNr guifg=#050505
+" highlight LineNr guifg=#050505
+highlight LineNr guibg=#050505ff
+highlight SignColumn guibg=#050505ff
+highlight FoldColumn guibg=#050505ff
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support

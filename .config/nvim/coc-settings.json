@@ -4,7 +4,7 @@
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
   "explorer.file.showHiddenFiles": true,
-  "explorer.keyMappings": {
+  "explorer.keyMappings.global": {
     "<cr>": ["expandable?", "expand", "open"],
     "v": "open:vsplit",
     "s": "open:split"
@@ -25,6 +25,8 @@
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "python.jediEnabled": false,
+  // spell
+  "cSpell.language": "en,es",
   // snippets
   "snippets.ultisnips.directories": ["UltiSnips", "~/.config/nvim/snips"]
 }

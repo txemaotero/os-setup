@@ -24,6 +24,8 @@ main() {
 TERM=xterm-256color
 # Default editor
 export EDITOR="nvim-nightly"
+export ZSH=$HOME/.oh-my-zsh
+source $ZSH/zsh_machine_settings.sh
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -82,10 +84,8 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-source $ZSH/zsh_machine_settings.sh
 
 # Aliases
 alias vim="nvim-nightly"
@@ -172,6 +172,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
 export CPPFLAGS="-I/usr/local/opt/openblas/include"
 
+source $ZSH/zsh_machine_settings_end.sh
 
 function jptnode(){
     # Forwards port $1 from node $2 into port $1 on the local machine and listens to it

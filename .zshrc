@@ -5,10 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Library/PostgreSQL/11/bin:$PATH:/Library/TeX/texbin/:$HOME/.cargo/bin:/usr/local/Cellar/python/3.7.7/Frameworks/Python.framework/Versions/3.7/bin
-
-# Syntax highlighting and tab completion
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 autoload -Uz compinit
 
 # Coloured man pages using less as pager
@@ -89,6 +85,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+source $ZSH/zsh_machine_settings.sh
+
 # Aliases
 alias vim="nvim-nightly"
 alias vi="nvim-nightly"
@@ -114,7 +112,6 @@ alias nwchem="${HOME}/nwchem-6.8.1-release/bin/MACX64/nwchem"
 unalias rm
 unalias cp
 unalias mv
-unalias ipython
 unalias fd
 unalias ff
 

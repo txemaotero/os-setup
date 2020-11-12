@@ -1,15 +1,11 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Library/PostgreSQL/11/bin:$PATH:/Library/TeX/texbin/:$HOME/.cargo/bin:/usr/local/Cellar/python/3.7.7/Frameworks/Python.framework/Versions/3.7/bin
-export ANDROID_HOME=$HOME/Library/Android/sdk
-
-#
-# Command to check colors
-# for code ({000..255}) print -P -- "$code: %F{$code}This is how your text would look like%f"
-
-
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/Library/PostgreSQL/11/bin:$PATH:/Library/TeX/texbin/:$HOME/.cargo/bin:/usr/local/Cellar/python/3.7.7/Frameworks/Python.framework/Versions/3.7/bin
 
 # Syntax highlighting and tab completion
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -28,28 +24,10 @@ main() {
 	      man "$@"
 }
 
+# Good colors
 TERM=xterm-256color
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
+# Default editor
 export EDITOR="nvim-nightly"
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="gnzh"
-
-POWERLEVEL9K_MODE='nerdfont-complete'
-ZSH_THEME="powerlevel9k/powerlevel9k"
-
-POWERLEVEL9K_LINUX_ICON='%F{208}\uf31c Ubuntu'
-
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -71,7 +49,7 @@ POWERLEVEL9K_LINUX_ICON='%F{208}\uf31c Ubuntu'
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -104,38 +82,19 @@ plugins=(
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+POWERLEVEL9K_MODE='nerdfont-complete'
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# Example aliases
+# Aliases
 alias vim="nvim-nightly"
 alias vi="nvim-nightly"
-
-alias youtube-dl-best="youtube-dl -f bestvideo+bestaudio"
-
-alias python3="/usr/local/opt/python/bin/python3.7"
 alias ema="emacs -nw"
+alias youtube-dl-best="youtube-dl -f bestvideo+bestaudio"
+alias python3="/usr/local/opt/python/bin/python3.7"
 alias nagaussview="python3 ~/bitbucket/nagausspy/src/nagausspy/viewer.py"
 alias mntscratch="sshfs hydra:/scratch/chema/ ~/scratch"
 alias mntnas="sshfs hydra:/nas/chema/ ~/nas"
@@ -147,14 +106,19 @@ alias ll="ls -l"
 alias la="ls -la"
 alias tree="ls --tree"
 alias yapf="yapf3"
-alias vi="vim -X"
 alias vmd="/Applications/VMD\ 1.9.4a38.app/Contents/MacOS/startup.command"
 alias plotter2="/Applications/plotter2.app/Contents/MacOS/plotter2"
 alias packmol="~/.packmol/packmol"
 alias nwchem="${HOME}/nwchem-6.8.1-release/bin/MACX64/nwchem"
-alias vdos-filter="jupyter notebook --notebook-dir=${PWD} ~/vdos_filter/Interactive\ filter\ vDoS.ipynb"
+# Unaliases
+unalias rm
+unalias cp
+unalias mv
+unalias ipython
+unalias fd
+unalias ff
 
-# ctrl-p
+# ctrl-p/n go up and down
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 
@@ -191,182 +155,21 @@ prompt_anaconda() {
   fi
 }
 
-POWERLEVEL9K_DIR_PATH_SEPARATOR="%F{cyan}/%F{blue}"
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
-POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
-POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=''
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{blue}\u256D\u2500%f"
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460%f "
-POWERLEVEL9K_STATUS_OK=false
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator custom_dir_icon dir_joined
-                                   dir_writable_joined)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv anaconda status command_execution_time vcs
-                                    background_jobs_joined time_joined
-                                    user_joined os_icon_joined host_joined battery)
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND="clear"
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND="green"
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="clear"
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND="yellow"
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND="clear"
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND="yellow"
-POWERLEVEL9K_DIR_HOME_BACKGROUND="clear"
-POWERLEVEL9K_DIR_HOME_FOREGROUND="blue"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="clear"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="blue"
-POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="clear"
-POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="red"
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="clear"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="cyan"
-POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="clear"
-POWERLEVEL9K_ROOT_INDICATOR_FOREGROUND="red"
-POWERLEVEL9K_STATUS_OK_BACKGROUND="clear"
-POWERLEVEL9K_STATUS_OK_FOREGROUND="green"
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND="clear"
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
-POWERLEVEL9K_TIME_FORMAT="%D{\uf073 %b %d \uf017 %H:%M}" #  Jun 15  09:32
-POWERLEVEL9K_TIME_BACKGROUND="clear"
-POWERLEVEL9K_TIME_FOREGROUND="yellow"
-POWERLEVEL9K_TIME_ICON=""
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='clear'
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='magenta'
-POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND='clear'
-POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='magenta'
-POWERLEVEL9K_USER_DEFAULT_BACKGROUND='clear'
-POWERLEVEL9K_USER_DEFAULT_FOREGROUND='cyan'
-POWERLEVEL9K_USER_ROOT_BACKGROUND='clear'
-POWERLEVEL9K_USER_ROOT_FOREGROUND='red'
-POWERLEVEL9K_USER_ICON="\uf415" # 
-POWERLEVEL9K_ROOT_ICON="\u26a1" # ⚡
-POWERLEVEL9K_HOST_LOCAL_BACKGROUND='clear'
-POWERLEVEL9K_HOST_LOCAL_FOREGROUND='magenta'
-POWERLEVEL9K_HOST_REMOTE_BACKGROUND='clear'
-POWERLEVEL9K_HOST_REMOTE_FOREGROUND='magenta'
-POWERLEVEL9K_HOST_ICON="\uF109 " # 
-POWERLEVEL9K_SSH_ICON="\uF489 "  # 
-POWERLEVEL9K_OS_ICON_BACKGROUND="clear"
-POWERLEVEL9K_OS_ICON_FOREGROUND="grey"
-
-# # Prompt settings OLD
-# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%K{white}%k"
-# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{black}%F{green} \uf155%f%F{black} %k\ue0b0%f "
-
-# # Separators
-# POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\ue0b0'
-# POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=$''
-# POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\ue0b2'
-# POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=$'\ue0b7'
-
-# # Context
-# DEFAULT_USER=$USER
-# POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
-# POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='028'
-# POWERLEVEL9K_CONTEXT_TEMPLATE="%F{cyan}%n%f"
-# POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='black'
-
-# # Dirs
-# POWERLEVEL9K_DIR_HOME_BACKGROUND='green'
-# POWERLEVEL9K_DIR_HOME_FOREGROUND='black'
-# POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='green'
-# POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='black'
-# POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='yellow'
-# POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='black'
-# POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-# POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-POWERLEVEL9K_HOME_ICON=''
-POWERLEVEL9K_HOME_SUB_ICON=''
-POWERLEVEL9K_FOLDER_ICON=''
-
-# # OS segment
-# POWERLEVEL9K_OS_ICON_BACKGROUND='black'
-
-# # VCS icons
-# POWERLEVEL9K_VCS_GIT_ICON=$''
-# POWERLEVEL9K_VCS_GIT_GITHUB_ICON=$''
-# POWERLEVEL9K_VCS_STAGED_ICON=$'\uf055'
-# POWERLEVEL9K_VCS_UNSTAGED_ICON=$'\uf421'
-# POWERLEVEL9K_VCS_UNTRACKED_ICON=$'\uf00d'
-# POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON=$'\uf0ab '
-# POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON=$'\uf0aa '
-
-# # VCS colours
-# POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'
-# POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='red'
-# POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='black'
-# POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
-# POWERLEVEL9K_VCS_CLEAN_BACKGROUND='black'
-# POWERLEVEL9K_VCS_CLEAN_FOREGROUND='green'
-
-# # VCS CONFIG
-# POWERLEVEL9K_SHOW_CHANGESET=false
-
-# # Status
-# POWERLEVEL9K_OK_ICON=$'\uf164'
-# POWERLEVEL9K_FAIL_ICON=$'\uf165'
-# POWERLEVEL9K_CARRIAGE_RETURN_ICON=$'\uf165'
-
-# Battery
-POWERLEVEL9K_BATTERY_LOW_FOREGROUND='red'
-POWERLEVEL9K_BATTERY_LOW_BACKGROUND='clean'
-POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='yellow'
-POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND='clean'
-POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND='green'
-POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND='clean'
-POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='214'
-POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND='clean'
-
-# # Time
-# POWERLEVEL9K_TIME_FORMAT="%F{black}%D{%I:%M}%f"
-# POWERLEVEL9K_TIME_BACKGROUND='cyan'
-
-POWERLEVEL9K_CUSTOM_DIR_ICON='dir_icon'
-POWERLEVEL9K_CUSTOM_DIR_ICON_BACKGROUND='clean'
-POWERLEVEL9K_CUSTOM_DIR_ICON_FOREGROUND='blue'
-
-POWERLEVEL9K_VIRTUALENV_BACKGROUND='clean'
-POWERLEVEL9K_VIRTUALENV_FOREGROUND='grey'
-
-POWERLEVEL9K_ANACONDA='prompt_anaconda'
-POWERLEVEL9K_ANACONDA_FOREGROUND='gold3'
-
 # Command auto-correction.
 ENABLE_CORRECTION="true"
 
 # Command execution time stamp shown in the history command output.
 HIST_STAMPS="mm/dd/yyyy"
 
-# Prompt elements
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context custom_dir_icon dir vcs virtualenv)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs time battery)
-
-# Emacs
-
 # Set up non-Apple terminals.
 if zstyle -t ':prezto:module:terminal' auto-title \
     && ( ! [[ -n "$STY" || -n "$TMUX" ]] )
     then
-# Sets the tab and window titles before the prompt is displayed.
+    # Sets the tab and window titles before the prompt is displayed.
     add-zsh-hook precmd _terminal-set-titles-with-path
-# Sets the tab and window titles before command execution.
+    # Sets the tab and window titles before command execution.
     add-zsh-hook preexec _terminal-set-titles-with-command
 fi
-
-if [[ -n ${EMACS} ]]; then
-    zstyle ':prezto:module:terminal' auto-title 'no'
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-    alias ls="colorls --light"
-fi
-
-unalias rm
-unalias cp
-unalias mv
-unalias ipython
-unalias fd
-unalias ff
 
 export VIRTUAL_ENV_DISABLE_PROMPT=
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
@@ -399,3 +202,6 @@ fi
 ###-tns-completion-end-###
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

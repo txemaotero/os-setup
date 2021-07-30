@@ -47,7 +47,7 @@ source $ZSH/zsh_machine_settings.sh
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -104,15 +104,16 @@ alias ll="ls -l"
 alias la="ls -la"
 alias tree="ls --tree"
 alias yapf="yapf3"
-alias vmd="/Applications/VMD\ 1.9.4a48-Catalina-Rev7.app/Contents/MacOS/startup.command"
+alias vmd="/Applications/VMD\ 1.9.4a51-x86_64-Rev9.app/Contents/MacOS/startup.command"
 alias plotter2="/Applications/plotter2.app/Contents/MacOS/plotter2"
 alias packmol="~/.packmol/packmol"
 alias nwchem="${HOME}/nwchem-6.8.1-release/bin/MACX64/nwchem"
+alias ipython="python3 -m IPython"
 # Unaliases
 unalias rm
 unalias cp
 unalias mv
-unalias fd
+# unalias fd
 unalias ff
 
 # ctrl-p/n go up and down

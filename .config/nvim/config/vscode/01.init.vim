@@ -52,8 +52,10 @@ set shell=/bin/zsh
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = "\<Space>"
-let g:mapleader = "\<Space>"
+" let mapleader = " "
+" let g:mapleader = " "
+
+" nnoremap <Space> <Nop>
 
 " Live search and replace
 set inccommand=nosplit
@@ -71,3 +73,12 @@ highlight LineNr guibg=#050505ff
 highlight SignColumn guibg=#050505ff
 highlight FoldColumn guibg=#050505ff
 
+nnoremap <silent> <Space> :call VSCodeNotify('whichkey.show')<CR>
+xnoremap <silent> <Space> :<C-u>call <SID>openWhichKeyInVisualMode()<CR>
+
+nmap <CR> o<Esc>
+
+xmap gc  <Plug>VSCodeCommentary
+nmap gc  <Plug>VSCodeCommentary
+omap gc  <Plug>VSCodeCommentary
+nmap gcc <Plug>VSCodeCommentaryLine

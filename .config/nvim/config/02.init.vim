@@ -15,12 +15,16 @@ set backspace=indent,eol,start
 set ruler
 set cursorline " highlights current line
 
+" Not breaking the lines in words
+set linebreak
+
 " Number of lines bellow cursor before scroll
 set scrolloff=10
 
 " Autoindentation
 set smartindent
 set autoindent
+
 " File type detection
 filetype on
 " Loads the corresponding indent file for the filetype
@@ -35,6 +39,9 @@ set tabstop=4
 set expandtab
 set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
 set sts=4 " softtabstop, makes spaces feel like tabs when deleting
+
+" Wrap
+autocmd BufRead,BufNewFile *.md set tw=80
 
 " enable mouse support
 set mouse=a mousemodel=popup
@@ -77,3 +84,4 @@ colorscheme molokai
 highlight LineNr guibg=#050505ff
 highlight SignColumn guibg=#050505ff
 highlight FoldColumn guibg=#050505ff
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE

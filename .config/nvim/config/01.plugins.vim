@@ -39,7 +39,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'vim-airline/vim-airline-themes'
 
     " Color themes
-    Plug 'flazz/vim-colorschemes'
+    Plug 'xiyaowong/nvim-transparent'
+    Plug 'tanvirtin/monokai.nvim'
+    Plug 'sainnhe/gruvbox-material'
+    Plug 'sainnhe/sonokai'
+    Plug 'marko-cerovac/material.nvim'
 
     " Git commit browser
     Plug 'junegunn/gv.vim'
@@ -83,6 +87,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'hrsh7th/vim-vsnip-integ'
     Plug 'rafamadriz/friendly-snippets'
 
+    " See the colors hex
+    Plug 'norcalli/nvim-colorizer.lua'
     
     " Replace with register
     Plug 'vim-scripts/ReplaceWithRegister'

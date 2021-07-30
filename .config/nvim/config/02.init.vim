@@ -3,7 +3,7 @@
 " run its scripts first. This contains misc startup settings
 " for vim
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Enable syntax highlighting
 syntax on
@@ -80,8 +80,6 @@ set hidden
 
 " Color scheme
 set termguicolors
-colorscheme molokai
-highlight LineNr guibg=#050505ff
-highlight SignColumn guibg=#050505ff
-highlight FoldColumn guibg=#050505ff
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+colorscheme sonokai
+
+let g:transparent_enabled = 1

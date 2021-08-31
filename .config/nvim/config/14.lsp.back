@@ -37,6 +37,24 @@ require'lspconfig'.jsonls.setup {
 require'lspconfig'.denols.setup{
   capabilities = capabilities,
 }
+
+local lspconfig = require'lspconfig'
+local configs = require'lspconfig/configs'    
+
+if not lspconfig.emmet_ls then    
+  configs.emmet_ls = {    
+    default_config = {    
+      cmd = {'emmet-ls', '--stdio'};
+      filetypes = {'html', 'css'};
+      root_dir = function(fname)    
+        return vim.loop.cwd()
+      end;    
+      settings = {};    
+    };    
+  }    
+end    
+lspconfig.emmet_ls.setup{ capabilities = capabilities; }
+
 EOF
 
 " LSP config (the mappings used in the default file don't quite work right)
@@ -49,3 +67,7 @@ nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
+autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.vue lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)

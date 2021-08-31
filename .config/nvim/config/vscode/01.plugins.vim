@@ -11,5 +11,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-repeat'
     Plug 'vim-scripts/ReplaceWithRegister'
+    " Change surraund
+    Plug 'tpope/vim-surround'
 
 call plug#end()

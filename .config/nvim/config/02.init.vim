@@ -33,12 +33,8 @@ filetype indent on
 filetype plugin on
 
 " Tab = 4 spaces
-set tabstop=4
-" set shiftwidth=4
-" convert tabs in spaces
-set expandtab
-set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
-set sts=4 " softtabstop, makes spaces feel like tabs when deleting
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType html,vue,json,js setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 " Wrap
 autocmd BufRead,BufNewFile *.md set tw=80
@@ -61,9 +57,6 @@ set ignorecase      " ignore case when searching
 set smartcase       " ignore case if search pattern is lower case
                     " case-sensitive otherwise
 
-" Default shell
-set shell=/bin/zsh
-
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = "\<Space>"
@@ -83,3 +76,7 @@ set termguicolors
 colorscheme sonokai
 
 let g:transparent_enabled = 1
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
+
+set undofile
+set undodir=~/.nvim/undodir

@@ -1,9 +1,30 @@
-" auto-install vim-plug
+"ut auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
+
+" List coc extensions
+let g:coc_global_extensions = [
+\ 'coc-actions',
+\ 'coc-explorer',
+\ 'coc-floaterm',
+\ 'coc-json',
+\ 'coc-marketplace',
+\ 'coc-pairs',
+\ 'coc-prettier',
+\ 'coc-python',
+\ 'coc-sh',
+\ 'coc-snippets',
+\ 'coc-vimlsp',
+\ 'coc-vetur',
+\ 'coc-html',
+\ 'coc-emmet',
+\ 'coc-tsserver',
+\ 'coc-html-css-support',
+\ 'coc-yank'
+\ ]
 
 call plug#begin('~/.config/nvim/autoload/plugged')
 
@@ -14,7 +35,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'ryanoasis/vim-devicons'
     
     " File explorer
-    Plug 'kyazdani42/nvim-tree.lua'
+    " Plug 'kyazdani42/nvim-tree.lua'
 
     " Telescope (for finding)
     Plug 'nvim-lua/popup.nvim'
@@ -60,7 +81,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Color parenthesis
     Plug 'luochen1990/rainbow'
     " Autoclose parenth
-    Plug 'cohama/lexima.vim'
+    " Plug 'cohama/lexima.vim'
+    " Plug 'jiangmiao/auto-pairs'
+    " Plug 'windwp/nvim-autopairs'
 
     " Float terminal
     Plug 'voldikss/vim-floaterm'
@@ -118,9 +141,15 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'nvim-treesitter/nvim-treesitter'
 
     " LSP
-    Plug 'neovim/nvim-lspconfig'
+    " Plug 'neovim/nvim-lspconfig'
 
     " Autocompletion
-    Plug 'hrsh7th/nvim-compe'
+    " Plug 'hrsh7th/nvim-compe'
+
+    " HTML tags
+    " Plug 'alvan/vim-closetag'
+    
+    " COC
+     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()

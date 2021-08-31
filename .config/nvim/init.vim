@@ -1,6 +1,5 @@
 set clipboard+=unnamedplus
 
-
 if exists('g:vscode')
     " VSCode extension
     for f in split(glob('~/.config/nvim/config/vscode/*.vim'), '\n')

@@ -1,0 +1,68 @@
+# Use custom format
+format = """
+[┌───────────────────](bold blue)[\uf192](bold blue)
+[│ ](bold blue) $username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$package\
+$cmake\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$env_var\
+$crystal\
+$custom\
+$cmd_duration\
+$line_break\
+$lua$jobs\
+$battery\
+$time\
+$status\
+$shell\
+[└─](bold blue)$character """
+
+[directory]
+style = "bold #c299ff"
+home_symbol = "\uf015 "
+
+[character]
+success_symbol = "[\ue0ce](bold #c299ff)"
+error_symbol = "[\ue0ce](bold red)"
+
+[lua]
+format = "[│ ](bold blue) [via 🌙 $version](bold blue) \n"

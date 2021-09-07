@@ -1,10 +1,3 @@
-" init.vim contains all of the initialization plugins for vim
-" note that this has to be sourced second since dein needs to
-" run its scripts first. This contains misc startup settings
-" for vim
-
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
 " Enable syntax highlighting
 syntax on
 
@@ -15,29 +8,18 @@ set backspace=indent,eol,start
 set ruler
 set cursorline " highlights current line
 
-" Not breaking the lines in words
-set linebreak
-
 " Number of lines bellow cursor before scroll
 set scrolloff=10
 
 " Autoindentation
 set smartindent
 set autoindent
-
 " File type detection
 filetype on
 " Loads the corresponding indent file for the filetype
 filetype indent on
 " Loads the corresponding pluggins for the filetype
 filetype plugin on
-
-" Tab = 4 spaces
-set expandtab tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType html,vue,json,js setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
-" Wrap
-autocmd BufRead,BufNewFile *.md set tw=80
 
 " enable mouse support
 set mouse=a mousemodel=popup
@@ -59,8 +41,10 @@ set smartcase       " ignore case if search pattern is lower case
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = "\<Space>"
-let g:mapleader = "\<Space>"
+let mapleader = " "
+let g:mapleader = " "
+
+" nnoremap <Space> <Nop>
 
 " Live search and replace
 set inccommand=nosplit
@@ -68,15 +52,15 @@ set inccommand=nosplit
 " use ripgreg instead of grep
 set grepprg=rg\ --vimgrep
 
-" Hide files in the background instead of closing them
-set hidden
+nnoremap <silent> <Space> :call VSCodeNotify('whichkey.show')<CR>
+xnoremap <silent> <Space> :<C-u>call <SID>openWhichKeyInVisualMode()<CR>
 
-" Color scheme
-set termguicolors
-colorscheme sonokai
+nmap <CR> o<Esc>
 
-let g:transparent_enabled = 1
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
+xmap gc  <Plug>VSCodeCommentary
+nmap gc  <Plug>VSCodeCommentary
+omap gc  <Plug>VSCodeCommentary
+nmap gcc <Plug>VSCodeCommentaryLine
 
 set undofile
-set undodir=~/.nvim/undodir
+set undodir=~/.nvim/undodir_vscode

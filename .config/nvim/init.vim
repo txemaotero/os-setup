@@ -1,14 +1,19 @@
-let g:nvim_version = api_info().version
+set clipboard+=unnamedplus
 
-for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
-	exe 'source' f
-endfor
+if exists('g:vscode')
+    " VSCode extension
+    for f in split(glob('~/.config/nvim/config/vscode/*.vim'), '\n')
+            exe 'source' f
+    endfor
+else
+    let g:nvim_version = api_info().version
 
-if g:nvim_version.minor == 5
-    for f in split(glob('~/.config/nvim/config/nightly/*.vim'), '\n')
-        exe 'source' f
+    for f in split(glob('~/.config/nvim/config/*.vim'), '\n')
+            exe 'source' f
     endfor
-    for f in split(glob('~/.config/nvim/config/nightly/*.lua'), '\n')
-        exe 'luafile' f
+
+    for f in split(glob('~/.config/nvim/config/*.lua'), '\n')
+            exe 'luafile' f
     endfor
+
 endif

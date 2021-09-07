@@ -6,7 +6,7 @@ vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 let g:which_key_map =  {}
 " Define a separator
 let g:which_key_sep = '→'
-" set timeoutlen=100
+set timeoutlen=300
 
 
 " Not a fan of floating windows for this
@@ -18,28 +18,22 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 
-" Coc Search & refactor
-nnoremap <leader>/ :CocSearch <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader><Tab> :b#<CR>
-
 " Single mappings
-let g:which_key_map['/'] = 'search word'
-let g:which_key_map['<Tab>'] = 'alternate buffer'
-let g:which_key_map['.'] = [ ':e $MYVIMRC'                        , 'open init' ]
-let g:which_key_map[';'] = [ ':Commands'                          , 'commands' ]
-let g:which_key_map['='] = [ '<Plug>(coc-format-selected)'        , 'format selected']
-let g:which_key_map['d'] = [ ':Bdelete'                           , 'delete buffer']
-let g:which_key_map['e'] = [ ':CocCommand explorer'               , 'explorer' ]
-let g:which_key_map['g'] = [ ':Rg'                                , 'search text' ]
-let g:which_key_map['H'] = [ '<C-W>s'                             , 'split below']
-let g:which_key_map['s'] = [ '<C-W>s'                             , 'split below']
-let g:which_key_map['n'] = [ ':let @/ = ""'                       , 'no highlight' ]
-let g:which_key_map['q'] = [ 'q'                                  , 'quit' ]
-let g:which_key_map['r'] = [ ':RnvimrToggle'                      , 'ranger' ]
-let g:which_key_map['u'] = [ ':UndotreeToggle'                    , 'undo tree']
-let g:which_key_map['V'] = [ '<C-W>v'                             , 'split right']
-let g:which_key_map['v'] = 'init selection'
-let g:which_key_map['W'] = [ 'w'                                  , 'write' ]
+let g:which_key_map['/']      = [ ':Telescope live_grep'        , 'find text']
+let g:which_key_map['<Tab>']  = [ ':b#'                         , 'alternate buffer']
+let g:which_key_map['.']      = [ ':e $MYVIMRC'                 , 'open config' ]
+let g:which_key_map[';']      = [ ':Telescope commands'         , 'commands' ]
+let g:which_key_map[':']      = [ ':Farr --source=vimgrep'      , 'find & replace' ]
+let g:which_key_map['=']      = [ '<Plug>(coc-format-selected)' , 'format selected']
+let g:which_key_map['d']      = [ ':bdelete'                    , 'delete buffer']
+let g:which_key_map['e']      = [ ':NvimTreeToggle'             , 'explorer' ]
+let g:which_key_map['n']      = [ ':let @/ = ""'                , 'no highlight' ]
+let g:which_key_map['q']      = [ 'q'                           , 'quit' ]
+let g:which_key_map['m']      = [ ':Vifm'                       , 'vifm' ]
+let g:which_key_map['u']      = [ ':UndotreeToggle'             , 'undo tree']
+let g:which_key_map['H']      = [ '<C-W>s'                      , 'split below']
+let g:which_key_map['V']      = [ '<C-W>v'                      , 'split right']
+let g:which_key_map['v']      = 'init selection'
 
 " b is for buffer
 let g:which_key_map.b = {
@@ -56,23 +50,20 @@ let g:which_key_map.b = {
       \ '8' : [':BufferGoto 8'          , 'buffer 8'],
       \ '9' : [':BufferGoto 9'          , 'buffer 9'],
       \ '0' : [':BufferGoto 0'          , 'buffer 0'],
-      \ 'b' : [':BufferPick'            , 'pick buffer'],
+      \ 'b' : ['BufferPick'             , 'pick buffer'],
       \ 'd' : [':bd'                    , 'delete-buffer'],
-      \ 'D' : [':BufferOrderByDirectory', 'order by directory'],
       \ 'f' : ['bfirst'                 , 'first-buffer'],
       \ 'l' : ['blast'                  , 'last buffer'],
-      \ 'L' : [':BufferOrderByLanguage' , 'order by language'],
       \ 'n' : ['bnext'                  , 'next-buffer'],
       \ 'p' : ['bprevious'              , 'previous-buffer'],
-      \ 'r' : [':Farr --source=vimgrep' , 'find & replace'],
-      \ '?' : ['Buffers'                , 'fzf-buffer'],
+      \ '?' : [':Telescope buffers'     , 'find-buffer'],
       \ }
 
 " f is for files
 let g:which_key_map.f = {
       \ 'name' : '+file' ,
-      \ 's' : ['w'             , 'write'],
-      \ 'f' : [':Files'        , 'files'],
+      \ 's' : ['w'                                                               , 'write'],
+      \ 'f' : [':Telescope find_files find_command=rg,--ignore,--hidden,--files' , 'files'],
       \ }
 
 " p is for project
@@ -84,29 +75,22 @@ let g:which_key_map.p = {
 " s is for search
 let g:which_key_map.s = {
       \ 'name' : '+search' ,
-      \ '/' : [':History/'     , 'history'],
-      \ ';' : [':Commands'     , 'commands'],
-      \ 'a' : [':Ag'           , 'text Ag'],
-      \ 'b' : [':BLines'       , 'current buffer'],
-      \ 'B' : [':Buffers'      , 'open buffers'],
-      \ 'f' : [':Files'        , 'files'],
-      \ 'c' : [':Commits'      , 'commits'],
-      \ 'g' : [':GFiles'       , 'git files'],
-      \ 'G' : [':GFiles?'      , 'modified git files'],
-      \ 'h' : [':History'      , 'file history'],
-      \ 'H' : [':History:'     , 'command history'],
-      \ 'l' : [':Lines'        , 'lines'] ,
-      \ 'm' : [':Marks'        , 'marks'] ,
-      \ 'M' : [':Maps'         , 'normal maps'] ,
-      \ 'p' : [':Helptags'     , 'help tags'] ,
-      \ 'P' : [':Tags'         , 'project tags'],
-      \ 's' : [':Snippets'     , 'snippets'],
-      \ 'S' : [':Colors'       , 'color schemes'],
-      \ 't' : [':Rg'           , 'text Rg'],
-      \ 'T' : [':BTags'        , 'buffer tags'],
-      \ 'w' : [':Windows'      , 'search windows'],
-      \ 'y' : [':Filetypes'    , 'file types'],
-      \ 'z' : [':FZF'          , 'FZF'],
+      \ '/' : [':Telescope commands_history'                                     , 'history'],
+      \ ';' : [':Telescope commands'                                             , 'commands'],
+      \ 'a' : [':Telescope live_grep'                                            , 'find text'],
+      \ 'b' : [':Telescope current_buffer_fuzzy_find'                            , 'current buffer'],
+      \ 'B' : [':Telescope buffers'                                              , 'open buffers'],
+      \ 'f' : [':Telescope find_files find_command=rg,--ignore,--hidden,--files' , 'files'],
+      \ 'c' : [':Telescope git_commits'                                          , 'commits'],
+      \ 'g' : [':Telescope git_files'                                            , 'git files'],
+      \ 'm' : [':Telescope marks'                                                , 'marks'] ,
+      \ 'p' : [':Telescope help_tags'                                            , 'help tags'] ,
+      \ 'P' : [':Telescope tags'                                                 , 'project tags'],
+      \ 's' : [':Telescope ultisnips'                                            , 'snippets'],
+      \ 'S' : [':Telescope colorscheme'                                          , 'color schemes'],
+      \ 't' : [':Telescope live_grep'                                            , 'text Rg'],
+      \ 'T' : [':Telescope cuffent_buffer_tags'                                  , 'buffer tags'],
+      \ 'z' : [':Telescope'                                                      , 'Telescope'],
       \ }
 
 " g is for git
@@ -187,6 +171,7 @@ let g:which_key_map.t = {
       \ 'p' : [':FloatermNew python'                            , 'python'],
       \ 'i' : [':FloatermNew ipython'                           , 'ipython'],
       \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
+      \ 'e' : [':FloatermNew vifm'                              , 'vifm'],
       \ 't' : [':FloatermToggle'                                , 'toggle'],
       \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
       \ 's' : [':FloatermNew ncdu'                              , 'ncdu'],

@@ -45,6 +45,10 @@ else
   function refresh { }                                                                              
 fi
 
+function preexec {
+    refresh
+}
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 

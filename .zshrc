@@ -27,6 +27,24 @@ export EDITOR="nvim-nightly"
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/zsh_machine_settings.sh
 
+# Export display automatically
+if [ -n "$TMUX" ]; then                                                                               
+  function refresh {                                                                                
+    auth_sock=$(tmux show-environment | grep "^SSH_AUTH_SOCK")
+    if [ "$auth_sock" ]; then
+        export $auth_sock
+    fi
+    display=$(tmux show-environment | grep "^DISPLAY")
+    if [ "$display" ]; then
+        export $display
+    else
+        unset DISPLAY
+    fi
+  }                                                                                                 
+else                                                                                                  
+  function refresh { }                                                                              
+fi
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -47,7 +65,7 @@ source $ZSH/zsh_machine_settings.sh
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -106,7 +124,6 @@ alias tree="ls --tree"
 alias yapf="yapf3"
 alias vmd="/Applications/VMD\ 1.9.4a38.app/Contents/MacOS/startup.command"
 alias plotter2="/Applications/plotter2.app/Contents/MacOS/plotter2"
-alias packmol="~/.packmol/packmol"
 alias nwchem="${HOME}/nwchem-6.8.1-release/bin/MACX64/nwchem"
 # Unaliases
 unalias rm

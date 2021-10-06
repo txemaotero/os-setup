@@ -75,7 +75,7 @@ set hidden
 set termguicolors
 colorscheme sonokai
 
-let g:transparent_enabled = 1
+let g:transparent_enabled = v:true
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
 
 set undofile

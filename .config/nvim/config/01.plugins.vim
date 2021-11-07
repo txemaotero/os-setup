@@ -1,33 +1,14 @@
-"ut auto-install vim-plug
+" auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
 
-" List coc extensions
-let g:coc_global_extensions = [
-\ 'coc-actions',
-\ 'coc-explorer',
-\ 'coc-floaterm',
-\ 'coc-json',
-\ 'coc-marketplace',
-\ 'coc-pairs',
-\ 'coc-prettier',
-\ 'coc-python',
-\ 'coc-sh',
-\ 'coc-snippets',
-\ 'coc-vimlsp',
-\ 'coc-vetur',
-\ 'coc-html',
-\ 'coc-emmet',
-\ 'coc-tsserver',
-\ 'coc-html-css-support',
-\ 'coc-yank'
-\ ]
 
 call plug#begin('~/.config/nvim/autoload/plugged')
 
+    " Cycle through yanked text
     Plug 'bfredl/nvim-miniyank'
 
     " Cool Icons
@@ -35,13 +16,13 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'ryanoasis/vim-devicons'
     
     " File explorer
-    " Plug 'kyazdani42/nvim-tree.lua'
+    Plug 'kyazdani42/nvim-tree.lua'
 
     " Telescope (for finding)
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
-    " Plug 'fhill2/telescope-ultisnips.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
     " To change the working directory when new file is open
     Plug 'airblade/vim-rooter'
@@ -52,22 +33,23 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Change surraund
     Plug 'tpope/vim-surround'
 
-    " Git
-    Plug 'tpope/vim-fugitive'
-
-    " Color line bottom
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    " Color line
+    Plug 'nvim-lualine/lualine.nvim'
 
     " Color themes
-    Plug 'xiyaowong/nvim-transparent'
     Plug 'tanvirtin/monokai.nvim'
     Plug 'sainnhe/gruvbox-material'
     Plug 'sainnhe/sonokai'
     Plug 'marko-cerovac/material.nvim'
 
-    " Git commit browser
+    " Git
+    Plug 'tpope/vim-fugitive'
+    " Git commit browser (:GV)
     Plug 'junegunn/gv.vim'
+    " Git diff simbols on number column 
+    Plug 'mhinz/vim-signify'
+    " Shows git commits under the cursor (leader gm)
+    Plug 'rhysd/git-messenger.vim'
 
     " Vifm
     Plug 'vifm/vifm.vim'
@@ -78,12 +60,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Which key
     Plug 'liuchengxu/vim-which-key'
 
-    " Color parenthesis
-    Plug 'luochen1990/rainbow'
     " Autoclose parenth
-    " Plug 'cohama/lexima.vim'
-    " Plug 'jiangmiao/auto-pairs'
-    " Plug 'windwp/nvim-autopairs'
+    Plug 'steelsojka/pears.nvim'
 
     " Float terminal
     Plug 'voldikss/vim-floaterm'
@@ -91,21 +69,13 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Undo tree
     Plug 'mbbill/undotree'
 
-    " Find and replace
-    Plug 'brooth/far.vim'
-
-    " Git diff simbols on number column 
-    Plug 'airblade/vim-gitgutter'
-
-    " Shows git commits under the cursor
-    Plug 'rhysd/git-messenger.vim'
+    " Black formatter python
+    Plug 'psf/black'
 
     " View and search LSP symbols, tags
     Plug 'liuchengxu/vista.vim'
 
     " Snippets
-    " Plug 'SirVer/ultisnips'
-    " Plug 'honza/vim-snippets'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'hrsh7th/vim-vsnip-integ'
     Plug 'rafamadriz/friendly-snippets'
@@ -121,17 +91,16 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     
     " More text objects
     Plug 'wellle/targets.vim'
+    " Revisar: Igual que targets pero con treesitter
+    " Plug 'nvim-treesitter/nvim-treesitter-textobjects
     
-    " Fish
+    " Fish indent and stuffs
     Plug 'dag/vim-fish'
-    
-    " Toml (starship)
-    Plug 'cespare/vim-toml'
     
     " Markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
     
-    " Align text
+    " Align text ej: ":Tabularize /,"
     Plug 'godlygeek/tabular'
 
     " Top tabline
@@ -139,17 +108,23 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Better syntax highlight
     Plug 'nvim-treesitter/nvim-treesitter'
+    " Color parenthesis (treesitter module)
+    Plug 'p00f/nvim-ts-rainbow'
 
-    " LSP
-    " Plug 'neovim/nvim-lspconfig'
+    " LSP and auto-completion (cmp)
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'ray-x/lsp_signature.nvim'
 
-    " Autocompletion
-    " Plug 'hrsh7th/nvim-compe'
+    " For vsnip user.
+    Plug 'hrsh7th/cmp-vsnip'
 
-    " HTML tags
-    " Plug 'alvan/vim-closetag'
+    " Copilot
+    Plug 'github/copilot.vim'
     
-    " COC
-     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 call plug#end()
+

@@ -27,6 +27,28 @@ export EDITOR="nvim-nightly"
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/zsh_machine_settings.sh
 
+# Export display automatically
+if [ -n "$TMUX" ]; then                                                                               
+  function refresh {                                                                                
+    auth_sock=$(tmux show-environment | grep "^SSH_AUTH_SOCK")
+    if [ "$auth_sock" ]; then
+        export $auth_sock
+    fi
+    display=$(tmux show-environment | grep "^DISPLAY")
+    if [ "$display" ]; then
+        export $display
+    else
+        unset DISPLAY
+    fi
+  }                                                                                                 
+else                                                                                                  
+  function refresh { }                                                                              
+fi
+
+function preexec {
+    refresh
+}
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -106,7 +128,6 @@ alias tree="ls --tree"
 alias yapf="yapf3"
 alias vmd="/Applications/VMD\ 1.9.4a51-x86_64-Rev9.app/Contents/MacOS/startup.command"
 alias plotter2="/Applications/plotter2.app/Contents/MacOS/plotter2"
-alias packmol="~/.packmol/packmol"
 alias nwchem="${HOME}/nwchem-6.8.1-release/bin/MACX64/nwchem"
 alias ipython="python3 -m IPython"
 # Unaliases

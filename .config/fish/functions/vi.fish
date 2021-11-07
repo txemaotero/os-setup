@@ -1,3 +1,3 @@
 function vi --wraps=vim
-nvim-nightly $argv
+    nvim $argv
 end

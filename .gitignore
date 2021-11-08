@@ -1,8 +1,5 @@
-/.i3/i3scripts/location.py
-__pycache__/
-.config/nvim/autoload/**
-.config/nvim/spell/**
-.config/nvim/.netrwhist
-.config/nvim/config/06.special_machine_settings.vim
-.config/fish/functions/tide/**
-.config/fish/fish_variables
+nvim/.config/nvim/autoload/**
+nvim/.config/nvim/spell/**
+nvim/.config/nvim/.netrwhist
+fish/.config/fish/functions/tide/**
+fish/.config/fish/fish_variables

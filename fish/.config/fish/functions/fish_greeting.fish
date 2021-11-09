@@ -1,3 +1,5 @@
 function fish_greeting
-    neofetch
+    if not begin ; [ -n "$SSH_CLIENT" ] ; or [ -n "$SSH_TTY" ] ; end ;
+        neofetch
+    end
 end

@@ -1,4 +1,6 @@
-set clipboard+=unnamedplus
+if $SSH_CLIENT == "" && $SSH_TTY == ""
+    set clipboard+=unnamedplus
+endif
 
 if exists('g:vscode')
     " VSCode extension

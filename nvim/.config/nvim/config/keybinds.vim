@@ -190,6 +190,7 @@ let g:which_key_map.w = {
       \ 's' : ['<C-w>s'                              , 'split hor'],
       \ 'v' : ['<C-w>v'                              , 'split ver'],
       \ 'q' : ['<C-w>q'                              , 'quit current'],
+      \ 'Q' : ['<C-w>q'                              , 'keep current'],
       \ 'w' : ['<C-w>w'                              , 'move last'],
       \ 'j' : ['<C-w>j'                              , 'move j'],
       \ 'i' : ['<C-w>i'                              , 'move i'],

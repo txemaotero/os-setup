@@ -22,6 +22,13 @@ nmap Y y$
 " Insert new line in comand mode
 nmap <CR> o<Esc>
 
+" Harpoon maps that do not work on which-key dfinitions
+nnoremap <leader>ha :lua require("harpoon.mark").add_file()<CR>
+nnoremap <leader>hh :lua require("harpoon.ui").toggle_quick_menu()<CR>
+nnoremap <C-p> :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <C-t> :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <C-n> :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <C-s> :lua require("harpoon.ui").nav_file(4)<CR>
 
 " check which-key.nvim to change to lua
 " Map leader to which_key
@@ -43,19 +50,23 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 " Single mappings
-let g:which_key_map['/']      = [ ':Telescope live_grep'        , 'find text']
-let g:which_key_map['<Tab>']  = [ ':b#'                         , 'alternate buffer']
-let g:which_key_map['.']      = [ ':e $MYVIMRC'                 , 'open config' ]
-let g:which_key_map[';']      = [ ':Telescope commands'         , 'commands' ]
+let g:which_key_map['/']      = [ ':Telescope live_grep'                       , 'find text']
+let g:which_key_map['<Tab>']  = [ ':b#'                                        , 'alternate buffer']
+let g:which_key_map['.']      = [ ':e $MYVIMRC'                                , 'open config' ]
+let g:which_key_map[';']      = [ ':Telescope commands'                        , 'commands' ]
+let g:which_key_map['d']      = [ ':bdelete'                                   , 'delete buffer']
+let g:which_key_map['e']      = [ ':NvimTreeToggle'                            , 'explorer' ]
+let g:which_key_map['n']      = [ ':let @/ = ""'                               , 'no highlight' ]
+let g:which_key_map['q']      = [ 'q'                                          , 'quit' ]
+let g:which_key_map['m']      = [ ':Vifm'                                      , 'vifm' ]
+let g:which_key_map['u']      = [ ':UndotreeToggle'                            , 'undo tree']
+let g:which_key_map['H']      = [ '<C-W>s'                                     , 'split below']
+let g:which_key_map['V']      = [ '<C-W>v'                                     , 'split right']
+let g:which_key_map['<C-p>']  = 'Harp 1'
+let g:which_key_map['<C-t>']  = 'Harp 2'
+let g:which_key_map['<C-n>']  = 'Harp 3'
+let g:which_key_map['<C-s>']  = 'Harp 4'
 let g:which_key_map['=']      = 'format selected'
-let g:which_key_map['d']      = [ ':bdelete'                    , 'delete buffer']
-let g:which_key_map['e']      = [ ':NvimTreeToggle'             , 'explorer' ]
-let g:which_key_map['n']      = [ ':let @/ = ""'                , 'no highlight' ]
-let g:which_key_map['q']      = [ 'q'                           , 'quit' ]
-let g:which_key_map['m']      = [ ':Vifm'                       , 'vifm' ]
-let g:which_key_map['u']      = [ ':UndotreeToggle'             , 'undo tree']
-let g:which_key_map['H']      = [ '<C-W>s'                      , 'split below']
-let g:which_key_map['V']      = [ '<C-W>v'                      , 'split right']
 let g:which_key_map['v']      = 'init selection'
 
 " b is for buffer (most from barbar)
@@ -89,6 +100,47 @@ let g:which_key_map.f = {
       \ 'f' : [':Telescope find_files find_command=rg,--ignore,--hidden,--files' , 'files'],
       \ }
 
+" g is for git
+let g:which_key_map.g = {
+      \ 'name' : '+git' ,
+      \ 'a' : [':Git add .'                        , 'add all'],
+      \ 'A' : [':Git add %'                        , 'add current'],
+      \ 'b' : [':Git blame'                        , 'blame'],
+      \ 'B' : [':GBrowse'                          , 'browse'],
+      \ 'c' : [':Git commit'                       , 'commit'],
+      \ 'd' : [':Git diff'                         , 'diff'],
+      \ 'D' : [':Gdiffsplit'                       , 'diff split'],
+      \ 'g' : [':GGrep'                            , 'git grep'],
+      \ 'G' : [':Gstatus'                          , 'status'],
+      \ 'l' : [':Git log'                          , 'log'],
+      \ 'm' : ['<Plug>(git-messenger)'             , 'message'],
+      \ 'p' : [':Git push'                         , 'push'],
+      \ 'P' : [':Git pull'                         , 'pull'],
+      \ 'r' : [':GRemove'                          , 'remove'],
+      \ 'S' : [':Git status'                       , 'status'],
+      \ 'v' : [':GV'                               , 'view commits'],
+      \ 'V' : [':GV!'                              , 'view buffer commits'],
+      \ }
+
+" h is for Harpoon
+let g:which_key_map.h = {
+      \ 'name' : '+Harpoon' ,
+      \ 'a' :  'add file',
+      \ 'h' :  'quick menu',
+      \ '1' :  'go file 1',
+      \ '2' :  'go file 2',
+      \ '3' :  'go file 3',
+      \ '4' :  'go file 4',
+      \ }
+
+" l is for language server protocol
+let g:which_key_map.l = {
+      \ 'name' : '+lsp' ,
+      \ 'o' : [':Vista!!'                            , 'outline'],
+      \ 'r' : ['<Space>pr'                           , 'rename variable'],
+      \ '=' : ['<Space>='                            , 'format selection'],
+      \ }
+
 " p is for project
 let g:which_key_map.p = {
       \ 'name' : '+project' ,
@@ -114,36 +166,6 @@ let g:which_key_map.s = {
       \ 't' : [':Telescope live_grep'                                            , 'text Rg'],
       \ 'T' : [':Telescope cuffent_buffer_tags'                                  , 'buffer tags'],
       \ 'z' : [':Telescope'                                                      , 'Telescope'],
-      \ }
-
-" g is for git
-let g:which_key_map.g = {
-      \ 'name' : '+git' ,
-      \ 'a' : [':Git add .'                        , 'add all'],
-      \ 'A' : [':Git add %'                        , 'add current'],
-      \ 'b' : [':Git blame'                        , 'blame'],
-      \ 'B' : [':GBrowse'                          , 'browse'],
-      \ 'c' : [':Git commit'                       , 'commit'],
-      \ 'd' : [':Git diff'                         , 'diff'],
-      \ 'D' : [':Gdiffsplit'                       , 'diff split'],
-      \ 'g' : [':GGrep'                            , 'git grep'],
-      \ 'G' : [':Gstatus'                          , 'status'],
-      \ 'l' : [':Git log'                          , 'log'],
-      \ 'm' : ['<Plug>(git-messenger)'             , 'message'],
-      \ 'p' : [':Git push'                         , 'push'],
-      \ 'P' : [':Git pull'                         , 'pull'],
-      \ 'r' : [':GRemove'                          , 'remove'],
-      \ 'S' : [':Git status'                       , 'status'],
-      \ 'v' : [':GV'                               , 'view commits'],
-      \ 'V' : [':GV!'                              , 'view buffer commits'],
-      \ }
-
-" l is for language server protocol
-let g:which_key_map.l = {
-      \ 'name' : '+lsp' ,
-      \ 'o' : [':Vista!!'                            , 'outline'],
-      \ 'r' : ['<Space>pr'                           , 'rename variable'],
-      \ '=' : ['<Space>='                            , 'format selection'],
       \ }
 
 " t is for terminal

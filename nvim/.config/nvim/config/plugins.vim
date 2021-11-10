@@ -24,6 +24,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+    " harpoon
+    Plug 'ThePrimeagen/harpoon'
+
     " To change the working directory when new file is open
     Plug 'airblade/vim-rooter'
 
@@ -110,6 +113,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'nvim-treesitter/nvim-treesitter'
     " Color parenthesis (treesitter module)
     Plug 'p00f/nvim-ts-rainbow'
+    " Indent guides
+    Plug 'lukas-reineke/indent-blankline.nvim'
 
     " LSP and auto-completion (cmp)
     Plug 'neovim/nvim-lspconfig'
@@ -125,6 +130,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Copilot
     Plug 'github/copilot.vim'
-    
+
 call plug#end()
 

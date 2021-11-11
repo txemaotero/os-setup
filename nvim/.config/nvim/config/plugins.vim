@@ -14,7 +14,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Cool Icons
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'ryanoasis/vim-devicons'
-    
+
     " File explorer
     Plug 'kyazdani42/nvim-tree.lua'
 
@@ -56,7 +56,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Vifm
     Plug 'vifm/vifm.vim'
-    
+
     " Better repeat
     Plug 'tpope/vim-repeat'
 
@@ -85,24 +85,24 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " See the colors hex
     Plug 'norcalli/nvim-colorizer.lua'
-    
+
     " Replace with register
     Plug 'vim-scripts/ReplaceWithRegister'
-    
+
     " Smooth scroll
     Plug 'psliwka/vim-smoothie'
-    
+
     " More text objects
     Plug 'wellle/targets.vim'
     " Revisar: Igual que targets pero con treesitter
     " Plug 'nvim-treesitter/nvim-treesitter-textobjects
-    
+
     " Fish indent and stuffs
     Plug 'dag/vim-fish'
-    
+
     " Markdown
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-    
+
     " Align text ej: ":Tabularize /,"
     Plug 'godlygeek/tabular'
 
@@ -130,6 +130,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Copilot
     Plug 'github/copilot.vim'
+
+    " Debug addapter protocol
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'rcarriga/nvim-dap-ui'
 
 call plug#end()
 

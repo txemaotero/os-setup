@@ -30,6 +30,19 @@ nnoremap <C-t> :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <C-n> :lua require("harpoon.ui").nav_file(3)<CR>
 nnoremap <C-s> :lua require("harpoon.ui").nav_file(4)<CR>
 
+
+nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+nnoremap <silent> <leader>dd :lua require'dap'.continue()<CR>
+nnoremap <silent> <leader>dj :lua require'dap'.step_over()<CR>
+nnoremap <silent> <leader>dl :lua require'dap'.step_into()<CR>
+nnoremap <silent> <leader>dk :lua require'dap'.step_out()<CR>
+nnoremap <silent> <leader>db :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <leader>dc :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <leader>dl :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+nnoremap <silent> <leader>dL :lua require'dap'.run_last()<CR>
+
+
 " check which-key.nvim to change to lua
 " Map leader to which_key
 nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
@@ -54,7 +67,6 @@ let g:which_key_map['/']      = [ ':Telescope live_grep'                       ,
 let g:which_key_map['<Tab>']  = [ ':b#'                                        , 'alternate buffer']
 let g:which_key_map['.']      = [ ':e $MYVIMRC'                                , 'open config' ]
 let g:which_key_map[';']      = [ ':Telescope commands'                        , 'commands' ]
-let g:which_key_map['d']      = [ ':bdelete'                                   , 'delete buffer']
 let g:which_key_map['e']      = [ ':NvimTreeToggle'                            , 'explorer' ]
 let g:which_key_map['n']      = [ ':let @/ = ""'                               , 'no highlight' ]
 let g:which_key_map['q']      = [ 'q'                                          , 'quit' ]
@@ -91,6 +103,11 @@ let g:which_key_map.b = {
       \ 'n' : ['bnext'                  , 'next-buffer'],
       \ 'p' : ['bprevious'              , 'previous-buffer'],
       \ '?' : [':Telescope buffers'     , 'find-buffer'],
+      \ }
+
+" d is for debug
+let g:which_key_map.d = {
+      \ 'name' : '+debug' ,
       \ }
 
 " f is for files
@@ -190,7 +207,7 @@ let g:which_key_map.w = {
       \ 's' : ['<C-w>s'                              , 'split hor'],
       \ 'v' : ['<C-w>v'                              , 'split ver'],
       \ 'q' : ['<C-w>q'                              , 'quit current'],
-      \ 'Q' : ['<C-w>q'                              , 'keep current'],
+      \ 'Q' : ['<C-w>o'                              , 'keep current'],
       \ 'w' : ['<C-w>w'                              , 'move last'],
       \ 'j' : ['<C-w>j'                              , 'move j'],
       \ 'i' : ['<C-w>i'                              , 'move i'],

@@ -129,6 +129,8 @@ else
         " Debug addapter protocol
         Plug 'mfussenegger/nvim-dap'
         Plug 'rcarriga/nvim-dap-ui'
+        " Fancy notifications
+        Plug 'rcarriga/nvim-notify'
     call plug#end()
     """ Configuration
     set mouse=a mousemodel=popup " enable mouse support

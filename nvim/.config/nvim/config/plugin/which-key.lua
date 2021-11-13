@@ -138,7 +138,7 @@ wk.register({
             m        = { "<cmd>Telescope marks<cr>",               "Marks" } ,
             M        = { "<cmd>Telescope man_pages<cr>",           "Man pages" } ,
             p        = { "<cmd>Telescope tags<cr>",                "Project tags" },
-            q        = { "<cmd>Telescope quickfix<cr>",            "Project tags" },
+            q        = { "<cmd>Telescope quickfix<cr>",            "Qhickfix list" },
             r        = { "<cmd>Telescope registers<cr>",           "Registers" },
             s        = { "<cmd>Telescope ultisnips<cr>",           "Snippets" },
             S        = { "<cmd>Telescope colorscheme<cr>",         "Color schemes" },

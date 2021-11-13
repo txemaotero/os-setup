@@ -188,3 +188,12 @@ map <C-n> <Plug>(miniyank-cycleback)
 " Interactive EasyAlign
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" For Emacs-style editing on the command-line: 
+:cnoremap <C-A> <Home>
+:cnoremap <C-B> <Left>
+:cnoremap <C-D> <Del>
+:cnoremap <C-E> <End>
+:cnoremap <C-F> <Right>
+:cnoremap <C-N> <Down>
+:cnoremap <C-P> <Up>

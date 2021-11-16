@@ -112,6 +112,8 @@ else
         Plug 'nvim-treesitter/nvim-treesitter'
         " Color parenthesis (treesitter module)
         Plug 'p00f/nvim-ts-rainbow'
+        " playground
+        Plug 'nvim-treesitter/playground'
         " Indent guides
         Plug 'lukas-reineke/indent-blankline.nvim'
         " LSP and auto-completion (cmp)
@@ -131,6 +133,9 @@ else
         Plug 'rcarriga/nvim-dap-ui'
         " Fancy notifications
         Plug 'rcarriga/nvim-notify'
+        " Tests
+        Plug 'vim-test/vim-test'
+        Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
     call plug#end()
     """ Configuration
     set mouse=a mousemodel=popup " enable mouse support

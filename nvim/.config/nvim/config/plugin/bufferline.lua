@@ -1,8 +1,7 @@
 require('bufferline').setup {
     options = {
-
         numbers = function(opts)
-            return string.format('%s)', opts.id)
+            return string.format('%s)', opts.ordinal)
         end,
         close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
         right_mouse_command = nil, -- can be a string | function, see "Mouse actions"
@@ -59,7 +58,7 @@ require('bufferline').setup {
         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
         -- can also be a table containing 2 custom separators
         -- [focused and unfocused]. eg: { '|', '|' }
-        separator_style = "padded_slant",
+        separator_style = 'thin',
         always_show_bufferline = true,
         sort_by = 'id'
     }

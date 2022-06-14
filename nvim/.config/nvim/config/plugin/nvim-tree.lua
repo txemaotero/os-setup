@@ -43,5 +43,20 @@ require'nvim-tree'.setup {
             custom_only = false,
             list = {}
         }
+    },
+    git = {
+        ignore = true,
+    },
+    actions = {
+        open_file = {
+            quit_on_open = false,
+            window_picker = {
+                enable = true,
+                exclude = {
+                    filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame", },
+                    buftype  = { "nofile", "terminal", "help", }
+                }
+            }
+        }
     }
 }

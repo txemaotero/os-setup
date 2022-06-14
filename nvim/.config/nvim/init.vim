@@ -19,6 +19,7 @@ if exists('g:vscode')
         Plug 'bfredl/nvim-miniyank'
         " Align
         Plug 'junegunn/vim-easy-align'
+        " Plug 'asvetliakov/vim-easymotion'
     call plug#end()
 
     """"""" Vscode configuration
@@ -36,6 +37,7 @@ else
     " Add runtime to load content in config folder
     set runtimepath+=~/.config/nvim/config
     call plug#begin('~/.config/nvim/autoload/plugged')
+        Plug 'easymotion/vim-easymotion'
         " Cycle through yanked text
         Plug 'bfredl/nvim-miniyank'
         " Cool Icons

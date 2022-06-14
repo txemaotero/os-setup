@@ -1,3 +1,3 @@
 function ls
-command colorls $argv
+command exa $argv
 end

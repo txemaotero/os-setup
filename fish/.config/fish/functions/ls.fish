@@ -1,3 +1,3 @@
 function ls
-command exa $argv
+command exa --icons $argv
 end

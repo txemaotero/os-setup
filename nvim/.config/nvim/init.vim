@@ -37,7 +37,8 @@ else
     " Add runtime to load content in config folder
     set runtimepath+=~/.config/nvim/config
     call plug#begin('~/.config/nvim/autoload/plugged')
-        Plug 'easymotion/vim-easymotion'
+        Plug 'phaazon/hop.nvim'
+
         " Cycle through yanked text
         Plug 'bfredl/nvim-miniyank'
         " Cool Icons
@@ -50,8 +51,6 @@ else
         Plug 'nvim-lua/plenary.nvim'
         Plug 'nvim-telescope/telescope.nvim'
         Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-        " harpoon
-        Plug 'ThePrimeagen/harpoon'
         " To change the working directory when new file is open
         Plug 'airblade/vim-rooter'
         " Comments

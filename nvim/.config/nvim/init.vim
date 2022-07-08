@@ -37,7 +37,11 @@ else
     " Add runtime to load content in config folder
     set runtimepath+=~/.config/nvim/config
     call plug#begin('~/.config/nvim/autoload/plugged')
+        " Easy motion
         Plug 'phaazon/hop.nvim'
+
+        " Dracula theme
+        Plug 'Mofiqul/dracula.nvim'
 
         " Cycle through yanked text
         Plug 'bfredl/nvim-miniyank'
@@ -148,7 +152,8 @@ else
     " Color scheme
     set termguicolors
     let g:sonokai_transparent_background = 1
-    colorscheme sonokai
+    let g:dracula_transparent_bg = v:true
+    colorscheme dracula
     " Permanent undo history
     set undofile undodir=~/.nvim/undodir
     " Spell

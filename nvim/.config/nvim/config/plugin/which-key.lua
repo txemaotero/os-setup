@@ -31,14 +31,11 @@ require("which-key").setup {
 -- WhichKeyFloat transparent background
 vim.cmd "highlight WhichKeyFloat ctermbg=BLACK ctermfg=BLACK"
 
+
 local wk = require("which-key")
 -- Define keybindings
 wk.register({
     ["<F5>"]         = { function() require('dap').continue() end,         "Start Debug" },
-    ["<C-p>"]        = { function() require('harpoon.ui').nav_file(1) end, "Harp 1" },
-    ["<C-t>"]        = { function() require('harpoon.ui').nav_file(2) end, "Harp 2" },
-    ["<C-n>"]        = { function() require('harpoon.ui').nav_file(3) end, "Harp 3" },
-    ["<C-s>"]        = { function() require('harpoon.ui').nav_file(4) end, "Harp 4" },
     ["<C-j>"]        = { "<C-w>j",                                         "WMove j" },
     ["<C-h>"]        = { "<C-w>h",                                         "WMove h" },
     ["<C-l>"]        = { "<C-w>l",                                         "WMove l" },
@@ -82,15 +79,6 @@ wk.register({
             name     = "+file",
             f        = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>",            "Find File" },
             s        = { "<cmd>w<cr>",                                                                         'Save'}
-        },
-        h            = {
-            name     = "+harpoon",
-            a        = { function() require('harpoon.mark').add_file() end,        "Quick menu" },
-            h        = { function() require('harpoon.ui').toggle_quick_menu() end, "Quick menu" },
-            ["1"]    = { function() require('harpoon.ui').nav_file(1) end,         "Harp 1" },
-            ["2"]    = { function() require('harpoon.ui').nav_file(2) end,         "Harp 2" },
-            ["3"]    = { function() require('harpoon.ui').nav_file(3) end,         "Harp 3" },
-            ["4"]    = { function() require('harpoon.ui').nav_file(4) end,         "Harp 4" },
         },
         l            = {
             name     = "+LSP",
@@ -190,4 +178,29 @@ wk.register({
             l        = { "<C-w>l",       "Move l" },
         }
     },
+})
+
+hop_keys = {
+    h            = {
+        name     = "+hop",
+        w        = {"<cmd>HopWord<cr>",       "Word"},
+        W        = {"<cmd>HopWordMW<cr>",     "Word MW"},
+        a        = {"<cmd>HopAnywhere<cr>",   "Anywhere"},
+        A        = {"<cmd>HopAnywhereMW<cr>", "Anywhere MW"},
+        l        = {"<cmd>HopLine<cr>",       "Line"},
+        L        = {"<cmd>HopLineMW<cr>",     "Line MW"},
+        c        = {"<cmd>HopChar1<cr>",      "1 char"},
+        C        = {"<cmd>HopChar1MW<cr>",    "1 char MW"},
+        t        = {"<cmd>HopChar2<cr>",      "2 chars"},
+        T        = {"<cmd>HopChar2MW<cr>",    "2 chars MW"},
+    },
+}
+
+wk.register(hop_keys, {
+    mode = "n",
+    prefix = "<leader>"
+})
+wk.register(hop_keys, {
+    mode = "v",
+    prefix = "<leader>"
 })

@@ -3,5 +3,6 @@ if status is-interactive
 end
 set -gx PATH {$HOME}/.nvim-osx64/bin {$HOME}/.local/bin {$HOME}/.cargo/bin /Library/TeX/texbin /usr/local/opt/fzf/bin /usr/local/bin /usr/local/sbin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin /Library/Apple/usr/bin /Library/Frameworks/Python.framework/Versions/3.9/bin
 
+set -gx BAT_THEME "Dracula"
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 

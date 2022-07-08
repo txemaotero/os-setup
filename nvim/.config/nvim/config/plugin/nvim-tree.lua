@@ -111,7 +111,6 @@ require'nvim-tree'.setup {
         width = 30,
         height = 30,
         side = 'left',
-        auto_resize = false,
         mappings = {
             custom_only = false,
             list = {}
@@ -122,6 +121,7 @@ require'nvim-tree'.setup {
     },
     actions = {
         open_file = {
+            resize_window = false,
             quit_on_open = false,
             window_picker = {
                 enable = true,

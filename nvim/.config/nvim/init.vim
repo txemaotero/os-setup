@@ -43,6 +43,9 @@ else
         " Dracula theme
         Plug 'Mofiqul/dracula.nvim'
 
+        " sort with gs
+        Plug 'ralismark/opsort.vim'
+
         " Cycle through yanked text
         Plug 'bfredl/nvim-miniyank'
         " Cool Icons
@@ -139,8 +142,9 @@ else
         " Fancy notifications
         Plug 'rcarriga/nvim-notify'
         " Tests
-        Plug 'vim-test/vim-test'
-        Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
+        Plug 'antoinemadec/FixCursorHold.nvim'
+        Plug 'nvim-neotest/neotest'
+        Plug 'nvim-neotest/neotest-python'
     call plug#end()
     """ Configuration
     set mouse=a mousemodel=popup " enable mouse support

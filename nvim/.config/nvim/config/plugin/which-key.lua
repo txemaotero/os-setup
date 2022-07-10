@@ -28,6 +28,12 @@ require("which-key").setup {
   },
 }
 
+
+function pyflyby_add_imports()
+    os.execute("tidy-imports --black --quiet --replace-star-imports --action REPLACE " .. vim.fn.expand('%'))
+    vim.cmd "e"
+end
+
 -- WhichKeyFloat transparent background
 vim.cmd "highlight WhichKeyFloat ctermbg=BLACK ctermfg=BLACK"
 
@@ -54,31 +60,31 @@ wk.register({
         v            = "Inc. selection",
         b            = {
             name     = "+buffer",
-            d        = { "<cmd>bd<cr>",                "Delete" },
-            f        = { "<cmd>bfirst<cr>",            "First" },
-            l        = { "<cmd>blast<cr>",             "Last" },
-            n        = { "<cmd>BufferLineCycleNext<cr>",             "Next" },
-            p        = { "<cmd>BufferLineCyclePrev<cr>",             "Previous" },
-            b        = { "<cmd>BufferLinePick<cr>",   "Pick" },
-            B        = { "<cmd>Telescope buffers<cr>", "Telescope find" },
+            d        = { "<cmd>bd<cr>",                  "Delete" },
+            f        = { "<cmd>bfirst<cr>",              "First" },
+            l        = { "<cmd>blast<cr>",               "Last" },
+            n        = { "<cmd>BufferLineCycleNext<cr>", "Next" },
+            p        = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
+            b        = { "<cmd>BufferLinePick<cr>",      "Pick" },
+            B        = { "<cmd>Telescope buffers<cr>",   "Telescope find" },
         },
         d            = {
             name     = "+debug",
-            b        = { function() require('dap').toggle_breakpoint() end,                                    "Breakpoint" },
-            c        = { function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, "Cond. break" },
-            d        = { function() require('dap').continue() end,                                             "Debug" },
-            j        = { function() require('dap').step_over() end,                                            "Step over" },
-            k        = { function() require('dap').step_out() end,                                             "Step out" },
-            l        = { function() require('dap').step_into() end,                                            "Step into" },
-            L        = { function() require('dap').run_last() end,                                             "Run last" },
+            b        = { function() require('dap').toggle_breakpoint() end,                                           "Breakpoint" },
+            c        = { function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,        "Cond. break" },
+            d        = { function() require('dap').continue() end,                                                    "Debug" },
+            j        = { function() require('dap').step_over() end,                                                   "Step over" },
+            k        = { function() require('dap').step_out() end,                                                    "Step out" },
+            l        = { function() require('dap').step_into() end,                                                   "Step into" },
+            L        = { function() require('dap').run_last() end,                                                    "Run last" },
             m        = { function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, "Log message" },
-            r        = { function() require('dap').repl.open() end,                                            "Repl open" },
-            t        = { function() require('dapui').toggle() end,                                             "Toggle UI" },
+            r        = { function() require('dap').repl.open() end,                                                   "Repl open" },
+            t        = { function() require('dapui').toggle() end,                                                    "Toggle UI" },
         },
         f            = {
             name     = "+file",
             f        = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>",            "Find File" },
-            s        = { "<cmd>w<cr>",                                                                         'Save'}
+            s        = { "<cmd>w<cr>",                                                                         "Save"}
         },
         l            = {
             name     = "+LSP",
@@ -86,6 +92,8 @@ wk.register({
             ["="]    = "Format",
             r        = "Rename",
             a        = "Action",
+            b        = { "<cmd>Black<cr>",          "Black (py)"},
+            i        = { pyflyby_add_imports,       "Add imports (py)"},
             d        = "Diagnostics",
         },
         s            = {
@@ -137,20 +145,20 @@ wk.register({
         },
         t            = {
             name     = "+test",
-            t        = { function() require('neotest').run.run() end,                                     "Closest" },
-            T        = { function() require("neotest").run.run(vim.fn.expand("%")) end,                   "File" },
-            l        = { function() require('neotest').run.run_last() end,                                "Last" },
-            a        = { function() require('neotest').run.attach() end,                                  "Attach" },
+            t        = { function() require('neotest').run.run() end,                                       "Closest" },
+            T        = { function() require("neotest").run.run(vim.fn.expand("%")) end,                     "File" },
+            l        = { function() require('neotest').run.run_last() end,                                  "Last" },
+            a        = { function() require('neotest').run.attach() end,                                    "Attach" },
             s        = { function() require('neotest').summary.toggle() end,                                "Summary" },
-            S        = { function() require('neotest').run.stop() end,                                    "Stop" },
-            o        = { function() require('neotest').output.open() end,                                 "Output" },
+            S        = { function() require('neotest').run.stop() end,                                      "Stop" },
+            o        = { function() require('neotest').output.open() end,                                   "Output" },
             d        = { function() require('neotest').run.run({strategy = "dap"}) end,                     "Debug closest" },
             D        = { function() require("neotest").run.run({vim.fn.expand("%"), strategy = "dap"}) end, "Debug File" },
         },
         T            = {
             name     = "+terminal",
             l        = { "<C-w>l",                                           "Move l" },
-            [";"]    = { "<cmd>FloatermNew --wintype=normal --height=6<cr>", 'terminal' },
+            [";"]    = { "<cmd>FloatermNew --wintype=normal --height=6<cr>", "terminal" },
             f        = { "<cmd>FloatermNew fzf<cr>",                         "fzf" },
             g        = { "<cmd>FloatermNew lazygit<cr>",                     "git" },
             d        = { "<cmd>FloatermNew lazydocker<cr>",                  "docker" },
@@ -183,6 +191,7 @@ wk.register({
 hop_keys = {
     h            = {
         name     = "+hop",
+        h        = {"<cmd>HopWord<cr>",       "Word"},
         w        = {"<cmd>HopWord<cr>",       "Word"},
         W        = {"<cmd>HopWordMW<cr>",     "Word MW"},
         a        = {"<cmd>HopAnywhere<cr>",   "Anywhere"},

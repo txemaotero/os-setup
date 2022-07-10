@@ -193,6 +193,10 @@ wk.register({
             h        = { "<C-w>h",       "Move h" },
             k        = { "<C-w>k",       "Move k" },
             l        = { "<C-w>l",       "Move l" },
+            t        = { "<C-w>T",       "Move to tab" },
+            f        = { "<C-w>|",       "Focus vsplit" },
+            F        = { "<C-w>_",       "Focus hsplit" },
+            ["="]    = { "<C-w>=",       "Restore" },
         }
     },
 })

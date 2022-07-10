@@ -43,6 +43,12 @@ else
         " Dracula theme
         Plug 'Mofiqul/dracula.nvim'
 
+        " Trouble
+        Plug 'folke/trouble.nvim'
+
+        " Add diagnostics and formaters to lsp
+        Plug 'jose-elias-alvarez/null-ls.nvim'
+
         " sort with gs
         Plug 'ralismark/opsort.vim'
 
@@ -92,8 +98,6 @@ else
         Plug 'voldikss/vim-floaterm'
         " Undo tree
         Plug 'mbbill/undotree'
-        " Black formatter python
-        Plug 'psf/black'
         " View and search LSP symbols, tags
         Plug 'simrat39/symbols-outline.nvim'
         " Snippets

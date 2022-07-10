@@ -59,7 +59,7 @@ wk.register({
         V            = { "<C-W>v",                       "Split right" },
         v            = "Inc. selection",
         b            = {
-            name     = "+buffer",
+            name     = "+Buffer",
             d        = { "<cmd>bd<cr>",                  "Delete" },
             f        = { "<cmd>bfirst<cr>",              "First" },
             l        = { "<cmd>blast<cr>",               "Last" },
@@ -69,7 +69,7 @@ wk.register({
             B        = { "<cmd>Telescope buffers<cr>",   "Telescope find" },
         },
         d            = {
-            name     = "+debug",
+            name     = "+Debug",
             b        = { function() require('dap').toggle_breakpoint() end,                                           "Breakpoint" },
             c        = { function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,        "Cond. break" },
             d        = { function() require('dap').continue() end,                                                    "Debug" },
@@ -82,17 +82,26 @@ wk.register({
             t        = { function() require('dapui').toggle() end,                                                    "Toggle UI" },
         },
         f            = {
-            name     = "+file",
+            name     = "+File",
             f        = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>",            "Find File" },
             s        = { "<cmd>w<cr>",                                                                         "Save"}
+        },
+        i            = {
+            name     = "+Info",
+            D        = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Project diagnostics"},
+            d        = { "<cmd>TroubleToggle document_diagnostics<cr>",  "File diagnostics"},
+            i        = { "<cmd>TroubleToggle <cr>",                      "Trouble"},
+            l        = { "<cmd>TroubleToggle loclist<cr>",               "Loclist"},
+            q        = { "<cmd>TroubleToggle quickfix<cr>",              "Quickfix"},
+            r        = { "<cmd>TroubleToggle lsp_references<cr>",        "Symbol references"}
         },
         l            = {
             name     = "+LSP",
             ["?"]    = { "<cmd>SymbolsOutline<cr>", "List variables" },
-            ["="]    = "Format",
+            ["="]    = "Format range",
+            f        = "Format file",
             r        = "Rename",
             a        = "Action",
-            b        = { "<cmd>Black<cr>",          "Black (py)"},
             i        = { pyflyby_add_imports,       "Add imports (py)"},
             d        = "Diagnostics",
         },

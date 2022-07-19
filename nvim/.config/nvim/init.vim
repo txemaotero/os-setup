@@ -142,6 +142,8 @@ else
         Plug 'ray-x/lsp_signature.nvim'
         " For vsnip user.
         Plug 'hrsh7th/cmp-vsnip'
+        " Symbols
+        Plug 'onsails/lspkind.nvim'
         " Copilot
         Plug 'github/copilot.vim'
         " Debug addapter protocol
@@ -202,7 +204,7 @@ if executable('rg')
 endif
 
 " Map fd as esc
-imap fd <Esc>
+" imap fd <Esc>
 " Delete and yank to end of line
 nmap D d$
 nmap Y y$

@@ -150,6 +150,12 @@ wk.register({
             S        = { "<cmd>Telescope colorscheme<cr>",         "Color schemes" },
             t        = { "<cmd>Telescope spell_suggest<cr>",       "Spell suggestions" },
             T        = { "<cmd>Telescope cuffent_buffer_tags<cr>", "Buffer tags" },
+            w        = { 
+                name = "+Wiki",
+                w    = { "<cmd>Telescope vimwiki<cr>",             "Pages"},
+                g    = { "<cmd>Telescope vimwiki live_grep<cr>",   "Grep"},
+                l    = { "<cmd>Telescope vimwiki link<cr>",        "Links"},
+            },
             z        = { "<cmd>Telescope<cr>",                     "Telescope" },
         },
         t            = {

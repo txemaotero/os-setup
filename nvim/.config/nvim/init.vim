@@ -54,6 +54,7 @@ else
 
         " Vim wiki
         Plug 'vimwiki/vimwiki'
+        Plug 'ElPiloto/telescope-vimwiki.nvim'
 
         " Cycle through yanked text
         Plug 'bfredl/nvim-miniyank'

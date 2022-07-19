@@ -170,10 +170,12 @@ else
     set undofile undodir=~/.nvim/undodir
     " Spell
     set spelllang=en,es spellsuggest=best,9
+    autocmd FileType text,latex,markdown,vimwiki setlocal spell
+
     " Change wiki prefix
     let g:vimwiki_map_prefix = '<Leader>W'
-
     let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+    let g:vimwiki_global_ext = 0
 
 endif
 

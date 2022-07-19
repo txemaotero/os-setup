@@ -52,6 +52,9 @@ else
         " sort with gs
         Plug 'ralismark/opsort.vim'
 
+        " Vim wiki
+        Plug 'vimwiki/vimwiki'
+
         " Cycle through yanked text
         Plug 'bfredl/nvim-miniyank'
         " Cool Icons
@@ -166,6 +169,11 @@ else
     set undofile undodir=~/.nvim/undodir
     " Spell
     set spelllang=en,es spellsuggest=best,9
+    " Change wiki prefix
+    let g:vimwiki_map_prefix = '<Leader>W'
+
+    let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
 endif
 
 """ Common configuration for nvim and vscode

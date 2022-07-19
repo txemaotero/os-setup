@@ -197,6 +197,21 @@ wk.register({
             f        = { "<C-w>|",       "Focus vsplit" },
             F        = { "<C-w>_",       "Focus hsplit" },
             ["="]    = { "<C-w>=",       "Restore" },
+        },
+        W            = {
+            name     = "+Wiki",
+            i        = "Diary Index",
+            w        = "Index",
+            s        = "Select number",
+            t        = "Index new tab",
+            ["<leader>"]     = {
+                name = "+Day",
+                w    = "Today",
+                t    = "Today new tab",
+                y    = "Yesterday",
+                m    = "Tomorrow",
+                i    = "Generate link",
+            },
         }
     },
 })

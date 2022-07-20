@@ -71,7 +71,7 @@ else
         " To change the working directory when new file is open
         Plug 'airblade/vim-rooter'
         " Comments
-        Plug 'tpope/vim-commentary'
+        Plug 'numToStr/Comment.nvim'
         " Change surraund
         Plug 'tpope/vim-surround'
         " Color line

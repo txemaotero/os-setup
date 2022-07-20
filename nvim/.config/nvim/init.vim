@@ -72,8 +72,8 @@ else
         Plug 'airblade/vim-rooter'
         " Comments
         Plug 'numToStr/Comment.nvim'
-        " Change surraund
-        Plug 'tpope/vim-surround'
+        " Change surround
+        Plug 'kylechui/nvim-surround'
         " Color line
         Plug 'nvim-lualine/lualine.nvim'
         " Color themes
@@ -105,8 +105,8 @@ else
         " View and search LSP symbols, tags
         Plug 'simrat39/symbols-outline.nvim'
         " Snippets
-        Plug 'hrsh7th/vim-vsnip'
-        Plug 'hrsh7th/vim-vsnip-integ'
+        Plug 'L3MON4D3/LuaSnip'
+        Plug 'saadparwaiz1/cmp_luasnip'
         Plug 'rafamadriz/friendly-snippets'
         " See the colors hex
         Plug 'norcalli/nvim-colorizer.lua'
@@ -138,14 +138,11 @@ else
         Plug 'hrsh7th/cmp-buffer'
         Plug 'hrsh7th/cmp-path'
         Plug 'hrsh7th/cmp-cmdline'
+        Plug 'hrsh7th/cmp-nvim-lua'
         Plug 'hrsh7th/nvim-cmp'
         Plug 'ray-x/lsp_signature.nvim'
-        " For vsnip user.
-        Plug 'hrsh7th/cmp-vsnip'
         " Symbols
         Plug 'onsails/lspkind.nvim'
-        " Copilot
-        Plug 'github/copilot.vim'
         " Debug addapter protocol
         Plug 'mfussenegger/nvim-dap'
         Plug 'rcarriga/nvim-dap-ui'

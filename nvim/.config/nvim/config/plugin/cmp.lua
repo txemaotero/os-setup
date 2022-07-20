@@ -5,7 +5,7 @@ local lspkind = require('lspkind')
 cmp.setup({
     snippet = {
         expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
+            require('luasnip').lsp_expand(args.body)
         end,
     },
     formatting = {
@@ -17,9 +17,9 @@ cmp.setup({
     mapping = {
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-e>'] = cmp.mapping.abort(),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
         ['<C-n>'] = function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -34,19 +34,30 @@ cmp.setup({
                 fallback()
             end
         end,
-        ['<Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            else
-                fallback()
-            end
-        end,
     },
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' , keyword_length = 2 },
-        { name = 'path' , keyword_length = 2 },
-        { name = 'vsnip' , keyword_length = 2 },
+        { name = 'nvim_lua'},
+        { name = 'nvim_lsp'},
+        { name = 'path' },
+        { name = 'luasnip' },
     }, {
             { name = 'buffer', keyword_length = 5 },
         })
+
 })
+
+cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })

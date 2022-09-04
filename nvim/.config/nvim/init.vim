@@ -162,9 +162,7 @@ else
     " use ripgreg instead of grep if present
     " Color scheme
     set termguicolors
-    let g:sonokai_transparent_background = 1
-    let g:dracula_transparent_bg = v:true
-    colorscheme dracula
+    " let g:sonokai_transparent_background = 1
     " Permanent undo history
     set undofile undodir=~/.nvim/undodir
     " Spell

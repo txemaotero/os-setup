@@ -9,3 +9,5 @@ function TodoCheck()
 endfunction
 
 autocmd FileType text,markdown,vimwiki call TodoCheck()
+
+colorscheme dracula

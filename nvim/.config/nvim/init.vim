@@ -36,21 +36,36 @@ if exists('g:vscode')
 else
     " Add runtime to load content in config folder
     set runtimepath+=~/.config/nvim/config
+    " List of pluggins
     call plug#begin('~/.config/nvim/autoload/plugged')
         " Easy motion
         Plug 'phaazon/hop.nvim'
 
-        " Dracula theme
-        Plug 'Mofiqul/dracula.nvim'
-
-        " Trouble
+        " Trouble (nice error, warnings and notes)
         Plug 'folke/trouble.nvim'
 
         " Add diagnostics and formaters to lsp
         Plug 'jose-elias-alvarez/null-ls.nvim'
 
+        """"""" Must be pluggins
         " sort with gs
         Plug 'ralismark/opsort.vim'
+        " Align text
+        Plug 'junegunn/vim-easy-align'
+        " Change surround
+        Plug 'kylechui/nvim-surround'
+        " Comments
+        Plug 'numToStr/Comment.nvim'
+        " Better repeat
+        Plug 'tpope/vim-repeat'
+        " Autoclose parenth
+        Plug 'steelsojka/pears.nvim'
+        " Replace with register
+        Plug 'vim-scripts/ReplaceWithRegister'
+        " Smooth scroll
+        Plug 'psliwka/vim-smoothie'
+        " More text objects based on treesitter objects
+        Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
         " Vim wiki
         Plug 'vimwiki/vimwiki'
@@ -58,80 +73,83 @@ else
 
         " Cycle through yanked text
         Plug 'bfredl/nvim-miniyank'
+
         " Cool Icons
         Plug 'kyazdani42/nvim-web-devicons'
         Plug 'ryanoasis/vim-devicons'
+
         " File explorer
         Plug 'kyazdani42/nvim-tree.lua'
+
         " Telescope (for finding)
         Plug 'nvim-lua/popup.nvim'
         Plug 'nvim-lua/plenary.nvim'
         Plug 'nvim-telescope/telescope.nvim'
         Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
         " To change the working directory when new file is open
         Plug 'airblade/vim-rooter'
-        " Comments
-        Plug 'numToStr/Comment.nvim'
-        " Change surround
-        Plug 'kylechui/nvim-surround'
+
+        """"""""""""""" Appearence """"""""""""""
         " Color line
         Plug 'nvim-lualine/lualine.nvim'
-        " Color themes
+        " Themes
         Plug 'tanvirtin/monokai.nvim'
         Plug 'sainnhe/gruvbox-material'
         Plug 'sainnhe/sonokai'
         Plug 'marko-cerovac/material.nvim'
+        Plug 'Mofiqul/dracula.nvim'
+        " Fancy notifications
+        Plug 'rcarriga/nvim-notify'
+        " Nice input pop ups
+        Plug 'stevearc/dressing.nvim'
+        " See the colors hex
+        Plug 'norcalli/nvim-colorizer.lua'
+        " Top tabline
+        Plug 'akinsho/bufferline.nvim'
+        " Color parenthesis (treesitter module)
+        Plug 'p00f/nvim-ts-rainbow'
+        " Indent guides
+        Plug 'lukas-reineke/indent-blankline.nvim'
+        " Treesitter Better syntax highlight
+        Plug 'nvim-treesitter/nvim-treesitter'
+        " TS playground
+        Plug 'nvim-treesitter/playground'
+
         " Git
         Plug 'tpope/vim-fugitive'
         " Git commit browser (:GV)
         Plug 'junegunn/gv.vim'
         " Git diff simbols on number column 
-        Plug 'mhinz/vim-signify'
+        Plug 'lewis6991/gitsigns.nvim'
         " Shows git commits under the cursor (leader gm)
         Plug 'rhysd/git-messenger.vim'
+
         " Vifm
         Plug 'vifm/vifm.vim'
-        " Better repeat
-        Plug 'tpope/vim-repeat'
+
         " Which key
-        " Plug 'liuchengxu/vim-which-key'
         Plug 'folke/which-key.nvim'
-        " Autoclose parenth
-        Plug 'steelsojka/pears.nvim'
+
         " Float terminal
         Plug 'voldikss/vim-floaterm'
-        " Undo tree
-        Plug 'mbbill/undotree'
-        " View and search LSP symbols, tags
-        Plug 'simrat39/symbols-outline.nvim'
+
         " Snippets
         Plug 'L3MON4D3/LuaSnip'
         Plug 'saadparwaiz1/cmp_luasnip'
         Plug 'rafamadriz/friendly-snippets'
-        " See the colors hex
-        Plug 'norcalli/nvim-colorizer.lua'
-        " Replace with register
-        Plug 'vim-scripts/ReplaceWithRegister'
-        " Smooth scroll
-        Plug 'psliwka/vim-smoothie'
-        " More text objects
-        Plug 'wellle/targets.vim'
-        " Fish indent and stuffs
-        Plug 'dag/vim-fish'
+
         " Markdown
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-        " Align text
-        Plug 'junegunn/vim-easy-align'
-        " Top tabline
-        Plug 'akinsho/bufferline.nvim'
-        " Better syntax highlight
-        Plug 'nvim-treesitter/nvim-treesitter'
-        " Color parenthesis (treesitter module)
-        Plug 'p00f/nvim-ts-rainbow'
-        " playground
-        Plug 'nvim-treesitter/playground'
-        " Indent guides
-        Plug 'lukas-reineke/indent-blankline.nvim'
+        " Jupyter form nvim. Needs additional installation:
+        " $ pip install jupyter_ascending
+        " $ jupyter nbextension install --py --sys-prefix jupyter_ascending
+        " $ jupyter nbextension     enable jupyter_ascending --sys-prefix --py
+        " $ jupyter serverextension enable jupyter_ascending --sys-prefix --py
+        " And remember to crate the pairs before edditing
+        " $ python -m jupyter_ascending.scripts.make_pair --base example
+        Plug 'untitled-ai/jupyter_ascending.vim'
+
         " LSP and auto-completion (cmp)
         Plug 'neovim/nvim-lspconfig'
         Plug 'hrsh7th/cmp-nvim-lsp'
@@ -141,18 +159,21 @@ else
         Plug 'hrsh7th/cmp-nvim-lua'
         Plug 'hrsh7th/nvim-cmp'
         Plug 'ray-x/lsp_signature.nvim'
+        " View and search LSP symbols, tags
+        Plug 'simrat39/symbols-outline.nvim'
         " Symbols
         Plug 'onsails/lspkind.nvim'
-        " Debug addapter protocol
+
+        " Debug addapter protocol (DAP)
         Plug 'mfussenegger/nvim-dap'
         Plug 'rcarriga/nvim-dap-ui'
-        " Fancy notifications
-        Plug 'rcarriga/nvim-notify'
+
         " Tests
         Plug 'antoinemadec/FixCursorHold.nvim'
         Plug 'nvim-neotest/neotest'
         Plug 'nvim-neotest/neotest-python'
     call plug#end()
+
     """ Configuration
     set mouse=a mousemodel=popup " enable mouse support
     " relative line numbers except in insert mode
@@ -175,33 +196,37 @@ else
     let g:vimwiki_global_ext = 0
     let g:vimwiki_hl_headers = 1
 
-
 endif
 
 """ Common configuration for nvim and vscode
-syntax on " Enable syntax highlighting
-set backspace=indent,eol,start " Fixes backspace over
-set ruler cursorline " Enable line/column info at bottom
-set linebreak " Not breaking the lines in words
-autocmd BufRead,BufNewFile *.md,*.txt set tw=80 " Wrap on txt and md
-set scrolloff=10 " Number of lines bellow
-set smartindent autoindent " Autoindentation
-set expandtab tabstop=4 shiftwidth=4 softtabstop=4 " Tab = 4 spaces
+syntax on                                                                       " Enable syntax highlighting
+set backspace=indent,eol,start                                                  " Fixes backspace over
+set ruler cursorline                                                            " Enable line/column info at bottom
+set linebreak                                                                   " Not breaking the lines in words
+autocmd BufRead,BufNewFile *.md,*.txt set tw=80                                 " Wrap on txt and md
+set scrolloff=10                                                                " Number of lines bellow
+
+set smartindent autoindent                                                      " Autoindentation
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4                              " Tab = 4 spaces
 autocmd FileType html,vue,json,js setlocal tabstop=2 shiftwidth=2 softtabstop=2 " Exceptions
+
 " File type detection for indent and plugin
 filetype on
 filetype indent on
 filetype plugin on
+
 set incsearch ignorecase smartcase inccommand=nosplit " Nice search and replace
+
 " leader to space
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
+
+" Use ripgrep instead of grep if possible
 if executable('rg')
     set grepprg=rg\ --vimgrep
 endif
 
-" Map fd as esc
-" imap fd <Esc>
+""""""""""""""""""""""""" Mappings """"""""""""""""""
 " Delete and yank to end of line
 nmap D d$
 nmap Y y$

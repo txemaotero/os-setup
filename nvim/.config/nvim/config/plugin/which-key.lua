@@ -90,6 +90,14 @@ wk.register({
             f        = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>",            "Find File" },
             s        = { "<cmd>w<cr>",                                                                         "Save"}
         },
+        g            = {
+            name     = "+Git",
+            B        = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle blame all"},
+            b        = { "<cmd>Gitsigns blame_line<cr>",                "Blame line"},
+            s        = { "<cmd>Git status<cr>",                         "Status"},
+            m        = "Messenger",
+
+        },
         i            = {
             name     = "+Info",
             D        = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Project diagnostics"},
@@ -98,6 +106,11 @@ wk.register({
             l        = { "<cmd>TroubleToggle loclist<cr>",               "Loclist"},
             q        = { "<cmd>TroubleToggle quickfix<cr>",              "Quickfix"},
             r        = { "<cmd>TroubleToggle lsp_references<cr>",        "Symbol references"}
+        },
+        i            = {
+            name     = "+Jupyter",
+            j        = { "<Plug>JupyterExecute",    "Run current cell"},
+            J        = { "<Plug>JupyterExecuteAll", "Run all cells"},
         },
         l            = {
             name     = "+LSP",

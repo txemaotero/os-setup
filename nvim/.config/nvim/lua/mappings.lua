@@ -1,169 +1,202 @@
--- Setup options
-require("which-key").setup({
-	plugins = {
-		spelling = {
-			enabled = tru,
-		},
-		-- the presets plugin, adds help for a bunch of default keybindings in Neovim
-		-- No actual key bindings are created
-		presets = {
-			operators = false,
-			motions = true, -- adds help for motions
-			text_objects = false,
-			windows = false, -- default bindings on <c-w>
-			nav = true, -- misc bindings to work with windows
-		},
-	},
-	window = {
-		border = "single", -- none, single, double, shadow
-		position = "bottom", -- bottom, top
-		margin = { 0, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
-	},
-	layout = {
-		height = { min = 4, max = 25 }, -- min and max height of the columns
-		width = { min = 20, max = 50 }, -- min and max width of the columns
-		spacing = 3, -- spacing between columns
-		align = "center", -- align columns left, center or right
-	},
-	triggers_blacklist = {
-		i = { "f" },
-		v = { "f" },
-	},
-})
+local M = {}
 
 function pyflyby_add_imports()
 	os.execute("tidy-imports --black --quiet --replace-star-imports --action REPLACE " .. vim.fn.expand("%"))
 	vim.cmd("e")
 end
 
--- WhichKeyFloat transparent background
-vim.cmd("highlight WhichKeyFloat ctermbg=BLACK ctermfg=BLACK")
+M.general = {
+    mappings = {
+        ["<CR>"] = {"o<Esc>",                      "New line"},
+        ["<C-p>"] = {"<Plug>(miniyank-cycle)",     "Put cycle"},
+        ["<C-n>"] = {"<Plug>(miniyank-cycleback)", "Put cycle back"},
+        ["<F5>"] = {
+            function()
+                require("dap").continue()
+            end,
+            "Start Debug",
+        },
+        ["<C-j>"] = { "<C-w>j", "WMove j" },
+        ["<C-h>"] = { "<C-w>h", "WMove h" },
+        ["<C-l>"] = { "<C-w>l", "WMove l" },
+        ["<C-k>"] = { "<C-w>k", "WMove k" },
+        D = {"d$",                                 "Delete until end"},
+        g = {
+            a = {"<Plug>(EasyAlign)", "EasyAlign"},
+        },
+        p = {"<Plug>(miniyank-autoput)",           "Miniyank put"},
+        P = {"<Plug>(miniyank-autoPut)",           "Miniyank Put"},
+        Y = {"y$",                                 "Yank until end"},
+    },
+}
 
-local wk = require("which-key")
--- Define keybindings
-wk.register({
-	["<F5>"] = {
-		function()
-			require("dap").continue()
-		end,
-		"Start Debug",
-	},
-	["<C-j>"] = { "<C-w>j", "WMove j" },
-	["<C-h>"] = { "<C-w>h", "WMove h" },
-	["<C-l>"] = { "<C-w>l", "WMove l" },
-	["<C-k>"] = { "<C-w>k", "WMove k" },
-	["<leader>"] = {
+M.general_aux = {
+    mappings = {
+        g = {
+            a = {"<Plug>(EasyAlign)", "EasyAlign", mode = "x"},
+        }
+    },
+}
+
+M.terminal = {
+    mappings = {
+        ["<C-A>"] = {"<Home>",  "Home"},
+        ["<C-B>"] = {"<Left>",  "Left"},
+        ["<C-D>"] = {"<Del>",   "Delete"},
+        ["<C-E>"] = {"<End>",   "End"},
+        ["<C-F>"] = {"<Right>", "Right"},
+        ["<C-N>"] = {"<Down>",  "Down"},
+        ["<C-P>"] = {"<Up>",    "Up"},
+    },
+    opts = {mode = "t"}
+}
+
+M.leader_root = {
+    mappings = {
 		["/"] = { "<cmd>Telescope live_grep<cr>", "find text" },
 		["<Tab>"] = { "<cmd>b#<cr>", "alternate buffer" },
 		["."] = { "<cmd>e $MYVIMRC<cr>", "open config" },
 		[";"] = { "<cmd>Telescope commands<cr>", "commands" },
 		e = { "<cmd>NvimTreeToggle<cr>", "explorer" },
-		n = { "<cmd>let @/ = ''<cr>", "no highlight" },
-		m = { "<cmd>Vifm<cr>", "vifm" },
-		u = { "<cmd>UndotreeToggle<cr>", "undo tree" },
 		H = { "<C-W>s", "split below" },
-		V = { "<C-W>v", "Split right" },
+		m = { "<cmd>Vifm<cr>", "vifm" },
+		n = { "<cmd>let @/ = ''<cr>", "no highlight" },
+		u = { "<cmd>UndotreeToggle<cr>", "undo tree" },
 		v = "Inc. selection",
-		b = {
-			name = "+Buffer",
-			d = { "<cmd>bd<cr>", "Delete" },
-			f = { "<cmd>bfirst<cr>", "First" },
-			l = { "<cmd>blast<cr>", "Last" },
-			n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
-			p = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-			b = { "<cmd>BufferLinePick<cr>", "Pick" },
-			B = { "<cmd>Telescope buffers<cr>", "Telescope find" },
-		},
-		d = {
-			name = "+Debug",
-			b = {
-				function()
-					require("dap").toggle_breakpoint()
-				end,
-				"Breakpoint",
-			},
-			c = {
-				function()
-					require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-				end,
-				"Cond. break",
-			},
-			d = {
-				function()
-					require("dap").continue()
-				end,
-				"Debug",
-			},
-			j = {
-				function()
-					require("dap").step_over()
-				end,
-				"Step over",
-			},
-			k = {
-				function()
-					require("dap").step_out()
-				end,
-				"Step out",
-			},
-			l = {
-				function()
-					require("dap").step_into()
-				end,
-				"Step into",
-			},
-			L = {
-				function()
-					require("dap").run_last()
-				end,
-				"Run last",
-			},
-			m = {
-				function()
-					require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-				end,
-				"Log message",
-			},
-			r = {
-				function()
-					require("dap").repl.open()
-				end,
-				"Repl open",
-			},
-			t = {
-				function()
-					require("dapui").toggle()
-				end,
-				"Toggle UI",
-			},
-		},
-		f = {
-			name = "+File",
-			f = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>", "Find File" },
-			s = { "<cmd>w<cr>", "Save" },
-		},
-		g = {
-			name = "+Git",
-			B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle blame all" },
-			b = { "<cmd>Gitsigns blame_line<cr>", "Blame line" },
-			s = { "<cmd>Git status<cr>", "Status" },
-			m = "Messenger",
-		},
-		i = {
-			name = "+Info",
-			D = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Project diagnostics" },
-			d = { "<cmd>TroubleToggle document_diagnostics<cr>", "File diagnostics" },
-			i = { "<cmd>TroubleToggle <cr>", "Trouble" },
-			l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
-			q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
-			r = { "<cmd>TroubleToggle lsp_references<cr>", "Symbol references" },
-		},
-		j = {
+		V = { "<C-W>v", "Split right" },
+    },
+    opts = {prefix = "<leader>"}
+}
+
+M.leader_buffer = {
+    mappings = {
+        name = "+Buffer",
+        d = { "<cmd>bd<cr>", "Delete" },
+        f = { "<cmd>bfirst<cr>", "First" },
+        l = { "<cmd>blast<cr>", "Last" },
+        n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
+        p = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
+        b = { "<cmd>BufferLinePick<cr>", "Pick" },
+        B = { "<cmd>Telescope buffers<cr>", "Telescope find" },
+    },
+    opts = {prefix = "<leader>b"}
+}
+
+M.leader_debug = {
+    mappings = {
+        name = "+Debug",
+        b = {
+            function()
+                require("dap").toggle_breakpoint()
+            end,
+            "Breakpoint",
+        },
+        c = {
+            function()
+                require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+            end,
+            "Cond. break",
+        },
+        d = {
+            function()
+                require("dap").continue()
+            end,
+            "Debug",
+        },
+        j = {
+            function()
+                require("dap").step_over()
+            end,
+            "Step over",
+        },
+        k = {
+            function()
+                require("dap").step_out()
+            end,
+            "Step out",
+        },
+        l = {
+            function()
+                require("dap").step_into()
+            end,
+            "Step into",
+        },
+        L = {
+            function()
+                require("dap").run_last()
+            end,
+            "Run last",
+        },
+        m = {
+            function()
+                require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+            end,
+            "Log message",
+        },
+        r = {
+            function()
+                require("dap").repl.open()
+            end,
+            "Repl open",
+        },
+        t = {
+            function()
+            require("dapui").toggle()
+            end,
+            "Toggle UI",
+        },
+    },
+    opts = {prefix = "<leader>d"}
+}
+
+
+M.leader_file = {
+    mappings = {
+        name = "+File",
+        f = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>", "Find File" },
+        s = { "<cmd>w<cr>", "Save" },
+    },
+    opts = {prefix = "<leader>f"}
+}
+
+
+M.leader_git = {
+    mappings = {
+        name = "+Git",
+        B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle blame all" },
+        b = { "<cmd>Gitsigns blame_line<cr>", "Blame line" },
+        s = { "<cmd>Git status<cr>", "Status" },
+        m = "Messenger",
+    },
+    opts = {prefix = "<leader>g"}
+}
+
+
+M.leader_info = {
+    mappings = {
+        name = "+Info",
+        D = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Project diagnostics" },
+        d = { "<cmd>TroubleToggle document_diagnostics<cr>", "File diagnostics" },
+        i = { "<cmd>TroubleToggle <cr>", "Trouble" },
+        l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
+        q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+        r = { "<cmd>TroubleToggle lsp_references<cr>", "Symbol references" },
+    },
+    opts = {prefix = "<leader>i"}
+}
+
+
+M.leader_jupyter = {
+    mappings = {
 			name = "+Jupyter",
 			j = { "<Plug>JupyterExecute", "Run current cell" },
 			J = { "<Plug>JupyterExecuteAll", "Run all cells" },
-		},
-		l = {
+    },
+    opts = {prefix = "<leader>j"}
+}
+
+M.leader_lsp = {
+    mappings = {
 			name = "+LSP",
 			["?"] = { "<cmd>SymbolsOutline<cr>", "List variables" },
 			["="] = "Format range",
@@ -172,8 +205,11 @@ wk.register({
 			a = "Action",
 			i = { pyflyby_add_imports, "Add imports (py)" },
 			d = "Diagnostics",
-		},
-		s = {
+    },
+    opts = {prefix = "<leader>l"}
+}
+M.leader_telescope = {
+    mappings = {
 			name = "+Telescope",
 			["/"] = { "<cmd>Telescope commands_history<cr>", "History" },
 			[";"] = { "<cmd>Telescope commands", "Commands" },
@@ -225,8 +261,12 @@ wk.register({
 				l = { "<cmd>Telescope vimwiki link<cr>", "Links" },
 			},
 			z = { "<cmd>Telescope<cr>", "Telescope" },
-		},
-		t = {
+    },
+    opts = {prefix = "<leader>s"}
+}
+
+M.leader_test = {
+    mappings = {
 			name = "+test",
 			t = {
 				function()
@@ -282,8 +322,12 @@ wk.register({
 				end,
 				"Debug File",
 			},
-		},
-		T = {
+    },
+    opts = {prefix = "<leader>t"}
+}
+
+M.leader_terminal = {
+    mappings = {
 			name = "+terminal",
 			l = { "<C-w>l", "Move l" },
 			[";"] = { "<cmd>FloatermNew --wintype=normal --height=6<cr>", "terminal" },
@@ -297,8 +341,12 @@ wk.register({
 			t = { "<cmd>FloatermToggle<cr>", "toggle" },
 			y = { "<cmd>FloatermNew ytop<cr>", "ytop" },
 			s = { "<cmd>FloatermNew ncdu<cr>", "ncdu" },
-		},
-		w = {
+    },
+    opts = {prefix = "<leader>T"}
+}
+
+M.leader_window = {
+    mappings = {
 			name = "+window",
 			s = { "<C-w>s", "HSplit hor" },
 			S = { "<C-w>s<C-w>l", "HSplit & focus" },
@@ -316,8 +364,11 @@ wk.register({
 			f = { "<C-w>|", "Focus vsplit" },
 			F = { "<C-w>_", "Focus hsplit" },
 			["="] = { "<C-w>=", "Restore" },
-		},
-		W = {
+    },
+    opts = {prefix = "<leader>w"}
+}
+M.leader_wiki = {
+    mappings = {
 			name = "+Wiki",
 			i = "Diary Index",
 			w = "Index",
@@ -331,12 +382,12 @@ wk.register({
 				m = "Tomorrow",
 				i = "Generate link",
 			},
-		},
-	},
-})
+    },
+    opts = {prefix = "<leader>w"}
+}
 
-hop_keys = {
-	h = {
+M.leader_hop = {
+    mappings = {
 		name = "+hop",
 		h = { "<cmd>HopWord<cr>", "Word" },
 		w = { "<cmd>HopWord<cr>", "Word" },
@@ -349,14 +400,26 @@ hop_keys = {
 		C = { "<cmd>HopChar1MW<cr>", "1 char MW" },
 		t = { "<cmd>HopChar2<cr>", "2 chars" },
 		T = { "<cmd>HopChar2MW<cr>", "2 chars MW" },
-	},
+    },
+    opts = {prefix = "<leader>h", mode = "n"}
 }
 
-wk.register(hop_keys, {
-	mode = "n",
-	prefix = "<leader>",
-})
-wk.register(hop_keys, {
-	mode = "v",
-	prefix = "<leader>",
-})
+M.leader_hop_visual = {
+    mappings = {
+		name = "+hop",
+		h = { "<cmd>HopWord<cr>", "Word" },
+		w = { "<cmd>HopWord<cr>", "Word" },
+		W = { "<cmd>HopWordMW<cr>", "Word MW" },
+		a = { "<cmd>HopAnywhere<cr>", "Anywhere" },
+		A = { "<cmd>HopAnywhereMW<cr>", "Anywhere MW" },
+		l = { "<cmd>HopLine<cr>", "Line" },
+		L = { "<cmd>HopLineMW<cr>", "Line MW" },
+		c = { "<cmd>HopChar1<cr>", "1 char" },
+		C = { "<cmd>HopChar1MW<cr>", "1 char MW" },
+		t = { "<cmd>HopChar2<cr>", "2 chars" },
+		T = { "<cmd>HopChar2MW<cr>", "2 chars MW" },
+    },
+    opts = {prefix = "<leader>h", mode = "v"}
+}
+
+return M

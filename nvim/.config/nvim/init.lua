@@ -1,6 +1,10 @@
-require('impatient')
+-- require('impatient')
+
+-- Leader to space
+vim.g.mapleader = " "
 
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
+vim.cmd("set runtimepath+=" .. os.getenv("HOME") .. "/.config/nvim/")
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e222a" })
@@ -9,19 +13,11 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 
 	-- install plugins + compile their configs
 	vim.cmd("packadd packer.nvim")
-	require("plugins")
+	require("custom_plugins/init")
 	vim.cmd("PackerSync")
 
-	-- install binaries from mason.nvim & tsparsers
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "PackerComplete",
-		callback = function()
-			vim.cmd("bw | silent! MasonInstallAll") -- close packer window
-			require("packer").loader("nvim-treesitter")
-		end,
-	})
 end
 
--- pcall(require, "custom")
-
--- require("core.utils").load_mappings()
+-- require("options")
+pcall(require, "options")
+pcall(require, "mappings")

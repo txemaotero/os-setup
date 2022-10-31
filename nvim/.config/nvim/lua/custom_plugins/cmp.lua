@@ -1,5 +1,6 @@
 -- Setup nvim-cmp (completion)
 local cmp = require'cmp'
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local lspkind = require('lspkind')
 
 cmp.setup({
@@ -49,15 +50,20 @@ cmp.setup({
 cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-      { name = 'buffer' }
+        { name = 'buffer' }
     }
-  })
+})
 
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = 'path' }
+        { name = 'path' }
     }, {
-      { name = 'cmdline' }
-    })
-  })
+            { name = 'cmdline' }
+        })
+})
+
+cmp.event:on(
+    'confirm_done',
+    cmp_autopairs.on_confirm_done()
+)

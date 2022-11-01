@@ -3,7 +3,42 @@ local cmp = require'cmp'
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local lspkind = require('lspkind')
 
+vim.opt.completeopt = "menuone,noselect"
+
+local function border(hl_name)
+  return {
+    { "╭", hl_name },
+    { "─", hl_name },
+    { "╮", hl_name },
+    { "│", hl_name },
+    { "╯", hl_name },
+    { "─", hl_name },
+    { "╰", hl_name },
+    { "│", hl_name },
+  }
+end
+
+local cmp_window = require "cmp.utils.window"
+
+cmp_window.info_ = cmp_window.info
+cmp_window.info = function(self)
+  local info = self:info_()
+  info.scrollable = false
+  return info
+end
+
+
 cmp.setup({
+window = {
+    completion = {
+      border = border "CmpBorder",
+      -- winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+      winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,Search:None",
+    },
+    documentation = {
+      border = border "CmpDocBorder",
+    },
+  },
     snippet = {
         expand = function(args)
             require('luasnip').lsp_expand(args.body)
@@ -67,3 +102,5 @@ cmp.event:on(
     'confirm_done',
     cmp_autopairs.on_confirm_done()
 )
+
+

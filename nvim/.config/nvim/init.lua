@@ -15,7 +15,9 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.cmd("packadd packer.nvim")
 	require("custom_plugins/init")
 	vim.cmd("PackerSync")
-
+else
+	vim.cmd("packadd packer.nvim")
+	require("custom_plugins/init")
 end
 
 -- require("options")

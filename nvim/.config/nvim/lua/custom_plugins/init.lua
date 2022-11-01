@@ -7,11 +7,16 @@ return require('packer').startup(function(use)
     -- Align text with ga
     use 'junegunn/vim-easy-align'
     -- Change surround cs
-    use 'kylechui/nvim-surround'
+    use {
+        'kylechui/nvim-surround',
+        config = function()
+            require("nvim-surround").setup{}
+        end
+    }
     -- Comments
     use {
         'numToStr/Comment.nvim',
-        convig = function()
+        config = function()
             require("Comment").setup()
         end
     }
@@ -26,18 +31,70 @@ return require('packer').startup(function(use)
     }
     -- Replace with register
     use 'vim-scripts/ReplaceWithRegister'
+
     -- Smooth scroll
-    use 'karb94/neoscroll.nvim'
+    use {
+        'karb94/neoscroll.nvim',
+        config = function()
+            require("neoscroll").setup {}
+        end
+    }
+
+    use {
+        'xiyaowong/nvim-transparent',
+        config = function()
+            require("transparent").setup({
+                enable = true,
+                -- extra_groups = "all",
+                extra_groups = {
+                    "TelescopeNormal",
+                    "NvimTreeNormal",
+                },
+                exclude = {
+                    "Search",
+                    "CursorLine",
+                }
+            })
+        end
+    }
+
+    use {
+        'weilbith/nvim-code-action-menu',
+        cmd = 'CodeActionMenu',
+    }
+
+    use {
+        'kosayoda/nvim-lightbulb',
+        requires = 'antoinemadec/FixCursorHold.nvim',
+    }
 
     -- Treesitter and more text objects based on treesitter objects
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
+        config = function()
+            require("nvim-treesitter.configs").setup {
+                ensure_installed = "all"
+            }
+        end,
         requires = {
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-treesitter/playground',
             'p00f/nvim-ts-rainbow'
         }
+    }
+
+    use {
+        'm-demare/hlargs.nvim',
+        requires = { 'nvim-treesitter/nvim-treesitter' }
+    }
+
+    use {
+        "RRethy/vim-illuminate",
+        config = function()
+            require("custom_plugins.illuminate")
+
+        end
     }
 
     -- Telescope
@@ -92,7 +149,6 @@ return require('packer').startup(function(use)
     use {
         "nvim-neorg/neorg",
         ft = "norg",
-        --after = {"nvim-treesitter", "telescope" },
         after = "nvim-treesitter",
         config = function()
             pcall(require, "custom_plugins/neorg")
@@ -128,10 +184,12 @@ return require('packer').startup(function(use)
     use {
         'Mofiqul/dracula.nvim',
         config = function()
-            pcall(require, "custom_plugins/dracula")
-            vim.cmd[[colorscheme dracula]]
+            require("custom_plugins/dracula")
         end
     }
+
+    use 'folke/tokyonight.nvim'
+
 
     -- Fancy notifications
     use {
@@ -161,9 +219,14 @@ return require('packer').startup(function(use)
         'lukas-reineke/indent-blankline.nvim',
         config = function()
             vim.opt.list = true
+            vim.opt.listchars:append "eol:↴"
+
             require("indent_blankline").setup {
-                buftype_exclude = {"terminal"}
+                buftype_exclude = {"terminal"},
+                show_current_context = true,
+                show_current_context_start = true,
             }
+
         end
     }
 
@@ -231,11 +294,11 @@ return require('packer').startup(function(use)
 
     ------------- Symbols in split view --------------
     --use {
-     --   'simrat39/symbols-outline.nvim',
-      --  config = function()
-       --     require("symbols-outline").setup()
-       -- end
-   -- }
+    --   'simrat39/symbols-outline.nvim',
+    --  config = function()
+    --     require("symbols-outline").setup()
+    -- end
+    -- }
 
     ----------------- LSP and autocompletion -------------------
     use {
@@ -320,5 +383,5 @@ return require('packer').startup(function(use)
             "antoinemadec/FixCursorHold.nvim"
         }
     }
-    end
-    )
+end
+)

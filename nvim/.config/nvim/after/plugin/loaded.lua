@@ -13,4 +13,5 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = TodoCheck
 })
 
+vim.g.tokyonight_transparent = vim.g.transparent_enabled
 vim.cmd[[colorscheme tokyonight]]

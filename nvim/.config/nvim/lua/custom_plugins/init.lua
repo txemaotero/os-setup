@@ -41,38 +41,6 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'xiyaowong/nvim-transparent',
-        config = function()
-            require("transparent").setup({
-                enable = true,
-                -- extra_groups = "all",
-                extra_groups = {
-                    "TelescopeNormal",
-                    "TelescopeBorder",
-                    "NvimTreeNormal",
-                    "NvimTreeNormalNC",
-                    "NvimTreeWinSeparator",
-                    "Pmenu",
-                    "PmenuThumb",
-                    "CmpPmenuBorder",
-                    "WildMenu",
-                    "CmpDocumentation",
-                    "CmpDocumentationBorder",
-                    "BufferlineDevIconLua",
-                    "BufferlineDevIconLuaSelected",
-                    "WhichKeyFloat",
-                    "NormalFloat",
-                    "FloatBorder",
-                },
-                exclude = {
-                    "Search",
-                    "CursorLine",
-                }
-            })
-        end
-    }
-
-    use {
         'weilbith/nvim-code-action-menu',
         cmd = 'CodeActionMenu',
     }
@@ -226,6 +194,48 @@ return require('packer').startup(function(use)
         config = function()
             pcall(require, "custom_plugins/bufferline")
         end
+    }
+
+    use {
+        'xiyaowong/nvim-transparent',
+        config = function()
+            require("transparent").setup({
+                enable = true,
+                -- extra_groups = "all",
+                extra_groups = {
+                    "TelescopeNormal",
+                    "TelescopeBorder",
+                    "NvimTreeNormal",
+                    "NvimTreeNormalNC",
+                    "NvimTreeWinSeparator",
+                    "Pmenu",
+                    "PmenuThumb",
+                    "CmpPmenuBorder",
+                    "WildMenu",
+                    "CmpDocumentation",
+                    "CmpDocumentationBorder",
+                    "WhichKeyFloat",
+                    "NormalFloat",
+                    "FloatBorder",
+                    "LspFloatWinNormal",
+
+                    "BufferLineTabClose",
+                    "BufferLineBufferSelected",
+                    "BufferLineFill",
+                    "BufferLineBackground",
+                    "BufferLineSeparator",
+                    "BufferLineIndicatorSelected",
+
+                    "BufferLineDevIconLuaSelected",
+                    "BufferLineDevIconLua",
+                },
+                exclude = {
+                    "Search",
+                    "CursorLine",
+                }
+            })
+        end,
+        after = "bufferline.nvim"
     }
 
     -- Indent guides

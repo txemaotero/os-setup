@@ -1,6 +1,6 @@
 local M = {}
 
-function pyflyby_add_imports()
+local function pyflyby_add_imports()
 	os.execute("tidy-imports --black --quiet --replace-star-imports --action REPLACE " .. vim.fn.expand("%"))
 	vim.cmd("e")
 end
@@ -9,6 +9,7 @@ M.general = {
     mappings = {
         ["<CR>"] = {"o<Esc>",                      "New line"},
         ["<C-p>"] = {"<Plug>(miniyank-cycle)",     "Put cycle"},
+        ["<C-.>"] = {"<cmd>CodeActionMenu<cr>",    "Code Action"},
         ["<C-n>"] = {"<Plug>(miniyank-cycleback)", "Put cycle back"},
         ["<F5>"] = {
             function()
@@ -54,16 +55,16 @@ M.terminal = {
 M.leader_root = {
     mappings = {
 		["/"] = { "<cmd>Telescope live_grep<cr>", "find text" },
-		["<Tab>"] = { "<cmd>b#<cr>", "alternate buffer" },
-		["."] = { "<cmd>e $MYVIMRC<cr>", "open config" },
-		[";"] = { "<cmd>Telescope commands<cr>", "commands" },
-		e = { "<cmd>NvimTreeToggle<cr>", "explorer" },
-		H = { "<C-W>s", "split below" },
-		m = { "<cmd>Vifm<cr>", "vifm" },
-		n = { "<cmd>let @/ = ''<cr>", "no highlight" },
-		u = { "<cmd>UndotreeToggle<cr>", "undo tree" },
+		["<Tab>"] = { "<cmd>b#<cr>",              "alternate buffer" },
+		["."] = { "<cmd>e $MYVIMRC<cr>",          "open config" },
+		[";"] = { "<cmd>Telescope commands<cr>",  "commands" },
+		e = { "<cmd>NvimTreeToggle<cr>",          "explorer" },
+		H = { "<C-W>s",                           "split below" },
+		m = { "<cmd>Vifm<cr>",                    "vifm" },
+		n = { "<cmd>let @/ = ''<cr>",             "no highlight" },
+		u = { "<cmd>UndotreeToggle<cr>",          "undo tree" },
 		v = "Inc. selection",
-		V = { "<C-W>v", "Split right" },
+		V = { "<C-W>v",                           "Split right" },
     },
     opts = {prefix = "<leader>"}
 }
@@ -71,13 +72,13 @@ M.leader_root = {
 M.leader_buffer = {
     mappings = {
         name = "+Buffer",
-        d = { "<cmd>bd<cr>", "Delete" },
-        f = { "<cmd>bfirst<cr>", "First" },
-        l = { "<cmd>blast<cr>", "Last" },
+        d = { "<cmd>bd<cr>",                  "Delete" },
+        f = { "<cmd>bfirst<cr>",              "First" },
+        l = { "<cmd>blast<cr>",               "Last" },
         n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
         p = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-        b = { "<cmd>BufferLinePick<cr>", "Pick" },
-        B = { "<cmd>Telescope buffers<cr>", "Telescope find" },
+        b = { "<cmd>BufferLinePick<cr>",      "Pick" },
+        B = { "<cmd>Telescope buffers<cr>",   "Telescope find" },
     },
     opts = {prefix = "<leader>b"}
 }
@@ -141,7 +142,7 @@ M.leader_debug = {
         },
         t = {
             function()
-            require("dapui").toggle()
+                require("dapui").toggle({})
             end,
             "Toggle UI",
         },
@@ -154,6 +155,7 @@ M.leader_file = {
     mappings = {
         name = "+File",
         f = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>", "Find File" },
+        r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
         s = { "<cmd>w<cr>", "Save" },
     },
     opts = {prefix = "<leader>f"}
@@ -212,7 +214,7 @@ M.leader_telescope = {
     mappings = {
 			name = "+Telescope",
 			["/"] = { "<cmd>Telescope commands_history<cr>", "History" },
-			[";"] = { "<cmd>Telescope commands", "Commands" },
+			[";"] = { "<cmd>Telescope commands<cr>", "Commands" },
 			a = { "<cmd>Telescope live_grep<cr>", "Find text" },
 			b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current buffer" },
 			B = { "<cmd>Telescope buffers<cr>", "Open buffers" },
@@ -235,6 +237,7 @@ M.leader_telescope = {
 				S = { "<cmd>Telescope git_stash<cr>", "Stash" },
 			},
 			h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
+			H = { "<cmd>Telescope highlights<cr>", "Highlights" },
 			l = {
 				name = "+LSP",
 				a = { "<cmd>Telescope lsp_code_actions<cr>", "Actions" },
@@ -265,63 +268,76 @@ M.leader_telescope = {
     opts = {prefix = "<leader>s"}
 }
 
+M.packer = {
+    mappings = {
+        name = "+packer",
+        c = {"<cmd>PackerCompile<cr>", "Compile"},
+        C = {"<cmd>PackerClean<cr>", "Clean"},
+        i = {"<cmd>PackerInstall<cr>", "Install"},
+        s = {"<cmd>PackerSync<cr>", "Sync"},
+        S = {"<cmd>PackerStatus<cr>", "Status"},
+        u = {"<cmd>PackerUpdate<cr>", "Install"},
+    },
+    opts = {prefix = "<leader>p"}
+}
+
 M.leader_test = {
     mappings = {
-			name = "+test",
-			t = {
-				function()
-					require("neotest").run.run()
-				end,
-				"Closest",
-			},
-			T = {
-				function()
-					require("neotest").run.run(vim.fn.expand("%"))
-				end,
-				"File",
-			},
-			l = {
-				function()
-					require("neotest").run.run_last()
-				end,
-				"Last",
-			},
-			a = {
-				function()
-					require("neotest").run.attach()
-				end,
-				"Attach",
-			},
-			s = {
-				function()
-					require("neotest").summary.toggle()
-				end,
-				"Summary",
-			},
-			S = {
-				function()
-					require("neotest").run.stop()
-				end,
-				"Stop",
-			},
-			o = {
-				function()
-					require("neotest").output.open()
-				end,
-				"Output",
-			},
-			d = {
-				function()
-					require("neotest").run.run({ strategy = "dap" })
-				end,
-				"Debug closest",
-			},
-			D = {
-				function()
-					require("neotest").run.run({ vim.fn.expand("%"), strategy = "dap" })
-				end,
-				"Debug File",
-			},
+        name = "+test",
+        t = {
+            function()
+                require("neotest").run.run()
+            end,
+            "Closest",
+        },
+        T = {
+            function()
+                require("neotest").run.run(vim.fn.expand("%"))
+            end,
+            "File",
+        },
+        l = {
+            function()
+                require("neotest").run.run_last()
+            end,
+            "Last",
+        },
+        a = {
+            function()
+                require("neotest").run.attach()
+            end,
+            "Attach",
+        },
+        s = {
+            function()
+                require("neotest").summary.toggle()
+            end,
+            "Summary",
+        },
+        S = {
+            function()
+                require("neotest").run.stop()
+            end,
+            "Stop",
+        },
+        o = {
+            function()
+                require("neotest").output.open()
+            end,
+            "Output",
+        },
+        d = {
+            function()
+                require("neotest").run.run({ strategy = "dap" })
+            end,
+            "Debug closest",
+        },
+        D = {
+            function()
+                require("neotest").run.run({ vim.fn.expand("%"), strategy = "dap" })
+            end,
+            "Debug File",
+        },
     },
     opts = {prefix = "<leader>t"}
 }

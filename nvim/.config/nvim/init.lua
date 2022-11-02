@@ -1,6 +1,7 @@
 -- require('impatient')
 -- Leader to space
 vim.g.mapleader = " "
+vim.opt.clipboard = "unnamedplus"
 
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 vim.cmd("set runtimepath+=" .. os.getenv("HOME") .. "/.config/nvim/")

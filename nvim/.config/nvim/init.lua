@@ -1,5 +1,4 @@
 -- require('impatient')
-
 -- Leader to space
 vim.g.mapleader = " "
 

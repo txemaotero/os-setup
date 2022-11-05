@@ -48,6 +48,10 @@ set incsearch ignorecase smartcase inccommand=nosplit " Nice search and replace
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 
+" Use ripgrep instead of grep if possible
+if executable('rg')
+    set grepprg=rg\ --vimgrep
+endif
 
 """"""""""""""""""""""""" Mappings """"""""""""""""""
 " Delete and yank to end of line

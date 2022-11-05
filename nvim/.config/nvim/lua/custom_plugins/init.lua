@@ -32,14 +32,6 @@ return require('packer').startup(function(use)
     -- Replace with register
     use 'vim-scripts/ReplaceWithRegister'
 
-    -- Smooth scroll
-    use {
-        'karb94/neoscroll.nvim',
-        config = function()
-            require("neoscroll").setup {}
-        end
-    }
-
     use {
         'weilbith/nvim-code-action-menu',
         cmd = 'CodeActionMenu',
@@ -182,7 +174,9 @@ return require('packer').startup(function(use)
     }
 
     -- Fancy input boxes
-    use 'stevearc/dressing.nvim'
+    use {
+        'stevearc/dressing.nvim',
+    }
 
     -- See colors hex
     use 'norcalli/nvim-colorizer.lua'
@@ -193,53 +187,16 @@ return require('packer').startup(function(use)
         requires = 'kyazdani42/nvim-web-devicons',
         config = function()
             pcall(require, "custom_plugins/bufferline")
-        end
+        end,
+        -- after = "nvim-transparent"
     }
 
     use {
         'xiyaowong/nvim-transparent',
         config = function()
-            require("transparent").setup({
-                enable = true,
-                -- extra_groups = "all",
-                extra_groups = {
-                    "TelescopeNormal",
-                    "TelescopeBorder",
-                    "NvimTreeNormal",
-                    "NvimTreeNormalNC",
-                    "NvimTreeWinSeparator",
-                    "Pmenu",
-                    "PmenuThumb",
-                    "CmpPmenuBorder",
-                    "WildMenu",
-                    "CmpDocumentation",
-                    "CmpDocumentationBorder",
-                    "WhichKeyFloat",
-                    "NormalFloat",
-                    "FloatBorder",
-                    "LspFloatWinNormal",
-
-                    "BufferLineTabClose",
-                    "BufferLineBufferSelected",
-                    "BufferLineFill",
-                    "BufferLineBackground",
-                    "BufferLineSeparator",
-                    "BufferLineIndicatorSelected",
-
-                    "BufferLineDevIconLuaSelected",
-                    "BufferLineDevIconLua",
-                    "BufferVisible",
-
-                    "Normal",
-                    "NormalSB",
-                },
-                exclude = {
-                    "Search",
-                    "CursorLine",
-                }
-            })
+            pcall(require, "custom_plugins/transparent")
         end,
-        after = "bufferline.nvim"
+        after = {"bufferline.nvim", "dressing.nvim"}
     }
 
     -- Indent guides

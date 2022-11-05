@@ -2,6 +2,7 @@
 -- Leader to space
 vim.g.mapleader = " "
 vim.opt.clipboard = "unnamedplus"
+vim.opt.pumblend = 0
 
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 vim.cmd("set runtimepath+=" .. os.getenv("HOME") .. "/.config/nvim/")
@@ -23,6 +24,4 @@ end
 -- require("options")
 pcall(require, "options")
 pcall(require, "mappings")
-vim.cmd[[nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]]
+

@@ -65,6 +65,23 @@ require('bufferline').setup {
         separator_style = 'thin',
         always_show_bufferline = true,
         sort_by = 'id'
+    },
+    highlights = {
+        background = {
+            bg = "NONE",
+        },
+        fill = {
+            bg = "NONE",
+        },
+        close_button = {
+            bg = "NONE",
+        },
+        separator_visible = {
+            bg = "NONE",
+        },
+        tab_close = {
+            bg = "NONE",
+        },
     }
 }
 

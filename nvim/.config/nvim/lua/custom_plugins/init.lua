@@ -228,6 +228,10 @@ return require('packer').startup(function(use)
 
                     "BufferLineDevIconLuaSelected",
                     "BufferLineDevIconLua",
+                    "BufferVisible",
+
+                    "Normal",
+                    "NormalSB",
                 },
                 exclude = {
                     "Search",

@@ -20,6 +20,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 -- Term colors
 vim.opt.termguicolors = true
+
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
 

@@ -14,7 +14,8 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.g.tokyonight_transparent = vim.g.transparent_enabled
-vim.cmd[[colorscheme tokyonight]]
+-- vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[colorscheme catppuccin]]
 
 vim.cmd[[hi! NormalFloat ctermbg=NONE guibg=NONE blend=0]]
 vim.cmd[[hi! Whitespace guifg=#db4b4b]]

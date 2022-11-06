@@ -69,7 +69,6 @@ return require('packer').startup(function(use)
         "RRethy/vim-illuminate",
         config = function()
             require("custom_plugins.illuminate")
-
         end
     }
 
@@ -125,10 +124,18 @@ return require('packer').startup(function(use)
     use {
         "nvim-neorg/neorg",
         after = "nvim-treesitter",
+        tag = "*",
+        filetype = "norg",
         config = function()
-            pcall(require, "custom_plugins/neorg")
+            -- pcall(require, "custom_plugins/neorg")
+            require("custom_plugins/neorg")
         end,
-        requires = "nvim-lua/plenary.nvim"
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
+            'xiyaowong/nvim-transparent',
+            'nvim-telescope/telescope.nvim',
+        }
     }
 
     -- To change the working directory when new file is open
@@ -165,7 +172,7 @@ return require('packer').startup(function(use)
     }
 
     use 'folke/tokyonight.nvim'
-
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     -- Fancy notifications
     use {
@@ -367,6 +374,6 @@ return require('packer').startup(function(use)
             "nvim-neotest/neotest-python",
             "antoinemadec/FixCursorHold.nvim"
         }
-    }
+}
 end
 )

@@ -5,13 +5,31 @@ local function pyflyby_add_imports()
 	vim.cmd("e")
 end
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "help",
+    callback = function()
+        vim.opt_local.tw = 80
+    end,
+})
+
+M.special_help = {
+    mappings = {
+        ["<CR>"] = {"<C-]>",              "Follow link"},
+        ["<BS>"] = {"<C-T>",              "Go back"},
+        o        = {"/'\\l\\{2,\\}'<CR>", "Next option"},
+        O        = {"?'\\l\\{2,\\}'<CR>", "Prev. option"},
+        s        = {"/|.\\{-}|<CR>",      "Next subject"},
+        S        = {"?|.\\{-}|<CR>",      "Prev. subject"},
+    }
+}
+
 M.general = {
     mappings = {
-        ["<CR>"] = {"o<Esc>",                      "New line"},
+        ["<CR>"]  = {"o<Esc>",                     "New line"},
         ["<C-p>"] = {"<Plug>(miniyank-cycle)",     "Put cycle"},
         ["<C-.>"] = {"<cmd>CodeActionMenu<cr>",    "Code Action"},
         ["<C-n>"] = {"<Plug>(miniyank-cycleback)", "Put cycle back"},
-        ["<F5>"] = {
+        ["<F5>"]  = {
             function()
                 require("dap").continue()
             end,
@@ -21,13 +39,13 @@ M.general = {
         ["<C-h>"] = { "<C-w>h", "WMove h" },
         ["<C-l>"] = { "<C-w>l", "WMove l" },
         ["<C-k>"] = { "<C-w>k", "WMove k" },
-        D = {"d$",                                 "Delete until end"},
+        D         = {"d$",      "Delete until end"},
         g = {
             a = {"<Plug>(EasyAlign)", "EasyAlign"},
         },
-        p = {"<Plug>(miniyank-autoput)",           "Miniyank put"},
-        P = {"<Plug>(miniyank-autoPut)",           "Miniyank Put"},
-        Y = {"y$",                                 "Yank until end"},
+        p = {"<Plug>(miniyank-autoput)", "Miniyank put"},
+        P = {"<Plug>(miniyank-autoPut)", "Miniyank Put"},
+        Y = {"y$",                       "Yank until end"},
     },
 }
 
@@ -38,6 +56,8 @@ M.general_aux = {
         }
     },
 }
+
+
 
 M.terminal = {
     mappings = {
@@ -206,7 +226,12 @@ M.leader_lsp = {
 			r = "Rename",
 			a = "Action",
 			i = { pyflyby_add_imports, "Add imports (py)" },
-			d = "Diagnostics",
+			D = "Diagnostics",
+			d = {
+                name = "+Document",
+                f = "Function",
+                c = "Class",
+            }
     },
     opts = {prefix = "<leader>l"}
 }

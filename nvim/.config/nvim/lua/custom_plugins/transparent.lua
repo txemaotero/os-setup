@@ -41,6 +41,11 @@ require("transparent").setup({
         "NotifyTRACEBorder",
         "NotifyTRACEBorder6",
 
+        "DiagnosticVirtualTextError",
+        "DiagnosticVirtualTextWarn",
+        "DiagnosticVirtualTextInfo",
+        "DiagnosticVirtualTextHint",
+
         "Normal",
         "NormalSB",
         "NormalNC",

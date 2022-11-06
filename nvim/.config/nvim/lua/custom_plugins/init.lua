@@ -32,6 +32,9 @@ return require('packer').startup(function(use)
     -- Replace with register
     use 'vim-scripts/ReplaceWithRegister'
 
+    -- Adds ae, ie text objects for the entire buffer
+    use 'kana/vim-textobj-entire'
+
     use {
         'weilbith/nvim-code-action-menu',
         cmd = 'CodeActionMenu',
@@ -47,9 +50,7 @@ return require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = function()
-            require("nvim-treesitter.configs").setup {
-                ensure_installed = "all"
-            }
+            require("custom_plugins.treesitter")
         end,
         requires = {
             'nvim-treesitter/nvim-treesitter-textobjects',
@@ -188,7 +189,6 @@ return require('packer').startup(function(use)
         config = function()
             pcall(require, "custom_plugins/bufferline")
         end,
-        -- after = "nvim-transparent"
     }
 
     use {

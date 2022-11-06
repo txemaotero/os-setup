@@ -38,8 +38,15 @@ local wk = require("which-key")
 
 local mappings = require("mappings")
 
-for _, val in pairs(mappings) do
-    if val.opts then
+for key, val in pairs(mappings) do
+    if key == "special_help" then
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "help",
+            callback = function()
+                wk.register(val.mappings)
+            end,
+        })
+    elseif val.opts then
         wk.register(val.mappings, val.opts)
     else
         wk.register(val.mappings)

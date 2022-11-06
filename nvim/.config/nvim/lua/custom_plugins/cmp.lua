@@ -75,6 +75,7 @@ window = {
         { name = 'nvim_lua'},
         { name = 'nvim_lsp'},
         { name = 'path' },
+        { name = 'neorg' },
         { name = 'luasnip' },
     }, {
             { name = 'buffer', keyword_length = 5 },

@@ -43,7 +43,7 @@ for key, val in pairs(mappings) do
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "help",
             callback = function()
-                wk.register(val.mappings)
+                wk.register(val.mappings, {buffer = vim.api.nvim_get_current_buf()})
             end,
         })
     elseif val.opts then

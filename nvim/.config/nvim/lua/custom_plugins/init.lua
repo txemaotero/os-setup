@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
     use 'vim-scripts/ReplaceWithRegister'
 
     -- Adds ae, ie text objects for the entire buffer
+    use 'kana/vim-textobj-user'
     use 'kana/vim-textobj-entire'
 
     use {
@@ -123,11 +124,11 @@ return require('packer').startup(function(use)
 
     use {
         "nvim-neorg/neorg",
-        ft = "norg",
         after = "nvim-treesitter",
         config = function()
             pcall(require, "custom_plugins/neorg")
-        end
+        end,
+        requires = "nvim-lua/plenary.nvim"
     }
 
     -- To change the working directory when new file is open
@@ -204,7 +205,6 @@ return require('packer').startup(function(use)
         'lukas-reineke/indent-blankline.nvim',
         config = function()
             vim.opt.list = true
-            vim.opt.listchars:append "eol:↴"
 
             require("indent_blankline").setup {
                 buftype_exclude = {"terminal"},

@@ -1,8 +1,8 @@
 local M = {}
 
 local function pyflyby_add_imports()
-	os.execute("tidy-imports --black --quiet --replace-star-imports --action REPLACE " .. vim.fn.expand("%"))
-	vim.cmd("e")
+    os.execute("tidy-imports --black --quiet --replace-star-imports --action REPLACE " .. vim.fn.expand("%"))
+    vim.cmd("e")
 end
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -74,17 +74,17 @@ M.terminal = {
 
 M.leader_root = {
     mappings = {
-		["/"] = { "<cmd>Telescope live_grep<cr>", "find text" },
-		["<Tab>"] = { "<cmd>b#<cr>",              "alternate buffer" },
-		["."] = { "<cmd>e $MYVIMRC<cr>",          "open config" },
-		[";"] = { "<cmd>Telescope commands<cr>",  "commands" },
-		e = { "<cmd>NvimTreeToggle<cr>",          "explorer" },
-		H = { "<C-W>s",                           "split below" },
-		m = { "<cmd>Vifm<cr>",                    "vifm" },
-		n = { "<cmd>let @/ = ''<cr>",             "no highlight" },
-		u = { "<cmd>UndotreeToggle<cr>",          "undo tree" },
-		v = "Inc. selection",
-		V = { "<C-W>v",                           "Split right" },
+        ["/"] = { "<cmd>Telescope live_grep<cr>", "find text" },
+        ["<Tab>"] = { "<cmd>b#<cr>",              "alternate buffer" },
+        ["."] = { "<cmd>e $MYVIMRC<cr>",          "open config" },
+        [";"] = { "<cmd>Telescope commands<cr>",  "commands" },
+        e = { "<cmd>NvimTreeToggle<cr>",          "explorer" },
+        H = { "<C-W>s",                           "split below" },
+        m = { "<cmd>Vifm<cr>",                    "vifm" },
+        n = { "<cmd>let @/ = ''<cr>",             "no highlight" },
+        u = { "<cmd>UndotreeToggle<cr>",          "undo tree" },
+        v = "Inc. selection",
+        V = { "<C-W>v",                           "Split right" },
     },
     opts = {prefix = "<leader>"}
 }
@@ -189,6 +189,13 @@ M.leader_git = {
         b = { "<cmd>Gitsigns blame_line<cr>", "Blame line" },
         s = { "<cmd>Git status<cr>", "Status" },
         m = "Messenger",
+        v = { "<cmd>GV<cr>", "View log" },
+        w = { function ()
+            require('telescope').extensions.git_worktree.git_worktrees()
+        end , "Worktrees"},
+        W = { function ()
+            require('telescope').extensions.git_worktree.create_git_worktree()
+        end , "New worktrees"}
     },
     opts = {prefix = "<leader>g"}
 }
@@ -210,85 +217,85 @@ M.leader_info = {
 
 M.leader_jupyter = {
     mappings = {
-			name = "+Jupyter",
-			j = { "<Plug>JupyterExecute", "Run current cell" },
-			J = { "<Plug>JupyterExecuteAll", "Run all cells" },
+        name = "+Jupyter",
+        j = { "<Plug>JupyterExecute", "Run current cell" },
+        J = { "<Plug>JupyterExecuteAll", "Run all cells" },
     },
     opts = {prefix = "<leader>j"}
 }
 
 M.leader_lsp = {
     mappings = {
-			name = "+LSP",
-			["?"] = { "<cmd>SymbolsOutline<cr>", "List variables" },
-			["="] = "Format range",
-			f = "Format file",
-			r = "Rename",
-			a = "Action",
-			i = { pyflyby_add_imports, "Add imports (py)" },
-			D = "Diagnostics",
-			d = {
-                name = "+Document",
-                f = "Function",
-                c = "Class",
-            }
+        name = "+LSP",
+        ["?"] = { "<cmd>SymbolsOutline<cr>", "List variables" },
+        ["="] = "Format range",
+        f = "Format file",
+        r = "Rename",
+        a = "Action",
+        i = { pyflyby_add_imports, "Add imports (py)" },
+        D = "Diagnostics",
+        d = {
+            name = "+Document",
+            f = "Function",
+            c = "Class",
+        }
     },
     opts = {prefix = "<leader>l"}
 }
 M.leader_telescope = {
     mappings = {
-			name = "+Telescope",
-			["/"] = { "<cmd>Telescope commands_history<cr>", "History" },
-			[";"] = { "<cmd>Telescope commands<cr>", "Commands" },
-			a = { "<cmd>Telescope live_grep<cr>", "Find text" },
-			b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current buffer" },
-			B = { "<cmd>Telescope buffers<cr>", "Open buffers" },
-			c = { "<cmd>Telescope git_commits<cr>", "Commits" },
-			d = {
-				name = "+DAP",
-				c = { "<cmd>Telescope dap commands<cr>", "Commands" },
-				C = { "<cmd>Telescope dap configurations<cr>", "Configurations" },
-				b = { "<cmd>Telescope dap list_breakpoints<cr>", "Breakpoints" },
-				v = { "<cmd>Telescope dap variables<cr>", "Variables" },
-				f = { "<cmd>Telescope dap frames<cr>", "Frames" },
-			},
-			f = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>", "Files" },
-			g = {
-				name = "+git",
-				c = { "<cmd>Telescope git_commits<cr>", "Commits" },
-				C = { "<cmd>Telescope git_bcommits<cr>", "Buffer commits" },
-				b = { "<cmd>Telescope git_branches<cr>", "Commits" },
-				s = { "<cmd>Telescope git_status<cr>", "Status" },
-				S = { "<cmd>Telescope git_stash<cr>", "Stash" },
-			},
-			h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-			H = { "<cmd>Telescope highlights<cr>", "Highlights" },
-			l = {
-				name = "+LSP",
-				a = { "<cmd>Telescope lsp_code_actions<cr>", "Actions" },
-				r = { "<cmd>Telescope lsp_references<cr>", "References" },
-				s = { "<cmd>Telescope lsp_document_symbols<cr>", "Buf symbols" },
-				S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Proj symbols" },
-				d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Buf diagnostics" },
-				D = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Proj diagnostics" },
-			},
-			k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-			m = { "<cmd>Telescope marks<cr>", "Marks" },
-			M = { "<cmd>Telescope man_pages<cr>", "Man pages" },
-			p = { "<cmd>Telescope tags<cr>", "Project tags" },
-			q = { "<cmd>Telescope quickfix<cr>", "Qhickfix list" },
-			r = { "<cmd>Telescope registers<cr>", "Registers" },
-			s = { "<cmd>Telescope ultisnips<cr>", "Snippets" },
-			S = { "<cmd>Telescope colorscheme<cr>", "Color schemes" },
-			t = { "<cmd>Telescope spell_suggest<cr>", "Spell suggestions" },
-			T = { "<cmd>Telescope cuffent_buffer_tags<cr>", "Buffer tags" },
-			w = {
-				name = "+Wiki",
-				w = { "<cmd>Telescope vimwiki<cr>", "Pages" },
-				g = { "<cmd>Telescope vimwiki live_grep<cr>", "Grep" },
-				l = { "<cmd>Telescope vimwiki link<cr>", "Links" },
-			},
-			z = { "<cmd>Telescope<cr>", "Telescope" },
+        name = "+Telescope",
+        ["/"] = { "<cmd>Telescope commands_history<cr>", "History" },
+        [";"] = { "<cmd>Telescope commands<cr>", "Commands" },
+        a = { "<cmd>Telescope live_grep<cr>", "Find text" },
+        b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current buffer" },
+        B = { "<cmd>Telescope buffers<cr>", "Open buffers" },
+        c = { "<cmd>Telescope git_commits<cr>", "Commits" },
+        d = {
+            name = "+DAP",
+            c = { "<cmd>Telescope dap commands<cr>", "Commands" },
+            C = { "<cmd>Telescope dap configurations<cr>", "Configurations" },
+            b = { "<cmd>Telescope dap list_breakpoints<cr>", "Breakpoints" },
+            v = { "<cmd>Telescope dap variables<cr>", "Variables" },
+            f = { "<cmd>Telescope dap frames<cr>", "Frames" },
+        },
+        f = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>", "Files" },
+        g = {
+            name = "+git",
+            c = { "<cmd>Telescope git_commits<cr>", "Commits" },
+            C = { "<cmd>Telescope git_bcommits<cr>", "Buffer commits" },
+            b = { "<cmd>Telescope git_branches<cr>", "Commits" },
+            s = { "<cmd>Telescope git_status<cr>", "Status" },
+            S = { "<cmd>Telescope git_stash<cr>", "Stash" },
+        },
+        h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
+        H = { "<cmd>Telescope highlights<cr>", "Highlights" },
+        l = {
+            name = "+LSP",
+            a = { "<cmd>Telescope lsp_code_actions<cr>", "Actions" },
+            r = { "<cmd>Telescope lsp_references<cr>", "References" },
+            s = { "<cmd>Telescope lsp_document_symbols<cr>", "Buf symbols" },
+            S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Proj symbols" },
+            d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Buf diagnostics" },
+            D = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Proj diagnostics" },
+        },
+        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+        m = { "<cmd>Telescope marks<cr>", "Marks" },
+        M = { "<cmd>Telescope man_pages<cr>", "Man pages" },
+        p = { "<cmd>Telescope tags<cr>", "Project tags" },
+        q = { "<cmd>Telescope quickfix<cr>", "Qhickfix list" },
+        r = { "<cmd>Telescope registers<cr>", "Registers" },
+        s = { "<cmd>Telescope ultisnips<cr>", "Snippets" },
+        S = { "<cmd>Telescope colorscheme<cr>", "Color schemes" },
+        t = { "<cmd>Telescope spell_suggest<cr>", "Spell suggestions" },
+        T = { "<cmd>Telescope cuffent_buffer_tags<cr>", "Buffer tags" },
+        w = {
+            name = "+Wiki",
+            w = { "<cmd>Telescope vimwiki<cr>", "Pages" },
+            g = { "<cmd>Telescope vimwiki live_grep<cr>", "Grep" },
+            l = { "<cmd>Telescope vimwiki link<cr>", "Links" },
+        },
+        z = { "<cmd>Telescope<cr>", "Telescope" },
     },
     opts = {prefix = "<leader>s"}
 }
@@ -369,96 +376,96 @@ M.leader_test = {
 
 M.leader_terminal = {
     mappings = {
-			name = "+terminal",
-			l = { "<C-w>l", "Move l" },
-			[";"] = { "<cmd>FloatermNew --wintype=normal --height=6<cr>", "terminal" },
-			f = { "<cmd>FloatermNew fzf<cr>", "fzf" },
-			g = { "<cmd>FloatermNew lazygit<cr>", "git" },
-			d = { "<cmd>FloatermNew lazydocker<cr>", "docker" },
-			p = { "<cmd>FloatermNew python<cr>", "python" },
-			i = { "<cmd>FloatermNew ipython<cr>", "ipython" },
-			r = { "<cmd>FloatermNew ranger<cr>", "ranger" },
-			e = { "<cmd>FloatermNew vifm<cr>", "vifm" },
-			t = { "<cmd>FloatermToggle<cr>", "toggle" },
-			y = { "<cmd>FloatermNew ytop<cr>", "ytop" },
-			s = { "<cmd>FloatermNew ncdu<cr>", "ncdu" },
+        name = "+terminal",
+        l = { "<C-w>l", "Move l" },
+        [";"] = { "<cmd>FloatermNew --wintype=normal --height=6<cr>", "terminal" },
+        f = { "<cmd>FloatermNew fzf<cr>", "fzf" },
+        g = { "<cmd>FloatermNew lazygit<cr>", "git" },
+        d = { "<cmd>FloatermNew lazydocker<cr>", "docker" },
+        p = { "<cmd>FloatermNew python<cr>", "python" },
+        i = { "<cmd>FloatermNew ipython<cr>", "ipython" },
+        r = { "<cmd>FloatermNew ranger<cr>", "ranger" },
+        e = { "<cmd>FloatermNew vifm<cr>", "vifm" },
+        t = { "<cmd>FloatermToggle<cr>", "toggle" },
+        y = { "<cmd>FloatermNew ytop<cr>", "ytop" },
+        s = { "<cmd>FloatermNew ncdu<cr>", "ncdu" },
     },
     opts = {prefix = "<leader>T"}
 }
 
 M.leader_window = {
     mappings = {
-			name = "+window",
-			s = { "<C-w>s", "HSplit hor" },
-			S = { "<C-w>s<C-w>l", "HSplit & focus" },
-			v = { "<C-w>v", "VSplit vert" },
-			V = { "<C-w>v<C-w>j", "VSplit & focus" },
-			q = { "<C-w>q", "Quit current" },
-			Q = { "<C-w>o", "Keep current" },
-			o = { "<C-w>o", "Keep current" },
-			w = { "<C-w>w", "Move to last" },
-			j = { "<C-w>j", "Move j" },
-			h = { "<C-w>h", "Move h" },
-			k = { "<C-w>k", "Move k" },
-			l = { "<C-w>l", "Move l" },
-			t = { "<C-w>T", "Move to tab" },
-			f = { "<C-w>|", "Focus vsplit" },
-			F = { "<C-w>_", "Focus hsplit" },
-			["="] = { "<C-w>=", "Restore" },
+        name = "+window",
+        s = { "<C-w>s", "HSplit hor" },
+        S = { "<C-w>s<C-w>l", "HSplit & focus" },
+        v = { "<C-w>v", "VSplit vert" },
+        V = { "<C-w>v<C-w>j", "VSplit & focus" },
+        q = { "<C-w>q", "Quit current" },
+        Q = { "<C-w>o", "Keep current" },
+        o = { "<C-w>o", "Keep current" },
+        w = { "<C-w>w", "Move to last" },
+        j = { "<C-w>j", "Move j" },
+        h = { "<C-w>h", "Move h" },
+        k = { "<C-w>k", "Move k" },
+        l = { "<C-w>l", "Move l" },
+        t = { "<C-w>T", "Move to tab" },
+        f = { "<C-w>|", "Focus vsplit" },
+        F = { "<C-w>_", "Focus hsplit" },
+        ["="] = { "<C-w>=", "Restore" },
     },
     opts = {prefix = "<leader>w"}
 }
 M.leader_wiki = {
     mappings = {
-			name = "+Wiki",
-			i = "Diary Index",
-			w = "Index",
-			s = "Select number",
-			t = "Index new tab",
-			["<leader>"] = {
-				name = "+Day",
-				w = "Today",
-				t = "Today new tab",
-				y = "Yesterday",
-				m = "Tomorrow",
-				i = "Generate link",
-			},
+        name = "+Wiki",
+        i = "Diary Index",
+        w = "Index",
+        s = "Select number",
+        t = "Index new tab",
+        ["<leader>"] = {
+            name = "+Day",
+            w = "Today",
+            t = "Today new tab",
+            y = "Yesterday",
+            m = "Tomorrow",
+            i = "Generate link",
+        },
     },
     opts = {prefix = "<leader>w"}
 }
 
 M.leader_hop = {
     mappings = {
-		name = "+hop",
-		h = { "<cmd>HopWord<cr>", "Word" },
-		w = { "<cmd>HopWord<cr>", "Word" },
-		W = { "<cmd>HopWordMW<cr>", "Word MW" },
-		a = { "<cmd>HopAnywhere<cr>", "Anywhere" },
-		A = { "<cmd>HopAnywhereMW<cr>", "Anywhere MW" },
-		l = { "<cmd>HopLine<cr>", "Line" },
-		L = { "<cmd>HopLineMW<cr>", "Line MW" },
-		c = { "<cmd>HopChar1<cr>", "1 char" },
-		C = { "<cmd>HopChar1MW<cr>", "1 char MW" },
-		t = { "<cmd>HopChar2<cr>", "2 chars" },
-		T = { "<cmd>HopChar2MW<cr>", "2 chars MW" },
+        name = "+hop",
+        h = { "<cmd>HopWord<cr>", "Word" },
+        w = { "<cmd>HopWord<cr>", "Word" },
+        W = { "<cmd>HopWordMW<cr>", "Word MW" },
+        a = { "<cmd>HopAnywhere<cr>", "Anywhere" },
+        A = { "<cmd>HopAnywhereMW<cr>", "Anywhere MW" },
+        l = { "<cmd>HopLine<cr>", "Line" },
+        L = { "<cmd>HopLineMW<cr>", "Line MW" },
+        c = { "<cmd>HopChar1<cr>", "1 char" },
+        C = { "<cmd>HopChar1MW<cr>", "1 char MW" },
+        t = { "<cmd>HopChar2<cr>", "2 chars" },
+        T = { "<cmd>HopChar2MW<cr>", "2 chars MW" },
     },
     opts = {prefix = "<leader>h", mode = "n"}
 }
 
 M.leader_hop_visual = {
     mappings = {
-		name = "+hop",
-		h = { "<cmd>HopWord<cr>", "Word" },
-		w = { "<cmd>HopWord<cr>", "Word" },
-		W = { "<cmd>HopWordMW<cr>", "Word MW" },
-		a = { "<cmd>HopAnywhere<cr>", "Anywhere" },
-		A = { "<cmd>HopAnywhereMW<cr>", "Anywhere MW" },
-		l = { "<cmd>HopLine<cr>", "Line" },
-		L = { "<cmd>HopLineMW<cr>", "Line MW" },
-		c = { "<cmd>HopChar1<cr>", "1 char" },
-		C = { "<cmd>HopChar1MW<cr>", "1 char MW" },
-		t = { "<cmd>HopChar2<cr>", "2 chars" },
-		T = { "<cmd>HopChar2MW<cr>", "2 chars MW" },
+        name = "+hop",
+        h = { "<cmd>HopWord<cr>", "Word" },
+        w = { "<cmd>HopWord<cr>", "Word" },
+        W = { "<cmd>HopWordMW<cr>", "Word MW" },
+        a = { "<cmd>HopAnywhere<cr>", "Anywhere" },
+        A = { "<cmd>HopAnywhereMW<cr>", "Anywhere MW" },
+        l = { "<cmd>HopLine<cr>", "Line" },
+        L = { "<cmd>HopLineMW<cr>", "Line MW" },
+        c = { "<cmd>HopChar1<cr>", "1 char" },
+        C = { "<cmd>HopChar1MW<cr>", "1 char MW" },
+        t = { "<cmd>HopChar2<cr>", "2 chars" },
+        T = { "<cmd>HopChar2MW<cr>", "2 chars MW" },
     },
     opts = {prefix = "<leader>h", mode = "v"}
 }

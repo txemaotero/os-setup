@@ -79,12 +79,16 @@ return require('packer').startup(function(use)
         requires = {
             'ElPiloto/telescope-vimwiki.nvim',
             'nvim-lua/popup.nvim',
+            'ThePrimeagen/git-worktree.nvim',
             'nvim-lua/plenary.nvim',
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
                 run = 'make'
             }
-        }
+        },
+        config = function()
+            require("telescope").load_extension("git_worktree")
+        end
     }
 
     -- Cycle through yanked text
@@ -231,7 +235,8 @@ return require('packer').startup(function(use)
     use 'lewis6991/gitsigns.nvim'
     -- Shows git commits under the cursor (leader gm)
     use 'rhysd/git-messenger.vim'
-
+    -- Easy managements of worktrees (remember to clone with --bare)
+    use 'ThePrimeagen/git-worktree.nvim'
 
     --------------- Key maps--------------------------------
     use {

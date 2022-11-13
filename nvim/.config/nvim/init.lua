@@ -4,7 +4,9 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.pumblend = 0
 
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-vim.cmd("set runtimepath+=" .. os.getenv("HOME") .. "/.config/nvim/")
+-- vim.cmd("set runtimepath+=" .. os.getenv("HOME") .. "/.config/nvim/")
+
+require("options")
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e222a" })
@@ -19,5 +21,3 @@ else
     require("custom_plugins/init")
 end
 
-pcall(require, "options")
-pcall(require, "mappings")

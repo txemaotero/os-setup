@@ -57,8 +57,6 @@ M.general_aux = {
     },
 }
 
-
-
 M.terminal = {
     mappings = {
         ["<C-A>"] = {"<Home>",  "Home"},
@@ -74,15 +72,13 @@ M.terminal = {
 
 M.leader_root = {
     mappings = {
-        ["/"] = { "<cmd>Telescope live_grep<cr>", "find text" },
-        ["<Tab>"] = { "<cmd>b#<cr>",              "alternate buffer" },
-        ["."] = { "<cmd>e $MYVIMRC<cr>",          "open config" },
-        [";"] = { "<cmd>Telescope commands<cr>",  "commands" },
-        e = { "<cmd>NvimTreeToggle<cr>",          "explorer" },
-        H = { "<C-W>s",                           "split below" },
-        m = { "<cmd>Vifm<cr>",                    "vifm" },
-        n = { "<cmd>let @/ = ''<cr>",             "no highlight" },
-        u = { "<cmd>UndotreeToggle<cr>",          "undo tree" },
+        ["/"] = { "<cmd>Telescope live_grep<cr>", "Find text" },
+        ["<Tab>"] = { "<cmd>b#<cr>",              "Alternate buffer" },
+        ["."] = { "<cmd>e $MYVIMRC<cr>",          "Open config" },
+        [";"] = { "<cmd>Telescope commands<cr>",  "Commands" },
+        e = { "<cmd>NvimTreeToggle<cr>",          "Explorer" },
+        H = { "<C-W>s",                           "Split below" },
+        N = { "<cmd>let @/ = ''<cr>",             "No highlight" },
         v = "Inc. selection",
         V = { "<C-W>v",                           "Split right" },
     },
@@ -242,6 +238,27 @@ M.leader_lsp = {
     },
     opts = {prefix = "<leader>l"}
 }
+
+
+M.leader_neorg = {
+    mappings = {
+        name = "+Neorg",
+        t = {
+            name = "+Tasks",
+            c = {"<cmd>Neorg gtd capture<cr>", "Capture"},
+            e = {"<cmd>Neorg gtd edit<cr>", "Edit"},
+            v = {"<cmd>Neorg gtd views<cr>", "Views"},
+        },
+        w = {
+            name = "+Workpaces",
+            p = {"<cmd>Neorg workspace personal<cr>", "Personal"},
+            t = {"<cmd>Neorg workspace gtd<cr>", "Tasks"},
+            w = {"<cmd>Neorg workspace work<cr>", "Work"},
+        }
+    },
+    opts = {prefix = "<leader>n"}
+}
+
 M.leader_telescope = {
     mappings = {
         name = "+Telescope",

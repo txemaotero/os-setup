@@ -139,7 +139,9 @@ return require('packer').startup(function(use)
             "hrsh7th/nvim-cmp",
             'xiyaowong/nvim-transparent',
             'nvim-telescope/telescope.nvim',
-        }
+            "nvim-neorg/neorg-telescope",
+        },
+        run = ":Neorg sync-parsers"
     }
 
     -- To change the working directory when new file is open
@@ -254,13 +256,6 @@ return require('packer').startup(function(use)
         end
     }
 
-    --------------- Key maps--------------------------------
-    use {
-        'folke/which-key.nvim',
-        config = function()
-            pcall(require, "custom_plugins/which-key")
-        end
-    }
 
     ----------- Float terminal -----------
     use {
@@ -375,6 +370,14 @@ return require('packer').startup(function(use)
         end
     }
 
+    --------------- Key maps--------------------------------
+    use {
+        'folke/which-key.nvim',
+        config = function()
+            require("custom_plugins/which-key")
+        end
+    }
+
     ------------------ Test --------------
     use {
         "nvim-neotest/neotest",
@@ -395,6 +398,5 @@ return require('packer').startup(function(use)
             "nvim-neotest/neotest-python",
             "antoinemadec/FixCursorHold.nvim"
         }
-}
-end
-)
+    }
+end)

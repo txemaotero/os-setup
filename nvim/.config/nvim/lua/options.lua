@@ -1,3 +1,8 @@
+-- Leader to space
+vim.g.mapleader = " "
+vim.opt.clipboard = "unnamedplus"
+vim.opt.pumblend = 0
+
 -- Mouse control
 vim.opt.mouse = "a"
 vim.opt.mousemodel = "popup"
@@ -24,13 +29,16 @@ vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
 
--- Spell
+-- Spell and text related
 vim.opt.spelllang = {"en", "es"}
 vim.opt.spellsuggest = {"best", 9}
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"text", "latex", "markdown", "vimwiki"},
+    pattern = {"text", "latex", "markdown", "vimwiki", "norg"},
     callback = function()
         vim.opt_local.spell = true
+        vim.opt_local.tw = 80
+        vim.opt_local.conceallevel = 2
+        vim.cmd[[hi! SpellBad guifg=#9c3838]]
     end,
 })
 
@@ -38,14 +46,6 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.opt.ruler = true
 vim.opt.cursorline = true
 vim.opt.linebreak = true
-
--- Text width to 80 in textfiles
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-    pattern = {"text", "latex", "markdown", "vimwiki"},
-    callback = function()
-        vim.opt_local.tw = 80
-    end,
-})
 
 -- Number of lines bellow
 vim.opt.scrolloff = 10

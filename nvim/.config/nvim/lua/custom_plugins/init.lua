@@ -46,6 +46,11 @@ return require('packer').startup(function(use)
         requires = 'antoinemadec/FixCursorHold.nvim',
     }
 
+    use {
+        'declancm/maximize.nvim',
+        config = function() require('maximize').setup() end
+    }
+
     -- Treesitter and more text objects based on treesitter objects
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -194,7 +199,12 @@ return require('packer').startup(function(use)
     }
 
     -- See colors hex
-    use 'norcalli/nvim-colorizer.lua'
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function ()
+            require'colorizer'.setup()
+        end
+    }
 
     -- Top line with tabs
     use {
@@ -225,6 +235,15 @@ return require('packer').startup(function(use)
                 show_current_context_start = true,
             }
 
+        end
+    }
+
+    -- Vertical line
+    use {
+        "lukas-reineke/virt-column.nvim",
+        config = function ()
+            require("virt-column").setup { char = "│", virtcolumn = "80,120" }
+            vim.cmd[[highlight VirtColumn guifg=#444444]]
         end
     }
 
@@ -310,6 +329,13 @@ return require('packer').startup(function(use)
 
     ----------------- LSP and autocompletion -------------------
     use {
+        "williamboman/mason.nvim",
+        config = function ()
+            require("mason").setup()
+        end
+    }
+
+    use {
         "hrsh7th/nvim-cmp",
         requires = {
             {
@@ -361,12 +387,7 @@ return require('packer').startup(function(use)
             'rcarriga/nvim-dap-ui',
         },
         config = function()
-            require('dap')
-            require('dapui').setup()
-            vim.fn.sign_define('DapBreakpoint', {text='🔴', texthl='', linehl='', numhl=''})
-            vim.fn.sign_define('DapBreakpointCondition', {text='🟠', texthl='', linehl='', numhl=''})
-            vim.fn.sign_define('DapLogPoint', {text='🟢', texthl='', linehl='', numhl=''})
-            vim.fn.sign_define('DapStopped', {text='➡️ ', texthl='', linehl='', numhl=''})
+            require("custom_plugins/dap")
         end
     }
 

@@ -1,10 +1,4 @@
--- Leader to space
-vim.g.mapleader = " "
-vim.opt.clipboard = "unnamedplus"
-vim.opt.pumblend = 0
-
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
--- vim.cmd("set runtimepath+=" .. os.getenv("HOME") .. "/.config/nvim/")
 
 require("options")
 

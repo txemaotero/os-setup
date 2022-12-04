@@ -99,6 +99,19 @@ M.leader_buffer = {
     opts = {prefix = "<leader>b"}
 }
 
+M.leader_debug_visual = {
+    mappings = {
+        name = "+Debug",
+        i = {
+            function()
+                require("dapui").eval()
+            end,
+            "Info"
+        }
+    },
+    opts = {prefix = "<leader>d", mode="v"}
+}
+
 M.leader_debug = {
     mappings = {
         name = "+Debug",
@@ -119,6 +132,12 @@ M.leader_debug = {
                 require("dap").continue()
             end,
             "Debug",
+        },
+        i = {
+            function()
+                require("dapui").eval()
+            end,
+            "Info"
         },
         j = {
             function()
@@ -248,13 +267,14 @@ M.leader_neorg = {
             c = {"<cmd>Neorg gtd capture<cr>", "Capture"},
             e = {"<cmd>Neorg gtd edit<cr>", "Edit"},
             v = {"<cmd>Neorg gtd views<cr>", "Views"},
-        },
-        w = {
-            name = "+Workpaces",
-            p = {"<cmd>Neorg workspace personal<cr>", "Personal"},
+            s = { "<cmd>Telescope neorg find_project_tasks<cr>", "Find tasks"},
             t = {"<cmd>Neorg workspace gtd<cr>", "Tasks"},
-            w = {"<cmd>Neorg workspace work<cr>", "Work"},
-        }
+        },
+        p = {"<cmd>Neorg workspace personal<cr>", "Personal"},
+        l = { "<cmd>Telescope neorg insert_link<cr>", "New link"},
+        s = { "<cmd>Telescope neorg find_linkable<cr>", "Find link"},
+        f = { "<cmd>Telescope neorg insert_file_link<cr>", "File link"},
+        h = { "<cmd>Telescope neorg search_headings<cr>", "Find headdings"},
     },
     opts = {prefix = "<leader>n"}
 }
@@ -429,6 +449,7 @@ M.leader_window = {
         f = { "<C-w>|", "Focus vsplit" },
         F = { "<C-w>_", "Focus hsplit" },
         ["="] = { "<C-w>=", "Restore" },
+        m = {"<cmd>lua require('maximize').toggle()<cr>", "Maximize curr"},
     },
     opts = {prefix = "<leader>w"}
 }

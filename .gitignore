@@ -1,7 +1,9 @@
-nvim/.config/nvim/autoload/**
-nvim/.config/nvim/spell/**
-nvim/.config/nvim/.netrwhist
-fish/.config/fish/functions/tide/**
-fish/.config/fish/fish_variables
+fish/functions/tide/**
+fish/fish_variables
 
-nvim/.config/nvim/plugin/packer_compiled.lua
+nvim/plugin/packer_compiled.lua
+nvim/plugin/packer_compiled.lua
+nvim/autoload/**
+nvim/spell/**
+nvim/.netrwhist
+nvim/lazy-lock.json

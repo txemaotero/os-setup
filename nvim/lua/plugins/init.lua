@@ -40,7 +40,30 @@ return {
     {
         "folke/trouble.nvim",
         dependencies = "kyazdani42/nvim-web-devicons",
-        config = true,
+        config = function ()
+            local signs = {
+                Error = " ",
+                Warn = " ",
+                Hint = " ",
+                Info = " ",
+                Ok = "﫠"
+            }
+
+            for type, icon in pairs(signs) do
+                local hl = "DiagnosticSign" .. type
+                vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+            end
+            require("trouble").setup{
+                icons = true,
+                signs = {
+                    error = signs.Error,
+                    warning = signs.Warn,
+                    hint = signs.Hint,
+                    information = signs.Info,
+                    other = signs.Ok
+                },
+            }
+        end
     },
     'ryanoasis/vim-devicons', -- Icons
     'stevearc/dressing.nvim', -- Fancy input boxes

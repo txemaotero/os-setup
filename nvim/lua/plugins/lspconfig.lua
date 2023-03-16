@@ -26,6 +26,7 @@ return {
             vim.keymap.set('n', 'gh', vim.lsp.buf.hover, bufopts)
             vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
             vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+            vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, bufopts)
             vim.keymap.set('n', '<space>lwa', vim.lsp.buf.add_workspace_folder, bufopts)
             vim.keymap.set('n', '<space>lwr', vim.lsp.buf.remove_workspace_folder, bufopts)
             vim.keymap.set('n', '<space>lwl', function()
@@ -51,21 +52,9 @@ return {
 
         -- use a loop to conveniently call 'setup' on multiple servers and
         -- map buffer local keybindings when the language server attaches
-        nvim_lsp.ruff_lsp.setup {
-            on_attach = on_attach,
-            init_options = {
-                settings = {
-                    args = {},
-                }
-            }
-        }
 
         nvim_lsp.pyright.setup {
-            on_attach = function(client, bufnr)
-                on_attach(client, bufnr)
-                local ns = vim.lsp.diagnostic.get_namespace(client.id)
-                vim.diagnostic.disable(nil, ns)
-            end,
+            on_attach = on_attach,
         }
 
         nvim_lsp.rust_analyzer.setup{

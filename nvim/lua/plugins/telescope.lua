@@ -13,5 +13,6 @@ return {
     },
     config = function()
         require("telescope").load_extension("git_worktree")
+        require("telescope").load_extension("yank_history")
     end
 }

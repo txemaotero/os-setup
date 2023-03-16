@@ -23,12 +23,19 @@ M.special_help = {
     }
 }
 
+-- Special yang
+vim.keymap.set({"n","x"}, "y", "<Plug>(YankyYank)")
+vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
+vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+
 M.general = {
     mappings = {
         ["<CR>"]  = {"o<Esc>",                     "New line"},
-        ["<C-p>"] = {"<Plug>(miniyank-cycle)",     "Put cycle"},
         ["<C-.>"] = {"<cmd>CodeActionMenu<cr>",    "Code Action"},
-        ["<C-n>"] = {"<Plug>(miniyank-cycleback)", "Put cycle back"},
         ["<F5>"]  = {
             function()
                 require("dap").continue()
@@ -43,8 +50,6 @@ M.general = {
         g = {
             a = {"<Plug>(EasyAlign)", "EasyAlign"},
         },
-        p = {"<Plug>(miniyank-autoput)", "Miniyank put"},
-        P = {"<Plug>(miniyank-autoPut)", "Miniyank Put"},
         Y = {"y$",                       "Yank until end"},
     },
 }
@@ -204,6 +209,7 @@ M.leader_git = {
         B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle blame all" },
         b = { "<cmd>Gitsigns blame_line<cr>", "Blame line" },
         s = { "<cmd>Git status<cr>", "Status" },
+        t = { "<cmd>FloatermNew lazygit<cr>", "Lazygit" },
         m = "Messenger",
         v = { "<cmd>GV<cr>", "View log" },
         w = { function ()
@@ -333,6 +339,7 @@ M.leader_telescope = {
             g = { "<cmd>Telescope vimwiki live_grep<cr>", "Grep" },
             l = { "<cmd>Telescope vimwiki link<cr>", "Links" },
         },
+        y = { "<cmd>Telescope yank_history<cr>", "Yank hist." },
         z = { "<cmd>Telescope<cr>", "Telescope" },
     },
     opts = {prefix = "<leader>s"}

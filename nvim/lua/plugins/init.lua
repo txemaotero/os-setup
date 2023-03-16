@@ -7,9 +7,9 @@ return {
     'tpope/vim-repeat',                                 -- Better repeat
     {"windwp/nvim-autopairs", config = true},           -- Autoclose parenth
     'vim-scripts/ReplaceWithRegister',                  -- Replace with register
-    'bfredl/nvim-miniyank',                             -- Cycle through yanked text
     {'phaazon/hop.nvim', branch = 'v2', config = true}, -- Easy motion with SPC-h
     'airblade/vim-rooter',                              -- Change the working directory when new file is open
+    {'gbprod/yanky.nvim', config = true},
 
     {'stevearc/oil.nvim', config = true},               -- File explorer
 

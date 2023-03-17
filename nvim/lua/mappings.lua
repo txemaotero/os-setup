@@ -32,6 +32,16 @@ vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
 vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
 vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 
+-- Harpoon
+local ui = require("harpoon.ui")
+
+vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
+vim.keymap.set("n", "+", function() ui.nav_file(1) end)
+vim.keymap.set("n", "<C-ñ>", function() ui.nav_file(2) end)
+vim.keymap.set("n", "<C-t>", function() ui.nav_file(3) end)
+vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end)
+
+
 M.general = {
     mappings = {
         ["<CR>"]  = {"o<Esc>",                     "New line"},
@@ -84,6 +94,7 @@ M.leader_root = {
         [";"] = { "<cmd>Telescope commands<cr>",  "Commands" },
         e = { "<cmd>Oil<cr>",                     "Explorer" },
         H = { "<C-W>s",                           "Split below" },
+        m = { require("harpoon.mark").add_file,   "Add file to harpoon" },
         N = { "<cmd>let @/ = ''<cr>",             "No highlight" },
         v = "Inc. selection",
         V = { "<C-W>v",                           "Split right" },

@@ -2,10 +2,9 @@
 return {
     'Mofiqul/dracula.nvim',
     lazy = false,
-    priority = 1000,
+    priority = 2000,
     config = function()
-        local dracula = require("dracula")
-        dracula.setup({
+        require("dracula").setup({
             -- customize dracula color palette
             colors = {
                 bg = "#282A36",
@@ -45,11 +44,12 @@ return {
                 -- NonText = { fg = dracula.colors().white }, -- set NonText fg to white
                 -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
                 -- Nothing = {} -- clear highlight of Nothing
+                Search = { bg = "#7f68a8", fg = "#191a21" },
+                Whitespace = { fg = "#db4b4b" },
+
             },
         })
         vim.cmd[[colorscheme dracula]]
-        vim.cmd[[hi! NormalFloat ctermbg=NONE guibg=NONE blend=0]]
-        vim.cmd[[hi! Whitespace guifg=#db4b4b]]
     end
 }
 

@@ -1,15 +1,14 @@
 return {
-    'xiyaowong/nvim-transparent',
+    'xiyaowong/transparent.nvim',
     dependencies = {
         'akinsho/bufferline.nvim',
         'stevearc/dressing.nvim',
     },
+    lazy = false,
+    priority = 1000,
     config = function()
-        require("transparent").setup({
-            enable = true,
-            -- extra_groups = "all",
-            extra_groups = {
-
+        require("transparent").setup({})
+        vim.g.transparent_groups = vim.list_extend(vim.g.transparent_groups or {}, {
                 "TelescopeNormal",
                 "TelescopeBorder",
 
@@ -62,9 +61,7 @@ return {
                 "FloatShadow",
                 -- "FloatTitle",
                 "FloatShadowThrough",
-            },
-            exclude = {
-            }
+
         })
     end,
 }

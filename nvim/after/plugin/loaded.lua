@@ -13,5 +13,3 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = TodoCheck
 })
 
--- Color theme
-vim.cmd[[hi Search guibg=#7f68a8 guifg=#191a21]]

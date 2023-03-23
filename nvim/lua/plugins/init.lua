@@ -67,7 +67,17 @@ return {
     },
     'ryanoasis/vim-devicons', -- Icons
     'stevearc/dressing.nvim', -- Fancy input boxes
-    {'norcalli/nvim-colorizer.lua', config = true}, -- See colors hex
+    -- {'norcalli/nvim-colorizer.lua', config = true}, -- See colors hex
+    {
+        'uga-rosa/ccc.nvim',
+        config = function ()
+            require("ccc").setup{
+                highlighter = {
+                    auto_enable = true,
+                }
+            }
+        end
+    }, -- See colors hex
 
     ----------- Markdown preview ------------
     {

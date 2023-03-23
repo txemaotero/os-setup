@@ -37,9 +37,9 @@ local ui = require("harpoon.ui")
 
 vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
 vim.keymap.set("n", "+", function() ui.nav_file(1) end)
-vim.keymap.set("n", "<C-ñ>", function() ui.nav_file(2) end)
-vim.keymap.set("n", "<C-t>", function() ui.nav_file(3) end)
-vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end)
+vim.keymap.set("n", "-", function() ui.nav_file(2) end)
+vim.keymap.set("n", "<C-ñ>", function() ui.nav_file(3) end)
+vim.keymap.set("n", "<C-t>", function() ui.nav_file(4) end)
 
 
 M.general = {
@@ -209,6 +209,7 @@ M.leader_file = {
         f = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>", "Find File" },
         r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
         s = { "<cmd>w<cr>", "Save" },
+        S = { "<cmd>wall<cr>", "Save all" },
     },
     opts = {prefix = "<leader>f"}
 }

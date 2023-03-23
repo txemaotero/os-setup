@@ -1,4 +1,4 @@
--- Vertical line
+-- -- Vertical line
 return {
     "lukas-reineke/virt-column.nvim",
     config = function ()

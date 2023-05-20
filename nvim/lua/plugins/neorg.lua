@@ -15,6 +15,7 @@ return {
         require('neorg').setup {
             load = {
                 ["core.defaults"] = {},
+                ["core.export"] = {},
                 ["core.integrations.telescope"] = {},
                 ["core.norg.concealer"] = {
                     config = {

@@ -1,6 +1,13 @@
 local wezterm = require 'wezterm'
 local config = {}
 
+local mux = wezterm.mux
+
+wezterm.on('gui-startup', function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
+
 config.color_scheme = 'Dracula'
 
 config.default_prog = {
@@ -25,6 +32,7 @@ config.macos_window_background_blur = 20
 
 config.font = wezterm.font_with_fallback {
     'Liga Hack',
+    'Hack Nerd Font Mono'
 }
 config.font_size = 14
 

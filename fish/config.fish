@@ -6,3 +6,6 @@ set -gx PATH /Applications/WezTerm.app/Contents/MacOS {$HOME}/.nvim-osx64/bin {$
 set -gx BAT_THEME "Dracula"
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
+set -gx HOMEBREW_NO_AUTO_UPDATE 1
+
+

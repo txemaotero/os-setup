@@ -1,5 +1,0 @@
-import plotly
-import matplotlib as plt
-import numpy as np
-import os
-import MDAnalysis

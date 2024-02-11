@@ -9,11 +9,13 @@ from qtile_extras.widget.decorations import BorderDecoration
 
 # from qtile_extras.widget import StatusNotifier
 import colors
+from pathlib import Path
 
 
 mod = "mod4"
 my_term = "wezterm"
 my_browser = "google-chrome"
+repo_dir = Path(__file__).parent / "../../../"
 
 
 # A function for hide/show all the windows in a group
@@ -33,11 +35,11 @@ def maximize_by_switching_layout(qtile):
     elif current_layout_name == "max":
         qtile.current_group.layout = "monadtall"
 
-
+HOME = Path()
 keys = [
     Key([mod], "Return", lazy.spawn(my_term), desc="Terminal"),
     Key([mod], "b", lazy.spawn(my_browser), desc="Browser"),
-    Key([mod], "d", lazy.spawn("rofi -show drun"), desc="Run launcher"),
+    Key([mod], "d", lazy.spawn(str(Path.home() / ".config/rofi/launchers/type-1/launcher.sh")), desc="Run launcher"),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "shift"], "r", lazy.restart()),
@@ -283,23 +285,20 @@ def init_widgets_list():
             text="|", font="Hack Mono", foreground=colors[1], padding=2, fontsize=14
         ),
         widget.WindowName(foreground=colors[6], max_chars=40),
-        widget.GenPollText(
-            update_interval=300,
-            func=lambda: subprocess.check_output(
-                "printf $(uname -r)", shell=True, text=True
-            ),
-            foreground=colors[3],
-            fmt="❤  {}",
+        widget.CPU(
+            format="󰍛 {load_percent}%",
+            foreground=colors[4],
             decorations=[
                 BorderDecoration(
-                    colour=colors[3],
+                    colour=colors[4],
                     border_width=[0, 0, 2, 0],
                 )
             ],
         ),
         widget.Spacer(length=8),
-        widget.CPU(
-            format="▓  Cpu: {load_percent}%",
+        widget.Wlan(
+            format='{essid} {percent:2.0%}',
+            fmt=' {}',
             foreground=colors[4],
             decorations=[
                 BorderDecoration(
@@ -313,7 +312,7 @@ def init_widgets_list():
             foreground=colors[8],
             mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(my_term + " -e htop")},
             format="{MemUsed: .0f}{mm}",
-            fmt="🖥  Mem: {} used",
+            fmt="RAM {}",
             decorations=[
                 BorderDecoration(
                     colour=colors[8],
@@ -329,7 +328,7 @@ def init_widgets_list():
             partition="/",
             # format = '[{p}] {uf}{m} ({r:.0f}%)',
             format="{uf}{m} free",
-            fmt="🖴  Disk: {}",
+            fmt="󰋊  {}",
             visible_on_warn=False,
             decorations=[
                 BorderDecoration(
@@ -339,9 +338,10 @@ def init_widgets_list():
             ],
         ),
         widget.Spacer(length=8),
-        widget.Volume(
+        widget.PulseVolume(
             foreground=colors[7],
-            fmt="🕫  Vol: {}",
+            fmt="  {}",
+            # emoji=True,
             decorations=[
                 BorderDecoration(
                     colour=colors[7],
@@ -350,20 +350,9 @@ def init_widgets_list():
             ],
         ),
         widget.Spacer(length=8),
-        widget.KeyboardLayout(
-            foreground=colors[4],
-            fmt="⌨  Kbd: {}",
-            decorations=[
-                BorderDecoration(
-                    colour=colors[4],
-                    border_width=[0, 0, 2, 0],
-                )
-            ],
-        ),
-        widget.Spacer(length=8),
         widget.Clock(
             foreground=colors[8],
-            format="⏱  %a, %b %d - %H:%M",
+            format="  %d/%m/%y - %H:%M",
             decorations=[
                 BorderDecoration(
                     colour=colors[8],
@@ -371,8 +360,6 @@ def init_widgets_list():
                 )
             ],
         ),
-        widget.Spacer(length=8),
-        widget.Systray(padding=3),
         widget.Spacer(length=8),
     ]
     return widgets_list
@@ -390,14 +377,16 @@ def init_widgets_screen2():
     return widgets_screen2
 
 
-# For adding transparency to your bar, add (background="#00000000") to the "Screen" line(s)
-# For ex: Screen(top=bar.Bar(widgets=init_widgets_screen2(), background="#00000000", size=24)),
-
-
 def init_screens():
     return [
-        Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26)),
-        Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26)),
+        Screen(
+            top=bar.Bar(widgets=init_widgets_screen1(), size=26),
+            wallpaper=str(repo_dir / "wallpapers/space_game.png"),
+        ),
+        Screen(
+            top=bar.Bar(widgets=init_widgets_screen2(), size=26),
+            wallpaper=str(repo_dir / "wallpapers/space_game.png"),
+        ),
     ]
 
 

@@ -80,6 +80,29 @@ pip install xcffib
 pip install qtile
 sudo cp ${script_dir}/../aux_files/qtile.desktop /usr/share/xsessions/
 
+### Rofi
+# dependencies
+sudo apt install -y bison check flex libcairo2-dev libgdk-pixbuf-2.0-dev libglib2.0-dev libpango1.0-dev libpangocairo-1.0-0 libstartup-notification0-dev libxcb-cursor-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-randr0-dev libxcb-util-dev libxcb-xinerama0-dev libxcb1-dev libxkbcommon-dev libxkbcommon-x11-dev
+
+# rofi new
+wget https://github.com/davatorium/rofi/releases/download/1.7.4/rofi-1.7.4.tar.gz
+tar xvf rofi-1.7.4.tar.gz
+cd rofi-1.7.4
+mkdir build
+cd build
+../configure
+make
+sudo make install
+cd ../../
+rm -rf rofi-1.7.4
+
+git clone https://github.com/adi1090x/rofi.git
+cd rofi
+chmod +x setup.sh
+./setup.sh
+cd ../
+rm -rf rofi
+
 # QMK
 qmk setup --yes
 

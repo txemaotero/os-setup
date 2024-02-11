@@ -10,7 +10,13 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # apt packages and dependencies for other programs
-sudo apt install -y git curl tmux fzf ncdu stow python3 python3-pip clang clang-format gcc cmake ninja-build gettext unzip fzf libappindicator1 clangd-12
+sudo apt install -y git curl tmux fzf ncdu stow python3 python3-pip clang-format gcc cmake ninja-build gettext unzip fzf libappindicator1 clangd-12
+
+# latest clang
+wget https://apt.llvm.org/llvm.sh
+chmod u+x llvm.sh
+sudo ./llvm.sh
+rm llvm.sh
 
 # Rust packages
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -19,7 +25,7 @@ cargo install fd-find
 cargo install fdfind
 cargo install ripgrep
 
-# Lazigit
+# Lazygit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
@@ -84,7 +90,7 @@ sudo cp ${script_dir}/../aux_files/qtile.desktop /usr/share/xsessions/
 # dependencies
 sudo apt install -y bison check flex libcairo2-dev libgdk-pixbuf-2.0-dev libglib2.0-dev libpango1.0-dev libpangocairo-1.0-0 libstartup-notification0-dev libxcb-cursor-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-randr0-dev libxcb-util-dev libxcb-xinerama0-dev libxcb1-dev libxkbcommon-dev libxkbcommon-x11-dev
 
-# rofi new
+# rofi custom version
 wget https://github.com/davatorium/rofi/releases/download/1.7.4/rofi-1.7.4.tar.gz
 tar xvf rofi-1.7.4.tar.gz
 cd rofi-1.7.4
@@ -96,6 +102,7 @@ sudo make install
 cd ../../
 rm -rf rofi-1.7.4
 
+# nice launchers
 git clone https://github.com/adi1090x/rofi.git
 cd rofi
 chmod +x setup.sh

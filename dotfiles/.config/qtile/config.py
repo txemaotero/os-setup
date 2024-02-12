@@ -1,5 +1,4 @@
-import subprocess
-from libqtile import bar, layout, qtile, widget
+from libqtile import bar, layout, qtile, widget, extension
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
@@ -111,6 +110,16 @@ keys = [
     # Switch focus of monitors
     Key([mod], "period", lazy.next_screen(), desc="Move focus to next monitor"),
     Key([mod], "comma", lazy.prev_screen(), desc="Move focus to prev monitor"),
+    Key([mod], 's', lazy.run_extension(extension.CommandSet(
+    commands={
+        'reboot': 'reboot',
+        'shutdown': 'shutdown',
+        'suspend': 'systemctl suspend',
+        'lock session': '/home/tokariew/.local/bin/lockme',
+        'restart qtile': 'qtile cmd-obj -o cmd -f restart',
+        'logout': 'qtile cmd-obj -o cmd -f shutdown',
+        },
+    dmenu_lines=6)))
 ]
 groups = []
 group_names = [

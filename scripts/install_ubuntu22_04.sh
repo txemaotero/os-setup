@@ -10,7 +10,7 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # apt packages and dependencies for other programs
-sudo apt install -y git curl tmux fzf ncdu stow python3 python3-pip clang-format gcc cmake ninja-build gettext unzip fzf libappindicator1 clangd-12 clang
+sudo apt install -y git curl tmux fzf ncdu stow python3 python3-pip clang-format gcc cmake ninja-build gettext unzip fzf libappindicator1 clangd-12 clang dmenu
 
 # tmux tpm
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

@@ -85,8 +85,9 @@ chsh $(whoami) -s /usr/bin/fish
 python3 -m pip install --no-input jupyter matplotlib numpy scipy neovim qmk
 
 # Deps for qtile
+sudo apt install libiw-dev
 pip install xcffib
-pip install qtile
+pip install qtile pulsectl_asyncio iwlib
 sudo cp ${script_dir}/aux_files/qtile.desktop /usr/share/xsessions/
 
 ### Rofi

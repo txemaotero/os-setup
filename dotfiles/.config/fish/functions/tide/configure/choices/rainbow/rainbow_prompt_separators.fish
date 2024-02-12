@@ -21,18 +21,18 @@ function rainbow_prompt_separators
     set -g fake_tide_right_prompt_separator_diff_color ''
     _tide_display_prompt
 
-    _tide_menu (status function)
+    _tide_menu
     switch $_tide_selected_option
-        case Angled
+        case 1
             set -g fake_tide_left_prompt_separator_diff_color 
             set -g fake_tide_right_prompt_separator_diff_color 
-        case Vertical
+        case 2
             set -g fake_tide_left_prompt_separator_diff_color ''
             set -g fake_tide_right_prompt_separator_diff_color ''
-        case Slanted
+        case 3
             set -g fake_tide_left_prompt_separator_diff_color ''
             set -g fake_tide_right_prompt_separator_diff_color ''
-        case Round
+        case 4
             set -g fake_tide_left_prompt_separator_diff_color ''
             set -g fake_tide_right_prompt_separator_diff_color ''
     end

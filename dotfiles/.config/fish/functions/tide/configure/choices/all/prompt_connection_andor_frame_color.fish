@@ -10,30 +10,26 @@ function prompt_connection_andor_frame_color
     _tide_title "Connection & Frame Color"
 
     _tide_option 1 Lightest
-    set -g fake_tide_prompt_color_frame_and_connection 808080
-    _tide_display_prompt
+    _tide_display_prompt fake_tide_prompt_color_frame_and_connection 808080
 
     _tide_option 2 Light
-    set -g fake_tide_prompt_color_frame_and_connection 6C6C6C
-    _tide_display_prompt
+    _tide_display_prompt fake_tide_prompt_color_frame_and_connection 6C6C6C
 
     _tide_option 3 Dark
-    set -g fake_tide_prompt_color_frame_and_connection 585858
-    _tide_display_prompt
+    _tide_display_prompt fake_tide_prompt_color_frame_and_connection 585858
 
     _tide_option 4 Darkest
-    set -g fake_tide_prompt_color_frame_and_connection 444444
-    _tide_display_prompt
+    _tide_display_prompt fake_tide_prompt_color_frame_and_connection 444444
 
-    _tide_menu (status function)
+    _tide_menu
     switch $_tide_selected_option
-        case Lightest
+        case 1
             set -g fake_tide_prompt_color_frame_and_connection 808080
-        case Light
+        case 2
             set -g fake_tide_prompt_color_frame_and_connection 6C6C6C
-        case Dark
+        case 3
             set -g fake_tide_prompt_color_frame_and_connection 585858
-        case Darkest
+        case 4
             set -g fake_tide_prompt_color_frame_and_connection 444444
     end
     _next_choice all/prompt_spacing

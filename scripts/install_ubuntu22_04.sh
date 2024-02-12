@@ -10,7 +10,10 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # apt packages and dependencies for other programs
-sudo apt install -y git curl tmux fzf ncdu stow python3 python3-pip clang-format gcc cmake ninja-build gettext unzip fzf libappindicator1 clangd-12
+sudo apt install -y git curl tmux fzf ncdu stow python3 python3-pip clang-format gcc cmake ninja-build gettext unzip fzf libappindicator1 clangd-12 clang
+
+# tmux tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # latest clang
 wget https://apt.llvm.org/llvm.sh
@@ -22,8 +25,9 @@ rm llvm.sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source .cargo/env
 cargo install fd-find
-cargo install fdfind
 cargo install ripgrep
+cargo install bat
+cargo install exa
 
 # Lazygit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
@@ -31,24 +35,6 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 rm -r lazygit.tar.gz lazigit/
-
-# neovim
-install_neovim() {
-    git clone https://github.com/neovim/neovim.git
-    cd neovim/
-    git checkout stable
-    make CMAKE_BUILD_TYPE=RelWithDebInfo
-    sudo make install
-    cd ..
-    # Install lsps and formatters too
-    python3 -m pip install pyright balck
-    # Lua
-    git clone https://github.com/LuaLS/lua-language-server
-    cd lua-language-server
-    ./make.sh
-    cd ..
-    rm -rf lua-language-server/
-}
 
 if [ ! -d repos ]; then
     mkdir repos
@@ -61,11 +47,26 @@ if [ -d neovim ]; then
 
     if [[ "$answer" = "y" ]]; then
         rm -rf neovim/
-        install_neovim
+        git clone https://github.com/neovim/neovim.git
+        cd neovim/
+        git checkout stable
+        make CMAKE_BUILD_TYPE=RelWithDebInfo
+        sudo make install
+        cd ..
+        # Install lsps and formatters too
+        python3 -m pip install pyright balck
+        # Lua
+        cd
+        git clone https://github.com/LuaLS/lua-language-server .lua-language-server
+        cd .lua-language-server
+        ./make.sh
+        cd ..
     else
         echo "Neovim will not be installed"
     fi
 fi
+
+cd
 
 # Wezterm (https://wezfurlong.org/wezterm/install/linux.html)
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
@@ -77,6 +78,8 @@ sudo apt install -y wezterm
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update -y
 sudo apt install -y fish
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+chsh $(whoami) -s /usr/bin/fish
 
 # Python packages
 python3 -m pip install --no-input jupyter matplotlib numpy scipy neovim qmk
@@ -84,7 +87,7 @@ python3 -m pip install --no-input jupyter matplotlib numpy scipy neovim qmk
 # Deps for qtile
 pip install xcffib
 pip install qtile
-sudo cp ${script_dir}/../aux_files/qtile.desktop /usr/share/xsessions/
+sudo cp ${script_dir}/aux_files/qtile.desktop /usr/share/xsessions/
 
 ### Rofi
 # dependencies
@@ -114,7 +117,7 @@ rm -rf rofi
 qmk setup --yes
 
 # Fonts
-cd ..
+cd
 
 mkdir -p ${HOME}/.local/share/fonts/
 
@@ -137,6 +140,7 @@ rm google-chrome-stable_current_amd64.deb
 
 # MEGA sync
 wget https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megasync-xUbuntu_22.04_amd64.deb
-&& sudo apt install "$PWD/megasync-xUbuntu_22.04_amd64.deb"
+sudo apt install "$PWD/megasync-xUbuntu_22.04_amd64.deb"
+rm "$PWD/megasync-xUbuntu_22.04_amd64.deb"
 
 cd $initial_path

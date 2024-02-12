@@ -8,12 +8,12 @@ function icons
     _enable_icons
     _tide_display_prompt
 
-    _tide_menu (status function)
+    _tide_menu
     switch $_tide_selected_option
-        case 'Few icons'
+        case 1
             _disable_icons
     end
-    _next_choice all/transient
+    _next_choice all/finish
 end
 
 function _enable_icons

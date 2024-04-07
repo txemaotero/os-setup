@@ -1,6 +1,7 @@
-from libqtile import bar, layout, qtile, widget, extension
+from libqtile import bar, layout, qtile, widget, extension, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+from datetime import datetime
 
 # Make sure 'qtile-extras' is installed or this config will not work.
 from qtile_extras import widget
@@ -9,7 +10,12 @@ from qtile_extras.widget.decorations import BorderDecoration
 # from qtile_extras.widget import StatusNotifier
 import colors
 from pathlib import Path
+import subprocess
+import os
 
+os.system("xrandr --output HDMI-0 --left-of DP-0")
+os.system("xrandr --output HDMI-0 --mode 1920x1080 --rate 74.99")
+os.system("xrandr --output DP-0 --mode 1920x1080 --rate 239.76")
 
 mod = "mod4"
 my_term = "wezterm"
@@ -34,105 +40,119 @@ def maximize_by_switching_layout(qtile):
     elif current_layout_name == "max":
         qtile.current_group.layout = "monadtall"
 
+@hook.subscribe.startup_once
+def autostart():
+    processes = [
+        ['megasync'],
+    ]
+
+    for p in processes:
+        subprocess.Popen(p)
+
 HOME = Path()
 keys = [
-    Key([mod], "Return", lazy.spawn(my_term), desc="Terminal"),
-    Key([mod], "b", lazy.spawn(my_browser), desc="Browser"),
-    Key([mod], "d", lazy.spawn(str(Path.home() / ".config/rofi/launchers/type-1/launcher.sh")), desc="Run launcher"),
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod, "shift"], "q", lazy.window.kill()),
-    Key([mod, "shift"], "r", lazy.restart()),
-    # Move focus
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
-    Key(
-        [mod, "shift"],
-        "h",
-        lazy.layout.shuffle_left(),
-        lazy.layout.move_left().when(layout=["treetab"]),
-        desc="Move window to the left/move tab left in treetab",
-    ),
-    Key(
-        [mod, "shift"],
-        "l",
-        lazy.layout.shuffle_right(),
-        lazy.layout.move_right().when(layout=["treetab"]),
-        desc="Move window to the right/move tab right in treetab",
-    ),
-    Key(
-        [mod, "shift"],
-        "j",
-        lazy.layout.shuffle_down(),
-        lazy.layout.section_down().when(layout=["treetab"]),
-        desc="Move window down/move down a section in treetab",
-    ),
-    Key(
-        [mod, "shift"],
-        "k",
-        lazy.layout.shuffle_up(),
-        lazy.layout.section_up().when(layout=["treetab"]),
-        desc="Move window downup/move up a section in treetab",
-    ),
-    Key(
-        [mod],
-        "e",
-        lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-    ),
-    # Grow windows up, down, left, right.  Only works in certain layouts.
-    # Works in 'bsp' and 'columns' layout.
-    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key(
+        Key([mod], "Return", lazy.spawn(my_term), desc="Terminal"),
+        Key([mod], "b", lazy.spawn(my_browser), desc="Browser"),
+        Key([mod], "d", lazy.spawn(str(Path.home() / ".config/rofi/launchers/type-1/launcher.sh")), desc="Run launcher"),
+        Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+        Key([mod, "shift"], "q", lazy.window.kill()),
+        Key([mod, "shift"], "r", lazy.restart()),
+        # Move focus
+        Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+        Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+        Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+        Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+        # Move windows between left/right columns or move up/down in current stack.
+        # Moving out of range in Columns layout will create new column.
+        Key(
+            [mod, "shift"],
+            "h",
+            lazy.layout.shuffle_left(),
+            lazy.layout.move_left().when(layout=["treetab"]),
+            desc="Move window to the left/move tab left in treetab",
+            ),
+        Key(
+            [mod, "shift"],
+            "l",
+            lazy.layout.shuffle_right(),
+            lazy.layout.move_right().when(layout=["treetab"]),
+            desc="Move window to the right/move tab right in treetab",
+            ),
+        Key(
+            [mod, "shift"],
+            "j",
+            lazy.layout.shuffle_down(),
+            lazy.layout.section_down().when(layout=["treetab"]),
+            desc="Move window down/move down a section in treetab",
+            ),
+        Key(
+            [mod, "shift"],
+            "k",
+            lazy.layout.shuffle_up(),
+            lazy.layout.section_up().when(layout=["treetab"]),
+            desc="Move window downup/move up a section in treetab",
+            ),
+        Key(
+            [mod],
+            "e",
+            lazy.layout.toggle_split(),
+            desc="Toggle between split and unsplit sides of stack",
+            ),
+        # Grow windows up, down, left, right.  Only works in certain layouts.
+        # Works in 'bsp' and 'columns' layout.
+        Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
+Key(
         [mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"
-    ),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
+        ),
+Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "m", lazy.layout.maximize(), desc="Toggle between min and max sizes"),
     Key([mod], "t", lazy.window.toggle_floating(), desc="toggle floating"),
     Key(
-        [mod],
-        "f",
-        maximize_by_switching_layout(),
-        lazy.window.toggle_fullscreen(),
-        desc="toggle fullscreen",
-    ),
+            [mod],
+            "f",
+            maximize_by_switching_layout(),
+            lazy.window.toggle_fullscreen(),
+            desc="toggle fullscreen",
+            ),
     Key(
-        [mod, "shift"],
-        "m",
-        minimize_all(),
-        desc="Toggle hide/show all windows on current group",
-    ),
+            [mod, "shift"],
+            "m",
+            minimize_all(),
+            desc="Toggle hide/show all windows on current group",
+            ),
     # Switch focus of monitors
     Key([mod], "period", lazy.next_screen(), desc="Move focus to next monitor"),
     Key([mod], "comma", lazy.prev_screen(), desc="Move focus to prev monitor"),
     Key([mod], 's', lazy.run_extension(extension.CommandSet(
-    commands={
-        'reboot': 'reboot',
-        'shutdown': 'shutdown',
-        'suspend': 'systemctl suspend',
-        'lock session': '/home/tokariew/.local/bin/lockme',
-        'restart qtile': 'qtile cmd-obj -o cmd -f restart',
-        'logout': 'qtile cmd-obj -o cmd -f shutdown',
-        },
-    dmenu_lines=6)))
+        commands={
+            'reboot': 'reboot',
+            'shutdown': 'shutdown now',
+            'suspend': 'systemctl suspend',
+            'restart qtile': 'qtile cmd-obj -o cmd -f restart',
+            'logout': 'qtile cmd-obj -o cmd -f shutdown',
+            },
+        dmenu_lines=6))),
+    Key([mod, "shift"], 's', lazy.run_extension(extension.CommandSet(
+        commands={
+            "full screen": f"maim -u /home/txema/Pictures/screenshot/screen_{datetime.now().strftime('%Y-%m-%d_%H:%M:%S')}.png",
+            "Selection": f"maim -s /home/txema/Pictures/screenshot/area_{datetime.now().strftime('%Y-%m-%d_%H:%M:%S')}.png",
+            },
+        dmenu_lines=6)))
 ]
 groups = []
 group_names = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-]
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        ]
 
 group_labels = [
     "1",
@@ -293,7 +313,11 @@ def init_widgets_list():
         widget.TextBox(
             text="|", font="Hack Mono", foreground=colors[1], padding=2, fontsize=14
         ),
-        widget.WindowName(foreground=colors[6], max_chars=40),
+        widget.WindowName(foreground=colors[6], max_chars=40, markup=False),
+        widget.Systray(
+            padding = 10
+            ),
+        widget.Spacer(length=8),
         widget.CPU(
             format="󰍛 {load_percent}%",
             foreground=colors[4],
@@ -305,9 +329,7 @@ def init_widgets_list():
             ],
         ),
         widget.Spacer(length=8),
-        widget.Wlan(
-            format='{essid} {percent:2.0%}',
-            fmt=' {}',
+        widget.Net(interface='enp4s0', format='{down:.0f}{down_suffix} ↓↑ {up:.0f}{up_suffix} ',
             foreground=colors[4],
             decorations=[
                 BorderDecoration(
@@ -315,7 +337,7 @@ def init_widgets_list():
                     border_width=[0, 0, 2, 0],
                 )
             ],
-        ),
+                   ),
         widget.Spacer(length=8),
         widget.Memory(
             foreground=colors[8],

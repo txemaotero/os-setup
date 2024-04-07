@@ -25,11 +25,11 @@ config.font = wezterm.font_with_fallback {
     'Hack Nerd Font Mono',
     'Symbols Nerd Font Mono',
 }
-config.font_size = 14
+config.font_size = 10
 
 config.window_decorations = 'RESIZE'
 
-config.default_prog = {"/usr/bin/tmux"}
+-- config.default_prog = {"/usr/bin/tmux"}
 
 local act = wezterm.action
 

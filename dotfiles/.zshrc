@@ -21,7 +21,8 @@ main() {
 }
 
 # Good colors
-TERM=xterm-256color
+# TERM=xterm-256color
+export TERM=screen-256colors
 # Default editor
 export EDITOR="nvim-nightly"
 export ZSH=$HOME/.oh-my-zsh
@@ -225,3 +226,5 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source ~/.nvm/nvm.sh

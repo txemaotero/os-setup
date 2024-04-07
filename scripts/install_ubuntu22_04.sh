@@ -10,7 +10,7 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # apt packages and dependencies for other programs
-sudo apt install -y git curl tmux fzf ncdu stow python3 python3-pip clang-format gcc cmake ninja-build gettext unzip fzf libappindicator1 clangd-12 clang dmenu
+sudo apt install -y git curl tmux fzf ncdu stow python3 python3-pip clang-format gcc cmake ninja-build gettext unzip fzf libappindicator1 clangd-12 clang dmenu nodejs
 
 # tmux tpm
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -28,6 +28,7 @@ cargo install fd-find
 cargo install ripgrep
 cargo install bat
 cargo install exa
+cargo install zoxide
 
 # Lazygit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')

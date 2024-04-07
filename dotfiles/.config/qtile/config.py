@@ -1,4 +1,4 @@
-from libqtile import bar, layout, qtile, widget, extension
+from libqtile import bar, layout, qtile, widget, extension, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
@@ -9,6 +9,7 @@ from qtile_extras.widget.decorations import BorderDecoration
 # from qtile_extras.widget import StatusNotifier
 import colors
 from pathlib import Path
+import subprocess
 
 
 mod = "mod4"
@@ -33,6 +34,15 @@ def maximize_by_switching_layout(qtile):
         qtile.current_group.layout = "max"
     elif current_layout_name == "max":
         qtile.current_group.layout = "monadtall"
+
+@hook.subscribe.startup_once
+def autostart():
+    processes = [
+        ['megasync'],
+    ]
+
+    for p in processes:
+        subprocess.Popen(p)
 
 HOME = Path()
 keys = [
@@ -113,7 +123,7 @@ keys = [
     Key([mod], 's', lazy.run_extension(extension.CommandSet(
     commands={
         'reboot': 'reboot',
-        'shutdown': 'shutdown',
+        'shutdown': 'shutdown now',
         'suspend': 'systemctl suspend',
         'lock session': '/home/tokariew/.local/bin/lockme',
         'restart qtile': 'qtile cmd-obj -o cmd -f restart',
@@ -294,6 +304,10 @@ def init_widgets_list():
             text="|", font="Hack Mono", foreground=colors[1], padding=2, fontsize=14
         ),
         widget.WindowName(foreground=colors[6], max_chars=40),
+        widget.Systray(
+            padding = 10
+            ),
+        widget.Spacer(length=8),
         widget.CPU(
             format="󰍛 {load_percent}%",
             foreground=colors[4],

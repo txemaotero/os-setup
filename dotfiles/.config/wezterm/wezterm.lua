@@ -25,7 +25,7 @@ config.font = wezterm.font_with_fallback {
     'Hack Nerd Font Mono',
     'Symbols Nerd Font Mono',
 }
-config.font_size = 14
+config.font_size = 12
 
 config.window_decorations = 'RESIZE'
 

@@ -1,4 +1,11 @@
 dotfiles/.config/fish/fish_variables
+dotfiles/.config/fish/functions/*tide*
+dotfiles/.config/fish/functions/fish_mode_prompt.fish
+dotfiles/.config/fish/functions/fish_prompt.fish
+dotfiles/.config/fish/completions/tide.fish
+dotfiles/.config/fish/conf.d
+dotfiles/.config/fish/fish_plugins
+dotfiles/.config/fish/fish_plugins
 
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
@@ -176,3 +183,4 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+

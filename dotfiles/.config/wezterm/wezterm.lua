@@ -29,7 +29,7 @@ config.font_size = 10
 
 config.window_decorations = 'RESIZE'
 
--- config.default_prog = {"/usr/bin/tmux"}
+config.default_prog = {"tmux"}
 
 local act = wezterm.action
 
